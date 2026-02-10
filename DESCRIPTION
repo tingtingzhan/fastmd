@@ -1,0 +1,26 @@
+Package: fastmd
+Type: Package
+Title: Fast Markdown Lines for Common R Objects
+Version: 0.1.0
+Description: Fast Markdown lines for common R objects.
+License: GPL-2
+Encoding: UTF-8
+Authors@R: c(person(given = "Tingting", family = "Zhan", role = c("aut", "cre"), email = c("tingtingzhan@gmail.com")))
+Language: en-US
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.3
+Depends: R (>= 4.5.0), flextable (== 0.9.10)
+Imports: methods, cli (== 3.6.5), officer (== 0.7.3),
+  rmarkdown (== 2.30), scales (== 1.4.0), zoo (== 1.8.15), bibentry
+Suggests: 
+  ggplot2 (== 4.0.2), GGally (== 2.4.0), 
+  lattice (== 0.22.7), leaflet (== 2.2.3), 
+  magick (== 2.9.0), 
+  MatchIt (== 4.7.2), 
+  patchwork (== 1.3.2), plotly (== 4.12.0), 
+  reactable (== 0.4.5), 
+  survival (== 3.8.6), 
+  texreg (== 1.39.5),
+  DanielBiostatistics10th, DemographicTable,
+  knitr, quarto
+VignetteBuilder: quarto
