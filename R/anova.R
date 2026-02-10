@@ -104,7 +104,7 @@ md_.aov <- function(x, xnm, ...) {
   z2 <- c(
     '```{r}', 
     '#| echo: false', 
-    xnm |> sprintf(fmt = 'as_flextable(%s)'), # flextable.tzh::as_flextable.aov
+    xnm |> sprintf(fmt = 'as_flextable.aov(%s)'),
     '```'
   ) |>
     new(Class = 'md_lines')

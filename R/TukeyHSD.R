@@ -82,7 +82,7 @@ md_.TukeyHSD <- function(x, xnm, ...) {
   z2 <- c(
     '```{r}', 
     '#| echo: false', 
-    xnm |> sprintf(fmt = 'as_flextable(%s)'), # flextable.tzh::as_flextable.TukeyHSD
+    xnm |> sprintf(fmt = 'as_flextable.TukeyHSD(%s)'),
     '```'
   ) |>
     new(Class = 'md_lines')
