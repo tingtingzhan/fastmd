@@ -1,6 +1,10 @@
 
 
+
+
+
 # @importFrom parallel detectCores
+# @importFrom flextable set_flextable_defaults
 .onLoad <- function(libname, pkgname) {
   
   Sys.setenv(
@@ -20,5 +24,8 @@
     
   )  
   
+  # set_flextable_defaults(digits = 3L) # no use!!!  Why?
+  
 }
+
 
