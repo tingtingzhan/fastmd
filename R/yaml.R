@@ -15,7 +15,6 @@
 #' @param ... additional parameters, currently not in use
 #' 
 #' @keywords internal
-#' @importFrom utils bibentry toBibtex
 #' @export
 r_yaml_ <- function(
     title, 

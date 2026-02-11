@@ -40,7 +40,6 @@ as_flextable.anova <- function(x, row.title = ' ', ...) {
 
 #' @rdname flextable_aov
 #' @importFrom flextable as_flextable
-#' @importFrom stats summary.aov
 #' @export as_flextable.aov
 #' @export
 as_flextable.aov <- function(x, ...) {

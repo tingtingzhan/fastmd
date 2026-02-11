@@ -61,7 +61,6 @@ as_flextable.TukeyHSD <- function(x, ...) {
 #'   '`TukeyHSD`' = m |> TukeyHSD(which = 'tension', ordered = TRUE)
 #' ) |> render_(file = 'aov_etc')
 #' @keywords internal
-#' @importFrom utils bibentry
 #' @export md_.TukeyHSD
 #' @export
 md_.TukeyHSD <- function(x, xnm, ...) {

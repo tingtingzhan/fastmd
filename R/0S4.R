@@ -16,7 +16,6 @@ setOldClass(Classes = 'bibentry')
 #' @slot package \link[base]{character} scalar or \link[base]{vector}
 #' 
 #' @keywords internal
-#' @importFrom utils bibentry
 #' @export
 setClass(Class = 'md_lines', contains = 'character', slots = c(
   bibentry = 'bibentry',
@@ -39,7 +38,6 @@ setClass(Class = 'md_lines', contains = 'character', slots = c(
 #' 
 #' 
 #' @keywords internal
-#' @importFrom utils installed.packages
 #' @export c.md_lines
 #' @export
 c.md_lines <- function(...) {

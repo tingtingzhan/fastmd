@@ -16,7 +16,6 @@ p_adjust_ <- function(x) UseMethod(generic = 'p_adjust_')
 
 
 #' @rdname p_adjust_
-#' @importFrom stats p.adjust p.adjust.methods
 #' @export p_adjust_.numeric
 #' @export
 p_adjust_.numeric <- function(x) {

@@ -74,8 +74,6 @@ md_.matchit <- function(x, xnm, ...) {
 
 
 #' @rdname md_matchit
-#' @importFrom stats formula
-#' @importFrom utils bibentry
 #' @export md_.summary.matchit
 #' @export
 md_.summary.matchit <- function(x, xnm, ...) {

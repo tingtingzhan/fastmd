@@ -65,7 +65,6 @@ md_ <- function(x, ...) {
 #'  )
 #' ) |> render_(file = 'Do Not (Need to) Say Print')
 #' 
-#' @importFrom stats na.omit
 #' @export md_.default
 #' @export
 md_.default <- function(x, xnm, ...) {
@@ -163,7 +162,6 @@ md_.data.frame <- function(x, xnm, ...) {
 #' @rdname md_
 #' @examples
 #' list('`xtabs`' = xtabs(~ cyl + vs, data = mtcars)) |> render_(file = 'xtabs')
-#' @importFrom stats fisher.test
 #' @export md_.xtabs
 #' @export
 md_.xtabs <- function(x, xnm, ...) {

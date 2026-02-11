@@ -49,7 +49,6 @@ as_flextable.pairwise.htest <- function(x, row.title = x$method, ...) {
 #' ) |> render_(file = 'pairwise.htest')
 #' 
 #' @keywords internal
-#' @importFrom utils bibentry
 #' @export md_.pairwise.htest
 #' @export
 md_.pairwise.htest <- function(x, xnm, ...) {

@@ -11,7 +11,6 @@
 #' 
 #' @keywords internal
 #' @name md_stats
-#' @importFrom utils bibentry
 #' @export
 md_.factanal <- function(x, ...) {
   

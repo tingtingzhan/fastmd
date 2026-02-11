@@ -22,7 +22,6 @@
 #' @param ... ..
 #' 
 #' @importFrom rmarkdown render
-#' @importFrom utils citation
 #' @export
 render_ <- function(
     x, 
@@ -138,8 +137,6 @@ render_ <- function(
 #' Function [fromPackage()] returns a \link[base]{character} scalar.
 #' 
 #' @keywords internal
-#' @importFrom stats getCall
-#' @importFrom utils getAnywhere installed.packages
 #' @export
 fromPackage <- function(x) {
   

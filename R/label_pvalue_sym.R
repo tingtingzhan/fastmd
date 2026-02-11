@@ -39,7 +39,6 @@
 #' double() |> label_pvalue_sym()() # nice!
 #' @keywords internal
 #' @importFrom scales label_pvalue
-#' @importFrom stats symnum
 #' @export
 label_pvalue_sym <- function(...) {
   
