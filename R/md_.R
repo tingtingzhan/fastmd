@@ -174,17 +174,7 @@ md_.xtabs <- function(x, xnm, ...) {
       getElement(name = 'p.value') |>
       label_pvalue_sym(add_p = TRUE)() |>
       sprintf(fmt = '[@Fisher22 exact test](https://en.wikipedia.org/wiki/Fisher\'s_exact_test) on this cross tabulation (%s) is performed using <u>**`R`**</u>.') |>
-      new(Class = 'md_lines', bibentry = bibentry(
-        bibtype = 'Article', key = 'Fisher22',
-        author = 'Ronald Aylmer Fisher',
-        journal = 'Journal of the Royal Statistical Society',
-        number = '1',
-        pages = '87--94',
-        title = 'On the Interpretation of $\\chi^2$ from Contingency Tables, and the Calculation of $p$',
-        volume = '85',
-        year = '1922',
-        doi = '10.2307/2340521'
-      ))
+      new(Class = 'md_lines', bibentry = .fisher22())
   }# else NULL
   
   z2 <- c(
