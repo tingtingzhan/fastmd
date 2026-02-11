@@ -11,7 +11,7 @@ setOldClass(Classes = 'bibentry')
 #' 
 #' @slot .Data \link[base]{character} scalar or \link[base]{vector}
 #' 
-#' @slot bibentry a \link[utils]{bibentry} object, via \link[methods]{setOldClass}
+#' @slot bibentry a \link[utils]{bibentry}
 #' 
 #' @slot package \link[base]{character} scalar or \link[base]{vector}
 #' 

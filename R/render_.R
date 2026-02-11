@@ -84,7 +84,7 @@ render_ <- function(
     '# Citations',
     c('base', md@package) |> 
       sort.int() |>
-      lapply(FUN = \(i) i |> citation() |> md_.bibentry()) |>
+      lapply(FUN = \(i) i |> citation() |> md_()) |> # [md_.citation()]
       unlist(use.names = FALSE)
   ) |>
     writeLines(con = frmd, sep = '\n')

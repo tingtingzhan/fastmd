@@ -16,9 +16,9 @@
 #' 
 #' @keywords internal
 #' @importFrom bibentry url2doi
-#' @export md_.bibentry
+#' @export md_.citation
 #' @export
-md_.bibentry <- function(x, ...) {
+md_.citation <- function(x, ...) {
   
   pkg <- attr(x, which = 'package', exact = TRUE)
   
@@ -28,7 +28,7 @@ md_.bibentry <- function(x, ...) {
     pkg |>
       citation() |>
       url2doi() |> 
-      format(style = 'text') # utils:::format.bibentry
+      format(style = 'text') # ?utils:::format.citation
   ) |> 
     new(Class = 'md_lines')
   

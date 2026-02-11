@@ -12,7 +12,7 @@ Text lines to be written to an R Markdown (\code{.md}) file.
 \describe{
 \item{\code{.Data}}{\link[base]{character} scalar or \link[base]{vector}}
 
-\item{\code{bibentry}}{a \link[utils]{bibentry} object, via \link[methods]{setOldClass}}
+\item{\code{bibentry}}{a \link[utils]{bibentry}}
 
 \item{\code{package}}{\link[base]{character} scalar or \link[base]{vector}}
 }}
