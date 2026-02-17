@@ -114,34 +114,6 @@ render2html <- function(
 
 
 
-#' @export
-print.md_lines <- function(x, ...) {
-  
-  z <- c(
-    '\n',
-    x, 
-    '\n',
-    '# R & R Packages', # from `x@package`
-    c('base', x@package) |> 
-      sort.int() |>
-      lapply(FUN = \(i) i |> citation() |> md_()) |> # [md_.citation()]
-      unlist(use.names = FALSE)
-  )
-  
-  if (length(x@bibentry)) { # bibliography from `x@bibentry`
-    z <- c(
-      z,
-      '# References', 
-      '::: {#refs}',
-      ':::'
-    )
-  }
-  
-  z |>
-    cat(sep = '\n')
-  
-}
-
 
 
 

@@ -25,6 +25,49 @@ setClass(Class = 'md_lines', contains = 'character', slots = c(
 ))
 
 
+#' @title `S3` method [print.md_lines()]
+#' 
+#' @param x an \linkS4class{md_lines} object
+#' 
+#' @param ... additional parameters, currently of no use
+#' 
+#' @details
+#' The `S3` method [print.md_lines()] is an internal workhorse for
+#' the function [render2html()].
+#' 
+#' A use interface, if to be implemented in future, will be in the `S4` `show` method.
+#' 
+#' 
+#' @keywords internal
+#' @export print.md_lines
+#' @export
+print.md_lines <- function(x, ...) {
+  
+  z <- c(
+    '\n',
+    x, 
+    '\n',
+    '# R & R Packages', # from `x@package`
+    c('base', x@package) |> 
+      sort.int() |>
+      lapply(FUN = \(i) i |> citation() |> md_()) |> # [md_.citation()]
+      unlist(use.names = FALSE)
+  )
+  
+  if (length(x@bibentry)) { # bibliography from `x@bibentry`
+    z <- c(
+      z,
+      '# References', 
+      '::: {#refs}',
+      ':::'
+    )
+  }
+  
+  z |>
+    cat(sep = '\n')
+  
+}
+
 
 
 
