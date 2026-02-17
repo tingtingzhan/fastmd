@@ -23,7 +23,6 @@
 #' @keywords internal
 #' @importFrom rmarkdown draft render
 #' @export
-# `render_` old name
 render2html <- function(
     x, 
     path = tempdir(),
@@ -72,25 +71,14 @@ render2html <- function(
     do.call(what = c.md_lines, args = _)
   # end of **not** [md_.list()]
   
-  md_all_ <- c(
-    '\n',
-    md, 
-    '\n',
-    '# Citations',
-    c('base', md@package) |> 
-      sort.int() |>
-      lapply(FUN = \(i) i |> citation() |> md_()) |> # [md_.citation()]
-      unlist(use.names = FALSE)
-  )
-  
   bib_file <- file.path(path, 'bibliography.bib')
   md@bibentry |>
     sink_bibentry(file = bib_file)
   
   draft(file = frmd, template = template, package = 'fastmd', edit = FALSE)
   sink(file = frmd, append = TRUE) # ?base::writeLines cannot append
-  md_all_ |>
-    cat(sep = '\n')
+  md |>
+    print.md_lines()
   sink()
   
   render(input = frmd, output_file = fout, intermediates_dir = path, quiet = TRUE)
@@ -126,7 +114,33 @@ render2html <- function(
 
 
 
-
+#' @export
+print.md_lines <- function(x, ...) {
+  
+  z <- c(
+    '\n',
+    x, 
+    '\n',
+    '# R & R Packages', # from `x@package`
+    c('base', x@package) |> 
+      sort.int() |>
+      lapply(FUN = \(i) i |> citation() |> md_()) |> # [md_.citation()]
+      unlist(use.names = FALSE)
+  )
+  
+  if (length(x@bibentry)) { # bibliography from `x@bibentry`
+    z <- c(
+      z,
+      '# References', 
+      '::: {#refs}',
+      ':::'
+    )
+  }
+  
+  z |>
+    cat(sep = '\n')
+  
+}
 
 
 
