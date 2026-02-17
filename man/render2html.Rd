@@ -9,6 +9,7 @@ render2html(
   path = tempdir(),
   file = stop("must specify `file` explicitly"),
   template = "txz003",
+  package = "fastmd",
   rmd.rm = TRUE,
   bib.rm = TRUE,
   ...
@@ -21,7 +22,7 @@ render2html(
 
 \item{file}{\link[base]{character} scalar}
 
-\item{template}{template to use; see function \link[rmarkdown]{draft}}
+\item{template, package}{template (from which package) to use; see function \link[rmarkdown]{draft}}
 
 \item{rmd.rm}{\link[base]{logical} scalar, whether to remove the R markdown \code{'.rmd'} file,
 default \code{TRUE}}

@@ -10,7 +10,7 @@
 #' 
 #' @param file \link[base]{character} scalar
 #' 
-#' @param template template to use; see function \link[rmarkdown]{draft}
+#' @param template,package template (from which package) to use; see function \link[rmarkdown]{draft}
 #' 
 #' @param rmd.rm \link[base]{logical} scalar, whether to remove the R markdown `'.rmd'` file,
 #' default `TRUE`
@@ -27,7 +27,7 @@ render2html <- function(
     x, 
     path = tempdir(),
     file = stop('must specify `file` explicitly'),
-    template = 'txz003',
+    template = 'txz003', package = 'fastmd', 
     rmd.rm = TRUE,
     bib.rm = TRUE,
     ...
@@ -75,7 +75,7 @@ render2html <- function(
   md@bibentry |>
     sink2.bibentry(file = bib_file)
   
-  draft(file = frmd, template = template, package = 'fastmd', edit = FALSE)
+  draft(file = frmd, template = template, package = package, edit = FALSE)
   sink(file = frmd, append = TRUE) # ?base::writeLines cannot append
   md |>
     print.md_lines()
