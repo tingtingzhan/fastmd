@@ -73,7 +73,7 @@ render2html <- function(
   
   bib_file <- file.path(path, 'bibliography.bib')
   md@bibentry |>
-    sink_bibentry(file = bib_file)
+    sink2.bibentry(file = bib_file)
   
   draft(file = frmd, template = template, package = 'fastmd', edit = FALSE)
   sink(file = frmd, append = TRUE) # ?base::writeLines cannot append
