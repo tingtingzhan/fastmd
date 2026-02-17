@@ -18,6 +18,6 @@ Do not want to \code{Imports: fastmd.tzh} in package \CRANpkg{DanielBiostatistic
 \examples{
 library(DanielBiostatistics10th); list(
   '`binTab`' = array(c(7L, 3L, 8L, 6L), dim = c(2,2)) |> binTab()
-) |> render_(file = 'binTab')
+) |> render2html(file = 'binTab')
 }
 \keyword{internal}

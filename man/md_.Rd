@@ -81,12 +81,12 @@ list(
    plotly::plot_ly(ggplot2::economics, x = ~date, y = ~pop, type = 'scatter', mode = 'markers'),
    plotly::plot_ly(z = ~volcano, type = "surface")
  )
-) |> render_(file = 'Do Not (Need to) Say Print')
+) |> render2html(file = 'Do Not (Need to) Say Print')
 
-list('`data.frame`' = Formaldehyde) |> render_(file = 'data.frame')
+list('`data.frame`' = Formaldehyde) |> render2html(file = 'data.frame')
 
-list('`xtabs`' = xtabs(~ cyl + vs, data = mtcars)) |> render_(file = 'xtabs')
-list('`matrix`' = VADeaths) |> render_(file = 'matrix')
+list('`xtabs`' = xtabs(~ cyl + vs, data = mtcars)) |> render2html(file = 'xtabs')
+list('`matrix`' = VADeaths) |> render2html(file = 'matrix')
 
 }
 \keyword{internal}

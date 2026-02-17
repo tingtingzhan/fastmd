@@ -14,7 +14,7 @@
 #' @examples
 #' library(DemographicTable); list(
 #'   '`DemographicTable`' = DemographicTable(CO2, groups = 'Type', include = c('conc', 'uptake'))
-#' ) |> render_(file = 'DemographicTable')
+#' ) |> render2html(file = 'DemographicTable')
 #' @keywords internal
 #' @export md_.DemographicTable
 #' @export

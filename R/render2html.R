@@ -6,12 +6,11 @@
 #' 
 #' @param x an R object
 #' 
-#' @param document \link[base]{character} scalar, type of output document,
-#' `'html'` (default), `'word'` or `'pdf'`
-#' 
 #' @param path \link[base]{character} scalar 
 #' 
 #' @param file \link[base]{character} scalar
+#' 
+#' @param template template to use; see function \link[rmarkdown]{draft}
 #' 
 #' @param rmd.rm \link[base]{logical} scalar, whether to remove the R markdown `'.rmd'` file,
 #' default `TRUE`
@@ -21,13 +20,15 @@
 #' 
 #' @param ... ..
 #' 
-#' @importFrom rmarkdown render
+#' @keywords internal
+#' @importFrom rmarkdown draft render
 #' @export
-render_ <- function(
+# `render_` old name
+render2html <- function(
     x, 
     path = tempdir(),
-    document = c('html', 'word', 'pdf'),
     file = stop('must specify `file` explicitly'),
+    template = 'txz003',
     rmd.rm = TRUE,
     bib.rm = TRUE,
     ...
@@ -36,17 +37,20 @@ render_ <- function(
   x <- x[lengths(x) > 0L]
   if (!(nx <- length(x))) return(invisible())
   
-  document <- match.arg(document)
-  
-  path <- file.path(path, document)
+  path <- file.path(path, 'html')
   dir.create(path = path, showWarnings = FALSE, recursive = TRUE)
   
   if (length(file) != 1L || !is.character(file) || is.na(file) ||
       grepl(pattern = '\\:', x = file)) stop('`file` must be len-1 character, without ', sQuote(':'))
+  
   frmd <- file.path(path, sprintf(fmt = '%s %s.rmd', format.Date(Sys.Date()), file))
-  fout <- file.path(path, sprintf(fmt = '%s %s.%s', format.Date(Sys.Date()), file, switch(document, word = 'docx', document)))
+  if (file.exists(frmd)) {
+    file.remove(frmd)
+    message('Existing ', sQuote(basename(frmd)), ' removed')
+  }
+  
+  fout <- file.path(path, sprintf(fmt = '%s %s.%s', format.Date(Sys.Date()), file, 'html'))
   if (file.exists(fout)) {
-    if (document == 'word') system('osascript -e \'quit app "Word"\'') # Word will not automatically close when the .docx file is deleted
     file.remove(fout)
     message('Existing ', sQuote(basename(fout)), ' removed')
   }
@@ -54,7 +58,7 @@ render_ <- function(
   nm <- names(x)
   if (!length(nm) || anyNA(nm) || !all(nzchar(nm))) stop('names must be complete')
   
-  # **not** [md_.list()]; as we need section titles
+  # **not** [md_.list()]; as we need section titles!!!
   md <- nx |> 
     seq_len() |>
     lapply(FUN = \(i) {
@@ -68,16 +72,7 @@ render_ <- function(
     do.call(what = c.md_lines, args = _)
   # end of **not** [md_.list()]
   
-  c(
-    r_yaml_(title = file, document = document, bib = md@bibentry, path = path, ...), 
-    '\n', 
-    r_css_(),
-    '\n',
-    '```{r}',
-    '#| include: false',
-    'library(ggplot2)',
-    'theme_minimal() |> theme_set()',
-    '```',
+  md_all_ <- c(
     '\n',
     md, 
     '\n',
@@ -86,8 +81,17 @@ render_ <- function(
       sort.int() |>
       lapply(FUN = \(i) i |> citation() |> md_()) |> # [md_.citation()]
       unlist(use.names = FALSE)
-  ) |>
-    writeLines(con = frmd, sep = '\n')
+  )
+  
+  bib_file <- file.path(path, 'bibliography.bib')
+  md@bibentry |>
+    sink_bibentry(file = bib_file)
+  
+  draft(file = frmd, template = template, package = 'fastmd', edit = FALSE)
+  sink(file = frmd, append = TRUE) # ?base::writeLines cannot append
+  md_all_ |>
+    cat(sep = '\n')
+  sink()
   
   render(input = frmd, output_file = fout, intermediates_dir = path, quiet = TRUE)
   
@@ -103,11 +107,9 @@ render_ <- function(
       system()
   }
   
-  bibfile <- path |> 
-    list.files(pattern = '\\.bib$', full.names = TRUE)
-  if (length(bibfile)) {
-    if (bib.rm) file.remove(bibfile) else {
-      bibfile |>
+  if (length(bib_file)) { # surely will have a bib entry for R !
+    if (bib.rm) file.remove(bib_file) else {
+      bib_file |>
         normalizePath() |>
         sprintf(fmt = 'open \'%s\'') |> 
         lapply(FUN = system)
@@ -118,7 +120,9 @@ render_ <- function(
   
 }
 
-
+# template 'txz003'
+# CSS Rule from
+# https://stackoverflow.com/questions/34906002
 
 
 

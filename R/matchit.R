@@ -57,7 +57,7 @@ as_flextable.summary.matchit <- function(x, ...) {
 #' list(
 #'  '`matchit1`' = m,
 #'  '`matchit2`' = m |> summary(addlvariables = 're78')
-#' ) |> render_(file = 'matchit')
+#' ) |> render2html(file = 'matchit')
 #' @keywords internal
 #' @name md_matchit
 #' @export md_.matchit

@@ -22,6 +22,6 @@ Do not want to \code{Imports: fastmd.tzh} in package \CRANpkg{DemographicTable}.
 \examples{
 library(DemographicTable); list(
   '`DemographicTable`' = DemographicTable(CO2, groups = 'Type', include = c('conc', 'uptake'))
-) |> render_(file = 'DemographicTable')
+) |> render2html(file = 'DemographicTable')
 }
 \keyword{internal}

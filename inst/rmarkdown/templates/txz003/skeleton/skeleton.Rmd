@@ -1,0 +1,22 @@
+---
+title: "A Preliminary Report from Tingting Zhan"
+author: "tingting.zhan@jefferson.edu"
+date: "`r format(Sys.time())`"
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+bibliography: bibliography.bib
+---
+
+<style type="text/css">
+  .main-container {
+    max-width: 100% !important;
+  }
+</style>
+
+```{r}
+#| include: false
+library(ggplot2)
+theme_minimal() |> theme_set()
+```

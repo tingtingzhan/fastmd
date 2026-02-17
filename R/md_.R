@@ -63,7 +63,7 @@ md_ <- function(x, ...) {
 #'    plotly::plot_ly(ggplot2::economics, x = ~date, y = ~pop, type = 'scatter', mode = 'markers'),
 #'    plotly::plot_ly(z = ~volcano, type = "surface")
 #'  )
-#' ) |> render_(file = 'Do Not (Need to) Say Print')
+#' ) |> render2html(file = 'Do Not (Need to) Say Print')
 #' 
 #' @export md_.default
 #' @export
@@ -145,7 +145,7 @@ md_.default <- function(x, xnm, ...) {
 
 #' @rdname md_
 #' @examples
-#' list('`data.frame`' = Formaldehyde) |> render_(file = 'data.frame')
+#' list('`data.frame`' = Formaldehyde) |> render2html(file = 'data.frame')
 #' 
 #' @export md_.data.frame
 #' @export
@@ -161,7 +161,7 @@ md_.data.frame <- function(x, xnm, ...) {
 
 #' @rdname md_
 #' @examples
-#' list('`xtabs`' = xtabs(~ cyl + vs, data = mtcars)) |> render_(file = 'xtabs')
+#' list('`xtabs`' = xtabs(~ cyl + vs, data = mtcars)) |> render2html(file = 'xtabs')
 #' @export md_.xtabs
 #' @export
 md_.xtabs <- function(x, xnm, ...) {
@@ -198,7 +198,7 @@ md_.xtabs <- function(x, xnm, ...) {
 
 #' @rdname md_
 #' @examples
-#' list('`matrix`' = VADeaths) |> render_(file = 'matrix')
+#' list('`matrix`' = VADeaths) |> render2html(file = 'matrix')
 #' 
 #' @export md_.matrix
 #' @export

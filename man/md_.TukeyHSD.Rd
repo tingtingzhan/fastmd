@@ -17,6 +17,6 @@ m = aov(breaks ~ wool + tension, data = warpbreaks)
 list(
   'aov' = m,
   '`TukeyHSD`' = m |> TukeyHSD(which = 'tension', ordered = TRUE)
-) |> render_(file = 'aov_etc')
+) |> render2html(file = 'aov_etc')
 }
 \keyword{internal}

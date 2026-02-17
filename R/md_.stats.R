@@ -7,7 +7,7 @@
 #' 
 #' @examples
 #' list(factanal = datasets::USJudgeRatings[-1L] |> stats::factanal(factors = 3L)) |>
-#'   render_(file = 'factanal')
+#'   render2html(file = 'factanal')
 #' 
 #' @keywords internal
 #' @name md_stats

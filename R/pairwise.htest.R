@@ -46,7 +46,7 @@ as_flextable.pairwise.htest <- function(x, row.title = x$method, ...) {
 #'       Month = factor(Month, labels = month.abb[5:9])
 #'     }) |>
 #'     with(expr = pairwise.t.test(Ozone, Month, pool.sd = FALSE, p.adj = 'none'))
-#' ) |> render_(file = 'pairwise.htest')
+#' ) |> render2html(file = 'pairwise.htest')
 #' 
 #' @keywords internal
 #' @export md_.pairwise.htest

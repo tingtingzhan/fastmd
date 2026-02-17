@@ -12,7 +12,7 @@
 #'    new(Class = 'md_lines', package = 'texreg'),
 #'  stats = 'Linear regression by <u>**`R`**</u> package <u>**`stats`**</u>.' |> 
 #'    new(Class = 'md_lines', package = 'stats')
-#' ) |> render_(file = 'bibentry')
+#' ) |> render2html(file = 'bibentry')
 #' 
 #' @keywords internal
 #' @importFrom bibentry url2doi
