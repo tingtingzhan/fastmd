@@ -22,7 +22,7 @@ md_(x, ...)
 
 \method{md_}{matrix}(x, xnm, ...)
 
-\method{md_}{list}(x, xnm, ...)
+\method{md_}{list}(x, xnm, nm_level, ...)
 
 \method{md_}{numeric}(x, ...)
 
@@ -36,6 +36,10 @@ md_(x, ...)
 \item{...}{additional parameters, currently not in use}
 
 \item{xnm}{..}
+
+\item{nm_level}{(optional) \link[base]{character} scalar,
+mark down level of the \link[base]{list} \link[base]{names},
+e.g., \code{'#'}, \code{'##'}, etc.}
 }
 \value{
 Function \code{\link[=md_]{md_()}} returns a \link[base]{character} scalar or \link[base]{vector}.

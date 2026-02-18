@@ -215,15 +215,46 @@ md_.matrix <- function(x, xnm, ...) {
 
 
 #' @rdname md_
+#' 
+#' @param nm_level (optional) \link[base]{character} scalar,
+#' mark down level of the \link[base]{list} \link[base]{names},
+#' e.g., `'#'`, `'##'`, etc.
+#' 
 #' @export md_.list
 #' @export
-md_.list <- function(x, xnm, ...) {
-  x |> 
-    seq_along() |>
-    lapply(FUN = \(i) {
-      md_(x = x[[i]], xnm = paste0(xnm, '[[', i, ']]'), ...)
-    }) |>
+md_.list <- function(x, xnm, nm_level, ...) {
+  
+  if (missing(nm_level)) {
+    
+    z <- x |> 
+      seq_along() |>
+      lapply(FUN = \(i) {
+        md_(x = x[[i]], xnm = paste0(xnm, '[[', i, ']]'), ...)
+      }) 
+
+  } else {
+  
+    if (!is.character(nm_level) || length(nm_level) != 1L) stop('illegal `nm_level`')
+    
+    nm <- names(x)
+    if (!length(nm) || anyNA(nm) || !all(nzchar(nm))) stop('names must be complete')
+    
+    z <- x |> 
+      seq_along() |>
+      lapply(FUN = \(i) {
+        c.md_lines(
+          nm[i] |> 
+            sprintf(fmt = '\n%s %s\n', nm_level, . = _) |> 
+            new(Class = 'md_lines'), # must use an extra '\n' to separate from previous 'character'
+          md_(x = x[[i]], xnm = paste0(xnm, '[[', i, ']]'), ...)
+        )
+      })
+    
+  }
+  
+  z |>
     do.call(what = c.md_lines, args = _)
+  
 }
 
 #' @rdname md_

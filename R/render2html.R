@@ -39,49 +39,38 @@ render2html <- function(
   path <- file.path(path, 'html')
   dir.create(path = path, showWarnings = FALSE, recursive = TRUE)
   
-  if (length(file) != 1L || !is.character(file) || is.na(file) ||
-      grepl(pattern = '\\:', x = file)) stop('`file` must be len-1 character, without ', sQuote(':'))
+  if (length(file) != 1L || !is.character(file) || is.na(file)) stop('`file` must be len-1 character')
+  if (grepl(pattern = '\\:', x = file)) stop('`file` must not contain ', sQuote(':'))
   
-  frmd <- file.path(path, sprintf(fmt = '%s %s.rmd', format.Date(Sys.Date()), file))
-  if (file.exists(frmd)) {
-    file.remove(frmd)
-    message('Existing ', sQuote(basename(frmd)), ' removed')
+  foo_date <- \(path, file, fileext) {
+    f <- Sys.Date() |>
+      format.Date() |>
+      sprintf(fmt = '%s %s.%s', . = _, file, fileext) |>
+      file.path(path, . = _)
+    if (file.exists(f)) {
+      file.remove(f)
+      message('Existing ', sQuote(basename(f)), ' removed')
+    }
+    return(f)
   }
   
-  fout <- file.path(path, sprintf(fmt = '%s %s.%s', format.Date(Sys.Date()), file, 'html'))
-  if (file.exists(fout)) {
-    file.remove(fout)
-    message('Existing ', sQuote(basename(fout)), ' removed')
-  }
-
-  nm <- names(x)
-  if (!length(nm) || anyNA(nm) || !all(nzchar(nm))) stop('names must be complete')
+  frmd <- foo_date(path = path, file = file, fileext = 'rmd')
+  fhtml <- foo_date(path = path, file = file, fileext = 'html')
   
-  # **not** [md_.list()]; as we need section titles!!!
-  md <- nx |> 
-    seq_len() |>
-    lapply(FUN = \(i) {
-      c.md_lines(
-        nm[i] |> 
-          sprintf(fmt = '\n# %s\n') |> 
-          new(Class = 'md_lines'), # must use an extra '\n' to separate from previous 'character'
-        md_(x = x[[i]], xnm = sprintf(fmt = 'x[[%d]]', i))
-      )
-    }) |> 
-    do.call(what = c.md_lines, args = _)
-  # end of **not** [md_.list()]
+  z <- x |>
+    md_.list(xnm = 'x', nm_level = '#')
   
   fbib <- file.path(path, 'bibliography.bib')
-  md@bibentry |>
+  z@bibentry |>
     sink2.bibentry(file = fbib)
   
   draft(file = frmd, template = template, package = package, edit = FALSE)
-  md |>
+  z |>
     sink2.md_lines(file = frmd, append = TRUE)
   
-  render(input = frmd, output_file = fout, intermediates_dir = path, quiet = TRUE)
+  render(input = frmd, output_file = fhtml, intermediates_dir = path, quiet = TRUE)
   
-  fout |> 
+  fhtml |> 
     normalizePath() |> 
     sprintf(fmt = 'open \'%s\'') |> 
     system()
@@ -98,11 +87,11 @@ render2html <- function(
       fbib |>
         normalizePath() |>
         sprintf(fmt = 'open \'%s\'') |> 
-        lapply(FUN = system)
+        lapply(FUN = system) # in case tzh creates *multiple* .bib files in future!!
     }
   }
   
-  return(invisible(fout))
+  return(invisible())
   
 }
 
