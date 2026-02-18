@@ -43,7 +43,6 @@ as_flextable.dist <- function(x, ...) {
 md_.dist <- function(x, xnm, ...) {
   c(
     '```{r}',
-    '#| echo: false', 
     xnm |> sprintf(fmt = '%s |> as_flextable.dist()'),
     '```'
   ) |> new(Class = 'md_lines')

@@ -90,7 +90,6 @@ md_.summary.matchit <- function(x, xnm, ...) {
   
   z2 <- c(
     '```{r}', 
-    '#| echo: false', 
     xnm |> sprintf(fmt = 'as_flextable(%s)'),
     '```'
   ) |>

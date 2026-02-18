@@ -107,7 +107,6 @@ md_.aov <- function(x, xnm, ...) {
   
   z2 <- c(
     '```{r}', 
-    '#| echo: false', 
     xnm |> sprintf(fmt = 'as_flextable.aov(%s)'),
     '```'
   ) |>

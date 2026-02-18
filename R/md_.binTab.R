@@ -25,7 +25,6 @@ md_.binTab <- function(x, xnm, ...) {
   
   z2 <- c(
     '```{r}', 
-    '#| echo: false', 
     xnm |> sprintf(fmt = 'as_flextable(%s)'),
     '```'
   ) |>
@@ -33,7 +32,6 @@ md_.binTab <- function(x, xnm, ...) {
   
   z3 <- c(
     '```{r}', 
-    '#| echo: false', 
     '#| comment:', 
     xnm |> sprintf(fmt = 'summary.binTab(%s)'), # how to put in `prevalence` here??
     '```'

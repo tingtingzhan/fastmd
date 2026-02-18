@@ -57,13 +57,11 @@ md_.pairwise.htest <- function(x, xnm, ...) {
     x$method |> 
       sprintf(fmt = 'Pairwise %s are performed using <u>**`R`**</u>.'),
     '```{r}',
-    '#| echo: false', 
     sprintf(fmt = '(%s) |> as_flextable.pairwise.htest()', xnm), 
     '```',
     
     'Adjusted $p$-values [@Holm79; @Hochberg88; @Hommel88; @BenjaminiHochberg95; @BenjaminiYekutieli01] for multiple comparison are provided as well.',
     '```{r}',
-    '#| echo: false', 
     sprintf(fmt = '(%s) |> p_adjust_.pairwise.htest() |> as_flextable.p_adjust()', xnm), 
     '```'
     

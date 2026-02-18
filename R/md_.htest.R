@@ -53,7 +53,6 @@ md_.htest <- function(x, xnm, ...) {
   z2 <- if (!missing(xnm)) {
     c(
       '```{r}',
-      '#| echo: false', 
       '#| comment: ',
       xnm,
       '```'

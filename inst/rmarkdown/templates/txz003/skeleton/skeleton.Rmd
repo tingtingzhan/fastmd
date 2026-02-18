@@ -12,6 +12,7 @@ bibliography: bibliography.bib
 
 ```{r}
 #| include: false
+knitr::opts_chunk$set(echo = FALSE)
 library(ggplot2)
 theme_minimal() |> theme_set()
 ```

@@ -69,7 +69,6 @@ md_.TukeyHSD <- function(x, xnm, ...) {
   
   z2 <- c(
     '```{r}', 
-    '#| echo: false', 
     xnm |> sprintf(fmt = 'as_flextable.TukeyHSD(%s)'),
     '```'
   ) |>
