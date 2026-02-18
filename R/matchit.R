@@ -7,7 +7,7 @@
 #' @param ... additional parameters of function `MatchIt:::summary.matchit`
 #' 
 #' @returns 
-#' Functions [as_flextable.matchit()] and [as_flextable.summary.matchit()] both return a \link[flextable]{flextable}.
+#' The `S3` methods [as_flextable.matchit()] and [as_flextable.summary.matchit()] both return a \link[flextable]{flextable}.
 #' 
 #' @name flextable_matchit
 #' @keywords internal

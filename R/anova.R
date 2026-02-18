@@ -66,23 +66,33 @@ as_flextable.summary.aov <- function(x, ...) {
 #' @export as_flextable.aovlist
 #' @export
 as_flextable.aovlist <- function(x, ...) {
-  x |> summary() |> as_flextable.summary.aovlist(...)
-  # ?stats:::summary.aovlist
+  x |> 
+    summary() |> # ?stats:::summary.aovlist
+    as_flextable.summary.aovlist(...)
 }
 
 
 
 #' @rdname flextable_aov
 #' @importFrom flextable as_flextable
+#' @importFrom patchwork plot_layout
 #' @export as_flextable.summary.aovlist
 #' @export
 as_flextable.summary.aovlist <- function(x, ...) {
-  id <- vapply(x, FUN = inherits, what = 'summary.aov', FUN.VALUE = NA)
+  id <- x |>
+    vapply(FUN = inherits, what = 'summary.aov', FUN.VALUE = NA)
   if (!all(id)) stop('deal with this')
-  .mapply(FUN = as_flextable.summary.aov, dots = list(
-    x = x,
-    row.title = names(x)
-  ), MoreArgs = list(...))
+  z <- .mapply(
+    FUN = as_flextable.summary.aov, 
+    dots = list(
+      x = x,
+      row.title = names(x)
+    ), 
+    MoreArgs = list(...)
+  ) |>
+    lapply(FUN = wrap_flextable) |>
+    Reduce(f = `+`)
+  z + plot_layout(ncol = 1L)
 }
 
 

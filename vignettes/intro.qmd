@@ -83,43 +83,6 @@ datasets::attitude |>
   highlight_by(i = learning > 55 | raises > 65, j = 'rating')
 ```
 
-### `format4flextable()`
-
-```{r}
-aml2 = survival::aml |>
-  within.data.frame(expr = {
-    edp = survival::Surv(time, status)
-    time = status = NULL
-  })
-```
-
-Neither function `flextable:::as_flextable.data.frame()` nor `flextable::flextable()` could process `Surv` columns, as of version `r packageVersion('flextable')`.
-
-```{r}
-tryCatch(expr = {
-  as_flextable(aml2)
-}, error = identity)
-```
-
-```{r}
-tryCatch(expr = {
-  flextable(aml2)
-}, error = identity)
-```
-
-```{r}
-aml2 |> 
-  format4flextable() |> 
-  flextable()
-```
-
-```{r}
-aml2 |> 
-  format4flextable() |> 
-  flextable() |>
-  hline_by(~ x)
-```
-
 
 ## `dist`
 

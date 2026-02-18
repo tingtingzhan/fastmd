@@ -12,9 +12,13 @@
 \item{...}{additional parameters of function \code{\link[=as_flextable.matrix]{as_flextable.matrix()}}}
 }
 \value{
-Function \code{\link[=as_flextable.dist]{as_flextable.dist()}} returns a \link[flextable]{flextable}.
+The \code{S3} method \code{\link[=as_flextable.dist]{as_flextable.dist()}} returns a \link[flextable]{flextable}.
 }
 \description{
 ..
+}
+\note{
+The \code{S3} method \code{\link[=as_flextable.dist]{as_flextable.dist()}} is inspired by
+the function \link[stats]{print.dist}.
 }
 \keyword{internal}

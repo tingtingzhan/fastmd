@@ -16,7 +16,7 @@
 \item{...}{additional parameters of function \code{MatchIt:::summary.matchit}}
 }
 \value{
-Functions \code{\link[=as_flextable.matchit]{as_flextable.matchit()}} and \code{\link[=as_flextable.summary.matchit]{as_flextable.summary.matchit()}} both return a \link[flextable]{flextable}.
+The \code{S3} methods \code{\link[=as_flextable.matchit]{as_flextable.matchit()}} and \code{\link[=as_flextable.summary.matchit]{as_flextable.summary.matchit()}} both return a \link[flextable]{flextable}.
 }
 \description{
 Convert \link[MatchIt]{matchit} to \link[flextable]{flextable}

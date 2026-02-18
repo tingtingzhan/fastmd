@@ -6,7 +6,7 @@
 #' @param ... additional parameters, currently not in use
 #' 
 #' @returns
-#' Function [as_flextable.ftable] returns a \link[flextable]{flextable}.
+#' The `S3` method [as_flextable.ftable] returns a \link[flextable]{flextable}.
 #' 
 #' @keywords internal
 #' @importFrom flextable flextable as_flextable autofit hline vline merge_v

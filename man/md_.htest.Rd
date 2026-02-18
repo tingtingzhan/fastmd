@@ -14,7 +14,7 @@
 \item{...}{..}
 }
 \value{
-Function \code{\link[=md_.htest]{md_.htest()}} returns a \link[base]{character} \link[base]{vector}.
+The \code{S3} method \code{\link[=md_.htest]{md_.htest()}} returns a \link[base]{character} \link[base]{vector}.
 }
 \description{
 \link{md_.htest}

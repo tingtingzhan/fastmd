@@ -12,7 +12,7 @@
 \item{...}{additional parameters, currently not in use}
 }
 \value{
-Function \link{as_flextable.ftable} returns a \link[flextable]{flextable}.
+The \code{S3} method \link{as_flextable.ftable} returns a \link[flextable]{flextable}.
 }
 \description{
 Convert \link[stats]{ftable} to \link[flextable]{flextable}

@@ -11,7 +11,7 @@
 #' @param ... additional parameters, currently not in use
 #' 
 #' @returns 
-#' Function [md_()] returns a \link[base]{character} scalar or \link[base]{vector}.
+#' The `S3` generic function [md_()] returns a \link[base]{character} scalar or \link[base]{vector}.
 #' 
 #' @keywords internal
 #' @name md_
@@ -145,15 +145,25 @@ md_.default <- function(x, xnm, ...) {
 
 #' @rdname md_
 #' @examples
-#' list('`data.frame`' = Formaldehyde) |> render2html(file = 'data.frame')
-#' 
+#' aml2 = survival::aml |>
+#'  within.data.frame(expr = {
+#'   edp = survival::Surv(time, status)
+#'   time = status = NULL
+#'  })
+#' tryCatch(expr = as_flextable(aml2), error = identity)
+#' tryCatch(expr = flextable(aml2), error = identity)
+#' list(
+#'  Formaldehyde = Formaldehyde,
+#'  aml2 = aml2
+#' ) |> render2html(file = 'data.frame')
 #' @export md_.data.frame
 #' @export
 md_.data.frame <- function(x, xnm, ...) {
   c(
     '```{r}',
     '#| echo: false', 
-    xnm |> sprintf(fmt = '%s |> format4flextable() |> flextable() |> autofit(part = \'all\')'),
+    xnm |> 
+      sprintf(fmt = '%s |> format.data.frame() |> flextable() |> autofit(part = \'all\')'),
     '```'
   ) |> new(Class = 'md_lines')
 }

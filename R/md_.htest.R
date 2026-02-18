@@ -9,7 +9,7 @@
 #' @param ... ..
 #' 
 #' @returns 
-#' Function [md_.htest()] returns a \link[base]{character} \link[base]{vector}.
+#' The `S3` method [md_.htest()] returns a \link[base]{character} \link[base]{vector}.
 #' 
 #' @keywords internal
 #' @importFrom methods new

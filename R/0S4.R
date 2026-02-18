@@ -81,7 +81,7 @@ sink2.md_lines <- function(x, ..., append = TRUE) {
 #' @param ... one or more \linkS4class{md_lines} objects
 #' 
 #' @returns 
-#' Function [c.md_lines()] returns an \linkS4class{md_lines} object.
+#' The `S3` method [c.md_lines()] returns an \linkS4class{md_lines} object.
 #' 
 #' 
 #' @keywords internal

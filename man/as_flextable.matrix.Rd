@@ -14,7 +14,7 @@
 \item{...}{..}
 }
 \value{
-Function \code{\link[=as_flextable.matrix]{as_flextable.matrix()}} returns a \link[flextable]{flextable}.
+The \code{S3} method \code{\link[=as_flextable.matrix]{as_flextable.matrix()}} returns a \link[flextable]{flextable}.
 }
 \description{
 ..

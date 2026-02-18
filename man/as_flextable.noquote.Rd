@@ -12,7 +12,7 @@
 \item{...}{additional parameters of S3 generic \link[flextable]{as_flextable}}
 }
 \value{
-Function \code{\link[=as_flextable.noquote]{as_flextable.noquote()}} returns a \link[flextable]{flextable}.
+The \code{S3} method \code{\link[=as_flextable.noquote]{as_flextable.noquote()}} returns a \link[flextable]{flextable}.
 }
 \description{
 as_flextable.noquote

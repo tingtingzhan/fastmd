@@ -10,7 +10,7 @@
 #' @param ... ..
 #' 
 #' @returns 
-#' Function [as_flextable.matrix()] returns a \link[flextable]{flextable}.
+#' The `S3` method [as_flextable.matrix()] returns a \link[flextable]{flextable}.
 #' 
 #' @keywords internal
 #' @importFrom flextable flextable as_flextable init_flextable_defaults autofit hline vline fix_border_issues align add_header_row merge_h merge_v
@@ -85,7 +85,7 @@ as_flextable.matrix <- function(
 #' @param ... additional parameters of S3 generic \link[flextable]{as_flextable}
 #' 
 #' @returns 
-#' Function [as_flextable.noquote()] returns a \link[flextable]{flextable}.
+#' The `S3` method [as_flextable.noquote()] returns a \link[flextable]{flextable}.
 #' 
 #' @keywords internal
 #' @importFrom flextable as_flextable

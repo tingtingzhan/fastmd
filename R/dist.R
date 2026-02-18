@@ -9,14 +9,17 @@
 #' @param ... additional parameters of function [as_flextable.matrix()]
 #' 
 #' @returns 
-#' Function [as_flextable.dist()] returns a \link[flextable]{flextable}.
+#' The `S3` method [as_flextable.dist()] returns a \link[flextable]{flextable}.
+#' 
+#' @note
+#' The `S3` method [as_flextable.dist()] is inspired by 
+#' the function \link[stats]{print.dist}.
 #' 
 #' @keywords internal
 #' @importFrom flextable as_flextable
 #' @export as_flextable.dist
 #' @export
 as_flextable.dist <- function(x, ...) {
-  # inspired by ?stats:::print.dist
   Labels <- x |> attr(which = 'Labels', exact = TRUE)
   Size <- x |> attr(which = 'Size', exact = TRUE)
   if (!length(Labels)) 
@@ -29,3 +32,20 @@ as_flextable.dist <- function(x, ...) {
     as_flextable.matrix(...)
 }
 
+
+
+#' @rdname md_
+#' @examples
+#' list(
+#'  USJudgeRatings = dist(USJudgeRatings[1:4,])
+#' ) |> render2html(file = 'dist')
+#' @export md_.dist
+#' @export
+md_.dist <- function(x, xnm, ...) {
+  c(
+    '```{r}',
+    '#| echo: false', 
+    xnm |> sprintf(fmt = '%s |> as_flextable.dist()'),
+    '```'
+  ) |> new(Class = 'md_lines')
+}

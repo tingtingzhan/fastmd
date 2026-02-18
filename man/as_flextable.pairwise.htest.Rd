@@ -14,7 +14,7 @@
 \item{row.title, ...}{additional parameters of function \code{\link[=as_flextable.matrix]{as_flextable.matrix()}}.}
 }
 \value{
-Function \link{as_flextable.pairwise.htest} returns a \link[flextable]{flextable}.
+The \code{S3} method \link{as_flextable.pairwise.htest} returns a \link[flextable]{flextable}.
 }
 \description{
 Convert \eqn{p}-values of a \code{pairwise.htest} object into a \link[flextable]{flextable}.

@@ -10,7 +10,7 @@
 \item{...}{one or more \linkS4class{md_lines} objects}
 }
 \value{
-Function \code{\link[=c.md_lines]{c.md_lines()}} returns an \linkS4class{md_lines} object.
+The \code{S3} method \code{\link[=c.md_lines]{c.md_lines()}} returns an \linkS4class{md_lines} object.
 }
 \description{
 Combine Multiple \linkS4class{md_lines}

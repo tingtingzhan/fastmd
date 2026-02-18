@@ -11,7 +11,7 @@
 #' @param row.title,... additional parameters of function [as_flextable.matrix()].
 #' 
 #' @returns
-#' Function [as_flextable.pairwise.htest] returns a \link[flextable]{flextable}.
+#' The `S3` method [as_flextable.pairwise.htest] returns a \link[flextable]{flextable}.
 #' 
 #' @keywords internal
 #' @importFrom flextable as_flextable
