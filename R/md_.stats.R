@@ -14,11 +14,13 @@
 #' @export
 md_.factanal <- function(x, ...) {
   
-  attr(x, which = 'text') <- x$call$x |>
+  z1 <- x$call$x |>
     deparse1() |>
     sprintf(fmt = 'Factor analysis [@LawleyMaxwell71] of `%s` is performed using <u>**`R`**</u>.') |>
     new(Class = 'md_lines', bibentry = .lawley_maxwell71())
   
-  md_.default(x, ...)
+  z2 <- md_.default(x, ...)
+  
+  c(z1, z2) # [c.md_lines()]
   
 }

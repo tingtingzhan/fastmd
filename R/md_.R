@@ -68,18 +68,14 @@ md_ <- function(x, ...) {
 #' @export
 md_.default <- function(x, xnm, ...) {
   
-  #z1 <- (attr(x, which = 'text', exact = TRUE) %||% character()) |>
-  #  new(Class = 'md_lines')
-  
   txt <- attr(x, which = 'text', exact = TRUE)
   if (length(txt)) .Defunct(msg = 'remove this usage')
-  z1 <- NULL
   
   htest <- x |> 
     attr(which = 'htest', exact = TRUE)
   if (length(htest)) .Defunct(msg = 'remove this usage')
   
-  z2 <- c(
+  c(
     '```{r}',
     '#| warning: false', 
     '#| comment:',
@@ -117,8 +113,6 @@ md_.default <- function(x, xnm, ...) {
     
     '```'
   ) |> new(Class = 'md_lines')
-  
-  return(c(z1, z2)) # [c.md_lines()]
   
 }
 
