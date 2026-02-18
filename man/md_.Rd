@@ -11,7 +11,7 @@
 \alias{md_.numeric}
 \alias{md_.character}
 \alias{md_.noquote}
-\title{Markdown Script}
+\title{R Markdown Lines}
 \usage{
 \method{md_}{dist}(x, xnm, ...)
 
@@ -45,17 +45,16 @@ mark down level of the \link[base]{list} \link[base]{names},
 e.g., \code{'#'}, \code{'##'}, etc.}
 }
 \value{
-The \code{S3} generic function \code{\link[=md_]{md_()}} returns a \link[base]{character} scalar or \link[base]{vector}.
+The \code{S3} generic function \code{\link[=md_]{md_()}} returns
+an \linkS4class{md_lines} object.
 }
 \description{
-To create markdown script for various objects.
+To create R markdown lines for various objects.
 }
 \note{
 Read \url{https://plotly.com/r/subplots/}
 on how to stack \code{'plotly'} objects
 (via function \link[plotly]{subplot}).
-
-As for now (early 2025), tzh prefers package \pkg{patchwork} over function \code{ggpubr::ggarrange}.
 }
 \examples{
 list(

@@ -47,7 +47,9 @@ as_flextable.summary.matchit <- function(x, ...) {
 
 #' @title R Markdown Lines for \link[MatchIt]{matchit}
 #' 
-#' @param x,xnm,... ..
+#' @param x a \link[MatchIt]{matchit} or \link[MatchIt]{summary.matchit} object
+#' 
+#' @param xnm,... ..
 #' 
 #' @examples
 #' library(MatchIt)

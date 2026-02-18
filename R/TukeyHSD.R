@@ -51,7 +51,9 @@ as_flextable.TukeyHSD <- function(x, ...) {
 
 #' @title R Markdown Lines for \link[stats]{TukeyHSD}
 #' 
-#' @param x,xnm,... ..
+#' @param x a \link[stats]{TukeyHSD} object
+#' 
+#' @param xnm,... ..
 #' 
 #' @examples
 #' m = aov(breaks ~ wool + tension, data = warpbreaks)

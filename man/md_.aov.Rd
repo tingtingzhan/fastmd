@@ -7,8 +7,11 @@
 \method{md_}{aov}(x, xnm, ...)
 }
 \arguments{
-\item{x, xnm, ...}{..}
+\item{x}{an \link[stats]{aov} object}
+
+\item{xnm, ...}{..}
 }
 \description{
 R Markdown Lines for \link[stats]{aov}
 }
+\keyword{internal}

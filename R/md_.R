@@ -1,8 +1,8 @@
 
-#' @title Markdown Script
+#' @title R Markdown Lines
 #' 
 #' @description
-#' To create markdown script for various objects.
+#' To create R markdown lines for various objects.
 #' 
 #' @param x see **Usage**
 #' 
@@ -11,7 +11,8 @@
 #' @param ... additional parameters, currently not in use
 #' 
 #' @returns 
-#' The `S3` generic function [md_()] returns a \link[base]{character} scalar or \link[base]{vector}.
+#' The `S3` generic function [md_()] returns 
+#' an \linkS4class{md_lines} object.
 #' 
 #' @keywords internal
 #' @name md_
@@ -29,8 +30,6 @@ md_ <- function(x, ...) {
 #' Read \url{https://plotly.com/r/subplots/} 
 #' on how to stack `'plotly'` objects 
 #' (via function \link[plotly]{subplot}).
-#' 
-#' As for now (early 2025), tzh prefers package \pkg{patchwork} over function `ggpubr::ggarrange`.
 #' 
 #' @examples
 #' library(lattice); Depth = equal.count(quakes$depth, number=8, overlap=.1)
@@ -83,10 +82,7 @@ md_.default <- function(x, xnm, ...) {
       gsub(pattern = '\n', replacement = '', x = _) |>
       trimws()
   } else if (inherits(htest, what = 'anova')) {
-    # write md_.anova in future!!!
-    sprintf(fmt = 'ANOVA %s',
-            htest$`Pr(>F)` |> na.omit() |> label_pvalue_sym(add_p = TRUE)())
-    # more than one p-value, should be compatible ..
+    .Defunct(new = 'md_.anova', msg = 'Better, defunct this attr!!')
   } # else NULL
   
   fig_cap <- x |>

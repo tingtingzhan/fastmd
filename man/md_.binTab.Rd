@@ -7,7 +7,9 @@
 \method{md_}{binTab}(x, xnm, ...)
 }
 \arguments{
-\item{x, xnm, ...}{..}
+\item{x}{a \link[DanielBiostatistics10th]{binTab} object}
+
+\item{xnm, ...}{..}
 }
 \description{
 R Markdown Lines for \link[DanielBiostatistics10th]{binTab}

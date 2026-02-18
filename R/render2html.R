@@ -1,24 +1,51 @@
 
 
-#' @title Create and Render R Markdown file
+# https://yihui.org/rmarkdown-cookbook/package-template
+# usethis::use_rmarkdown_template('abc')
+
+# template 'txz003'
+# CSS Rule from
+# https://stackoverflow.com/questions/34906002
+
+
+#' @title Analyses in HTML Report 
 #' 
-#' @description ..
+#' @description
+#' Draft and render one or more analyses in R into 
+#' an HyperText Markup Language (HTML) file.
 #' 
-#' @param x an R object
+#' @param x a \link[base]{list}, 
+#' containing one or more analyses results
 #' 
-#' @param path \link[base]{character} scalar 
+#' @param path \link[base]{character} scalar,
+#' the parent directory 
+#' (default value is the \link[base]{tempdir}).
+#' The `.rmd` and `.html` files will be created in the sub-directory
+#' `[path]/html/`.
 #' 
-#' @param file \link[base]{character} scalar
+#' @param file \link[base]{character} scalar, 
+#' the output HTML file name (without the file extension `.html`)
 #' 
-#' @param template,package template (from which package) to use; see function \link[rmarkdown]{draft}
+#' @param template,package template (from which package) to use; 
+#' see function \link[rmarkdown]{draft} for details
 #' 
-#' @param rmd.rm \link[base]{logical} scalar, whether to remove the R markdown `'.rmd'` file,
-#' default `TRUE`
+#' @param rmd.rm \link[base]{logical} scalar (default `TRUE`), 
+#' whether to remove the R markdown `.rmd` file.
+#' If `FALSE`, the `.rmd` file will be automatically opened for inspection
 #' 
-#' @param bib.rm \link[base]{logical} scalar, whether to remove the bibliography `'.bib'` file,
-#' default `TRUE`
+#' @param bib.rm \link[base]{logical} scalar (default `TRUE`), whether to remove the bibliography `'.bib'` file,
+#' If `FALSE`, the `.bib` file will be automatically opened for inspection
 #' 
-#' @param ... ..
+#' @param ... additional parameters, currently of no use
+#' 
+#' @details
+#' Function [render2html()] 
+#' first \link[rmarkdown]{draft}s an `.rmd` file from a template,
+#' then \link[rmarkdown]{render}s it into a single `.html` file.
+#' 
+#' @returns 
+#' Function [render2html()] \link[base]{invisible}y returns
+#' the full path of the output `.html` file.
 #' 
 #' @keywords internal
 #' @importFrom rmarkdown draft render
@@ -67,11 +94,20 @@ render2html <- function(
   z@bibentry |>
     sink2.bibentry(file = fbib)
   
-  draft(file = frmd, template = template, package = package, edit = FALSE)
+  draft(
+    file = frmd, 
+    template = template, package = package, 
+    edit = FALSE
+  )
   z |>
     sink2.md_lines(file = frmd, append = TRUE)
   
-  render(input = frmd, output_file = fhtml, intermediates_dir = path, quiet = TRUE)
+  render(
+    input = frmd, 
+    output_file = fhtml, 
+    intermediates_dir = path, 
+    quiet = TRUE
+  )
   
   fhtml |> 
     normalizePath() |> 
@@ -98,81 +134,8 @@ render2html <- function(
   file.path(path, 'styles.css') |>
     file.remove()
   
-  return(invisible())
+  return(invisible(fhtml))
   
 }
-
-# template 'txz003'
-# CSS Rule from
-# https://stackoverflow.com/questions/34906002
-
-
-
-
-
-
-
-
-#' @title Which Package Created This Object?
-#' 
-#' @param x an R object
-#' 
-#' @returns 
-#' Function [fromPackage()] returns a \link[base]{character} scalar.
-#' 
-#' @keywords internal
-#' @export
-fromPackage <- function(x) {
-  
-  if (isS4(x)) {
-    return(x |> 
-             class() |> 
-             attr(which = 'package', exact = TRUE))
-  } 
-  
-  f <- getCall(x)[[1L]]
-  pkg <- tryCatch(expr = {
-    f |>
-      eval() |> # function call could be un-exported, e.g., nlme:::lme.formula, and err
-      environment() |>
-      getNamespaceName()
-  }, error = \(e) {
-    aw <- f |>
-      as.character() |>
-      getAnywhere()
-    if (length(aw$where) > 1L) stop('really shouldnt happen...')
-    (aw$where) |>
-      gsub(pattern = '^namespace\\:', replacement = '')
-  })
-  
-  pkg |>
-    # unname() |> # ?base::setdiff removes names anyway
-    setdiff(y = installed.packages(priority = 'base') |> rownames())
-  
-}
-
-
-#' @title Text for Package to Create an R Object
-#' 
-#' @param x \link[base]{character} scalar, the returned object of function [fromPackage()]
-#' 
-#' @returns 
-#' Function [pkg_text()] returns a \link[base]{character} scalar.
-#' 
-#' @keywords internal
-#' @export
-pkg_text <- function(x) {
-  
-  if (!length(x)) return('<u>**`R`**</u>')
-  
-  x |> 
-    sprintf(fmt = '<u>**`R`**</u> package <u>**`%s`**</u>')
-  
-}
-
-
-
-
-
 
 

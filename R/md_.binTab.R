@@ -2,7 +2,9 @@
 
 #' @title R Markdown Lines for \link[DanielBiostatistics10th]{binTab}
 #' 
-#' @param x,xnm,... ..
+#' @param x a \link[DanielBiostatistics10th]{binTab} object
+#' 
+#' @param xnm,... ..
 #' 
 #' @note
 #' Do not want to `Imports: fastmd` in package \CRANpkg{DanielBiostatistics10th}.

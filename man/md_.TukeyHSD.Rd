@@ -7,7 +7,9 @@
 \method{md_}{TukeyHSD}(x, xnm, ...)
 }
 \arguments{
-\item{x, xnm, ...}{..}
+\item{x}{a \link[stats]{TukeyHSD} object}
+
+\item{xnm, ...}{..}
 }
 \description{
 R Markdown Lines for \link[stats]{TukeyHSD}
