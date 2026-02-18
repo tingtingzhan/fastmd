@@ -2,7 +2,7 @@
 % Please edit documentation in R/render2html.R
 \name{render2html}
 \alias{render2html}
-\title{Create and Render R Markdown file}
+\title{Analyses in HTML Report}
 \usage{
 render2html(
   x,
@@ -16,23 +16,41 @@ render2html(
 )
 }
 \arguments{
-\item{x}{an R object}
+\item{x}{a \link[base]{list},
+containing one or more analyses results}
 
-\item{path}{\link[base]{character} scalar}
+\item{path}{\link[base]{character} scalar,
+the parent directory
+(default value is the \link[base]{tempdir}).
+The \code{.rmd} and \code{.html} files will be created in the sub-directory
+\verb{[path]/html/}.}
 
-\item{file}{\link[base]{character} scalar}
+\item{file}{\link[base]{character} scalar,
+the output HTML file name (without the file extension \code{.html})}
 
-\item{template, package}{template (from which package) to use; see function \link[rmarkdown]{draft}}
+\item{template, package}{template (from which package) to use;
+see function \link[rmarkdown]{draft} for details}
 
-\item{rmd.rm}{\link[base]{logical} scalar, whether to remove the R markdown \code{'.rmd'} file,
-default \code{TRUE}}
+\item{rmd.rm}{\link[base]{logical} scalar (default \code{TRUE}),
+whether to remove the R markdown \code{.rmd} file.
+If \code{FALSE}, the \code{.rmd} file will be automatically opened for inspection}
 
-\item{bib.rm}{\link[base]{logical} scalar, whether to remove the bibliography \code{'.bib'} file,
-default \code{TRUE}}
+\item{bib.rm}{\link[base]{logical} scalar (default \code{TRUE}), whether to remove the bibliography \code{'.bib'} file,
+If \code{FALSE}, the \code{.bib} file will be automatically opened for inspection}
 
-\item{...}{..}
+\item{...}{additional parameters, currently of no use}
+}
+\value{
+Function \code{\link[=render2html]{render2html()}} \link[base]{invisible}y returns
+the full path of the output \code{.html} file.
 }
 \description{
-..
+Draft and render one or more analyses in R into
+an HyperText Markup Language (HTML) file.
+}
+\details{
+Function \code{\link[=render2html]{render2html()}}
+first \link[rmarkdown]{draft}s an \code{.rmd} file from a template,
+then \link[rmarkdown]{render}s it into a single \code{.html} file.
 }
 \keyword{internal}

@@ -11,7 +11,9 @@
 \method{md_}{summary.matchit}(x, xnm, ...)
 }
 \arguments{
-\item{x, xnm, ...}{..}
+\item{x}{a \link[MatchIt]{matchit} or \link[MatchIt]{summary.matchit} object}
+
+\item{xnm, ...}{..}
 }
 \description{
 R Markdown Lines for \link[MatchIt]{matchit}
