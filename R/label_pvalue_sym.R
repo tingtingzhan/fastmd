@@ -1,7 +1,5 @@
 
 
-#' Function [label_pvalue_sym()] is used so extensively, 
-#' therefore tzh keeps it in \pkg{fastmd.tzh} instead of \pkg{scales.tzh}.
 
 
 
@@ -10,7 +8,10 @@
 #' @description
 #' Label \eqn{p}-values with significance symbol.
 #' 
-#' @param star \link[base]{character} scalar
+#' @param star \link[base]{character} \link[base]{vector} 
+#' of \link[base]{length}-`2L` to denote the significance levels. 
+#' For example, to use \link[stats]{printCoefmat}-style of significance notation,
+#' users should let `star = c('*', '.')`
 #' 
 #' @param ... parameters of function \link[scales]{label_pvalue}
 #' 
@@ -26,6 +27,9 @@
 #' 
 #' @note
 #' Function \link[scales]{label_pvalue} is much prettier and more flexible than function \link[base]{format.pval}.
+#' 
+#' Function [label_pvalue_sym()] is used so extensively, 
+#' therefore tzh keeps it in package \pkg{fastmd} instead of package \pkg{scales.tzh}.
 #' 
 #' @returns 
 #' Function [label_pvalue_sym()] returns a \link[base]{function}.
@@ -46,7 +50,7 @@
 #' @export
 label_pvalue_sym <- function(star = c('\u2b51', '\u2b52'), ...) {
   
-  \(x) { # see ?scales::label_pvalue; `...` no need to be in the args
+  \(x) { # see ?scales::label_pvalue; parameters no need to be in the args!!
     
     ret <- x
     storage.mode(ret) <- 'character'
@@ -56,7 +60,7 @@ label_pvalue_sym <- function(star = c('\u2b51', '\u2b52'), ...) {
     
     ret[] <- x |> 
       label_pvalue(...)() |>
-      sub(pattern = '([-]?)0[.]', replacement = '\\1.') # http://stackoverflow.com/questions/12643391
+      sub(pattern = '([-]?)0[.]', replacement = '\\1.', x = _) # http://stackoverflow.com/questions/12643391
     
     if (getOption('show.signif.stars')) { # see ?stats::printCoefmat
       sym <- symnum(

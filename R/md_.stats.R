@@ -6,7 +6,7 @@
 #' @param ... ..
 #' 
 #' @examples
-#' list(factanal = datasets::USJudgeRatings[-1L] |> stats::factanal(factors = 3L)) |>
+#' list(factanal = factanal(USJudgeRatings[-1L], factors = 3L)) |>
 #'   render2html(file = 'factanal')
 #' 
 #' @keywords internal

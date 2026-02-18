@@ -38,7 +38,8 @@ render2html <- function(
   
   path <- file.path(path, 'html')
   dir.create(path = path, showWarnings = FALSE, recursive = TRUE)
-  
+  # path |> sprintf(fmt = 'open \'%s\'') |> system()
+
   if (length(file) != 1L || !is.character(file) || is.na(file)) stop('`file` must be len-1 character')
   if (grepl(pattern = '\\:', x = file)) stop('`file` must not contain ', sQuote(':'))
   
@@ -49,7 +50,9 @@ render2html <- function(
       file.path(path, . = _)
     if (file.exists(f)) {
       file.remove(f)
-      message('Existing ', sQuote(basename(f)), ' removed')
+      basename(f) |> 
+        col_cyan() |> style_bold() |>
+        message('Existing ', . = _, ' removed')
     }
     return(f)
   }
@@ -90,6 +93,10 @@ render2html <- function(
         lapply(FUN = system) # in case tzh creates *multiple* .bib files in future!!
     }
   }
+  
+  # **must** remove .css file!!
+  file.path(path, 'styles.css') |>
+    file.remove()
   
   return(invisible())
   

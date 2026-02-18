@@ -9,7 +9,7 @@
 #' @param ... ..
 #' 
 #' @note
-#' Do not want to `Imports: fastmd.tzh` in package \CRANpkg{DemographicTable}.
+#' Do not want to `Imports: fastmd` in package \CRANpkg{DemographicTable}.
 #' 
 #' @examples
 #' library(DemographicTable); list(

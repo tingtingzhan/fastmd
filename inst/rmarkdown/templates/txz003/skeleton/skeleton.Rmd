@@ -9,11 +9,6 @@ output:
 bibliography: bibliography.bib
 ---
 
-<style type="text/css">
-  .main-container {
-    max-width: 100% !important;
-  }
-</style>
 
 ```{r}
 #| include: false

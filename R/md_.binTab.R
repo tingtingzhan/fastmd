@@ -5,7 +5,7 @@
 #' @param x,xnm,... ..
 #' 
 #' @note
-#' Do not want to `Imports: fastmd.tzh` in package \CRANpkg{DanielBiostatistics10th}.
+#' Do not want to `Imports: fastmd` in package \CRANpkg{DanielBiostatistics10th}.
 #' 
 #' @examples
 #' library(DanielBiostatistics10th); list(

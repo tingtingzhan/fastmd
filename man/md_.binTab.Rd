@@ -13,7 +13,7 @@
 R Markdown Lines for \link[DanielBiostatistics10th]{binTab}
 }
 \note{
-Do not want to \code{Imports: fastmd.tzh} in package \CRANpkg{DanielBiostatistics10th}.
+Do not want to \code{Imports: fastmd} in package \CRANpkg{DanielBiostatistics10th}.
 }
 \examples{
 library(DanielBiostatistics10th); list(
