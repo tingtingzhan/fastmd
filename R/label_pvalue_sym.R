@@ -42,7 +42,7 @@
 #' @export
 label_pvalue_sym <- function(...) {
   
-  function(x) { # see ?scales::label_pvalue; `...` no need to be in the args
+  \(x) { # see ?scales::label_pvalue; `...` no need to be in the args
     
     ret <- x
     storage.mode(ret) <- 'character'
