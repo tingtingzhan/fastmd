@@ -73,21 +73,18 @@ md_.default <- function(x, xnm, ...) {
   
   htest <- x |> 
     attr(which = 'htest', exact = TRUE)
-  htest_text <- if (inherits(htest, what = 'htest')) {
-    # \pkg{ggplot.tzh} creates 'ggplot' with htest-attr
-    htest |> 
-      md_.htest() |> # missing `xnm` on purpose!!
-      slot(name = '.Data') |>
-      paste(collapse = ' ') |>
-      gsub(pattern = '\n', replacement = '', x = _) |>
-      trimws()
-  } else if (inherits(htest, what = 'anova')) {
-    .Defunct(new = 'md_.anova', msg = 'Better, defunct this attr!!')
-  } # else NULL
+  if (length(htest)) .Defunct(msg = 'remove this usage')
+  # htest_text <- if (inherits(htest, what = 'htest')) {
+  #  htest |> 
+  #    md_.htest() |> # missing `xnm` on purpose!!
+  #    slot(name = '.Data') |>
+  #    paste(collapse = ' ') |>
+  #    gsub(pattern = '\n', replacement = '', x = _) |>
+  #    trimws()
+  # } else if (inherits(htest, what = 'anova')) {
+  #  .Defunct(new = 'md_.anova', msg = 'Better, defunct this attr!!')
+  # } # else NULL
   
-  fig_cap <- x |>
-    attr(which = 'fig-cap', exact = TRUE)
-
   z2 <- c(
     '```{r}',
     '#| warning: false', 
@@ -100,7 +97,8 @@ md_.default <- function(x, xnm, ...) {
     x |>
       attr(which = 'fig-width', exact = TRUE) |> 
       sprintf(fmt = '#| fig-width: %.1f'),
-    (fig_cap %||% htest_text) |> 
+    x |>
+      attr(which = 'fig-cap', exact = TRUE) |> 
       sprintf(fmt = '#| fig-cap: \"%s\"'),
     # end of len-0 compatible
     
