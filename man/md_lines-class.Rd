@@ -5,7 +5,7 @@
 \alias{md_lines-class}
 \title{S4 Class \linkS4class{md_lines}}
 \description{
-Text lines to be written to an R Markdown (\code{.md}) file.
+Text lines to be written to an R Markdown (\code{.rmd}) file.
 }
 \section{Slots}{
 

@@ -7,7 +7,7 @@ setOldClass(Classes = 'bibentry')
 #' @title S4 Class \linkS4class{md_lines}
 #' 
 #' @description
-#' Text lines to be written to an R Markdown (`.md`) file.
+#' Text lines to be written to an R Markdown (`.rmd`) file.
 #' 
 #' @slot .Data \link[base]{character} scalar or \link[base]{vector}
 #' 
@@ -32,7 +32,7 @@ setClass(Class = 'md_lines', contains = 'character', slots = c(
 #' 
 #' @param x an \linkS4class{md_lines} object
 #' 
-#' @param file,append,... parameters of the function \link[base]{sink}
+#' @param ...,append parameters of the function \link[base]{sink}
 #' 
 #' @details
 #' The `S3` method [sink2.md_lines()], 
@@ -43,7 +43,7 @@ setClass(Class = 'md_lines', contains = 'character', slots = c(
 #' @keywords internal
 #' @export sink2.md_lines
 #' @export
-sink2.md_lines <- function(x, file, append = TRUE, ...) {
+sink2.md_lines <- function(x, ..., append = TRUE) {
   
   z <- c(
     '\n',
@@ -65,7 +65,7 @@ sink2.md_lines <- function(x, file, append = TRUE, ...) {
     )
   }
   
-  sink(file = file, append = append, ...) # ?base::writeLines cannot append
+  sink(..., append = append) # ?base::writeLines cannot append
   z |>
     cat(sep = '\n')
   sink()

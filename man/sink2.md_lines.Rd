@@ -4,12 +4,12 @@
 \alias{sink2.md_lines}
 \title{\code{S3} method \code{\link[=sink2.md_lines]{sink2.md_lines()}}}
 \usage{
-\method{sink2}{md_lines}(x, file, append = TRUE, ...)
+\method{sink2}{md_lines}(x, ..., append = TRUE)
 }
 \arguments{
 \item{x}{an \linkS4class{md_lines} object}
 
-\item{file, append, ...}{parameters of the function \link[base]{sink}}
+\item{..., append}{parameters of the function \link[base]{sink}}
 }
 \description{
 \link[base]{sink} an \linkS4class{md_lines} object to an \code{.rmd} file.
