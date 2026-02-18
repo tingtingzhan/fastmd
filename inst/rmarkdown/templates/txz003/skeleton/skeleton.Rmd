@@ -12,7 +12,11 @@ bibliography: bibliography.bib
 
 ```{r}
 #| include: false
-knitr::opts_chunk$set(echo = FALSE)
+knitr::opts_chunk$set(
+  echo = FALSE,
+  warning = FALSE,
+  comment = ''
+)
 library(ggplot2)
 theme_minimal() |> theme_set()
 ```

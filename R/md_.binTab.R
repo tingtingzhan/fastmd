@@ -34,7 +34,6 @@ md_.binTab <- function(x, xnm, ...) {
   
   z3 <- c(
     '```{r}', 
-    '#| comment:', 
     xnm |> sprintf(fmt = 'summary.binTab(%s)'), # how to put in `prevalence` here??
     '```'
   ) |> 

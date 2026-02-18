@@ -48,7 +48,6 @@ md_ <- function(x, ...) {
 #' p2 = ggplot(mtcars) + geom_boxplot(aes(gear, disp, group = gear))
 #' 
 #' list(
-#'  '`htest`' = t.test(mpg ~ am, data = mtcars),
 #'  '`power.htest`' = power.t.test(power = .90, delta = 1),
 #'  '`trellis` from package `lattice`' = xyplot(lat ~ long | Depth, data = quakes),
 #'  '`ggplot2::ggplot`' = ggplot() + geom_point(data = mtcars, mapping = aes(wt, mpg)),
@@ -77,8 +76,7 @@ md_.default <- function(x, xnm, ...) {
   
   c(
     '```{r}',
-    '#| warning: false', 
-    '#| comment:',
+    # '#| warning: false', 
     
     # len-0 compatible
     x |>
