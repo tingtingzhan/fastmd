@@ -71,15 +71,13 @@ render2html <- function(
     do.call(what = c.md_lines, args = _)
   # end of **not** [md_.list()]
   
-  bib_file <- file.path(path, 'bibliography.bib')
+  fbib <- file.path(path, 'bibliography.bib')
   md@bibentry |>
-    sink2.bibentry(file = bib_file)
+    sink2.bibentry(file = fbib)
   
   draft(file = frmd, template = template, package = package, edit = FALSE)
-  sink(file = frmd, append = TRUE) # ?base::writeLines cannot append
   md |>
-    print.md_lines()
-  sink()
+    sink2.md_lines(file = frmd, append = TRUE)
   
   render(input = frmd, output_file = fout, intermediates_dir = path, quiet = TRUE)
   
@@ -95,9 +93,9 @@ render2html <- function(
       system()
   }
   
-  if (length(bib_file)) { # surely will have a bib entry for R !
-    if (bib.rm) file.remove(bib_file) else {
-      bib_file |>
+  if (length(fbib)) { # surely will have a bib entry for R !
+    if (bib.rm) file.remove(fbib) else {
+      fbib |>
         normalizePath() |>
         sprintf(fmt = 'open \'%s\'') |> 
         lapply(FUN = system)

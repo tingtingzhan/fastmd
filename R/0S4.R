@@ -25,23 +25,25 @@ setClass(Class = 'md_lines', contains = 'character', slots = c(
 ))
 
 
-#' @title `S3` method [print.md_lines()]
+#' @title `S3` method [sink2.md_lines()]
+#' 
+#' @description
+#' \link[base]{sink} an \linkS4class{md_lines} object to an `.rmd` file.
 #' 
 #' @param x an \linkS4class{md_lines} object
 #' 
-#' @param ... additional parameters, currently of no use
+#' @param file,append,... parameters of the function \link[base]{sink}
 #' 
 #' @details
-#' The `S3` method [print.md_lines()] is an internal workhorse for
+#' The `S3` method [sink2.md_lines()], 
+#' of the generic function \link[bibentry]{sink2}, 
+#' is an internal workhorse for
 #' the function [render2html()].
 #' 
-#' A use interface, if to be implemented in future, will be in the `S4` `show` method.
-#' 
-#' 
 #' @keywords internal
-#' @export print.md_lines
+#' @export sink2.md_lines
 #' @export
-print.md_lines <- function(x, ...) {
+sink2.md_lines <- function(x, file, append = TRUE, ...) {
   
   z <- c(
     '\n',
@@ -63,8 +65,10 @@ print.md_lines <- function(x, ...) {
     )
   }
   
+  sink(file = file, append = append, ...) # ?base::writeLines cannot append
   z |>
     cat(sep = '\n')
+  sink()
   
 }
 
