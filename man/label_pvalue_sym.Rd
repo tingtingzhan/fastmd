@@ -4,9 +4,11 @@
 \alias{label_pvalue_sym}
 \title{Label \eqn{p}-values with Significance Symbol}
 \usage{
-label_pvalue_sym(...)
+label_pvalue_sym(star = c("⭑", "⭒"), ...)
 }
 \arguments{
+\item{star}{\link[base]{character} scalar}
+
 \item{...}{parameters of function \link[scales]{label_pvalue}}
 }
 \value{
@@ -32,7 +34,9 @@ Function \link[scales]{label_pvalue} is much prettier and more flexible than fun
 }
 \examples{
 p = c(a = pi^-100, b = .02, c = .05, d = .1, e = .9999, f = NA_real_)
-p |> label_pvalue_sym()()
+p |> label_pvalue_sym()() # star
+p |> label_pvalue_sym(star = c('\u2605', '\u2606'))() # small star
+p |> label_pvalue_sym(star = c('*', '.'))() # ?stats::printCoefmat
 p |> label_pvalue_sym(add_p = TRUE)()
 
 # below: exception handling

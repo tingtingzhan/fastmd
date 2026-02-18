@@ -10,6 +10,8 @@
 #' @description
 #' Label \eqn{p}-values with significance symbol.
 #' 
+#' @param star \link[base]{character} scalar
+#' 
 #' @param ... parameters of function \link[scales]{label_pvalue}
 #' 
 #' @details
@@ -30,7 +32,9 @@
 #' 
 #' @examples 
 #' p = c(a = pi^-100, b = .02, c = .05, d = .1, e = .9999, f = NA_real_)
-#' p |> label_pvalue_sym()()
+#' p |> label_pvalue_sym()() # star
+#' p |> label_pvalue_sym(star = c('\u2605', '\u2606'))() # small star
+#' p |> label_pvalue_sym(star = c('*', '.'))() # ?stats::printCoefmat
 #' p |> label_pvalue_sym(add_p = TRUE)()
 #' 
 #' # below: exception handling
@@ -40,7 +44,7 @@
 #' @keywords internal
 #' @importFrom scales label_pvalue
 #' @export
-label_pvalue_sym <- function(...) {
+label_pvalue_sym <- function(star = c('\u2b51', '\u2b52'), ...) {
   
   \(x) { # see ?scales::label_pvalue; `...` no need to be in the args
     
@@ -58,13 +62,16 @@ label_pvalue_sym <- function(...) {
       sym <- symnum(
         x, corr = FALSE, na = FALSE, 
         cutpoints = c(0, .001, .01, .05, .1, 1), 
-        symbols = 
-          # c("***", "**", "*", ".", " ")
-          # c('\u2605\u2605\u2605', '\u2605\u2605', '\u2605', '\u2606', '') # star
-          c('\u2b51\u2b51\u2b51', '\u2b51\u2b51', '\u2b51', '\u2b52', '') # small star
-      ) # see ?stats::printCoefmat
+        symbols = c( # do not want to import ?stringi::stri_dup
+          star[1L] |> rep(times = 3L) |> paste0(collapse = ''),
+          star[1L] |> rep(times = 2L) |> paste0(collapse = ''),
+          star[1L],
+          star[2L],
+          ''
+        )
+      )
       ret[] <- ret |> 
-        paste(sym) |> 
+        paste(. = _, sym) |> 
         trimws()
     }
     
