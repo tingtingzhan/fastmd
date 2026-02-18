@@ -23,7 +23,6 @@
 hline_by <- function(x, ...) UseMethod(generic = 'hline_by')
 
 #' @rdname hline_by
-#' @importFrom flextable flextable autofit
 #' @export hline_by.data.frame
 #' @export
 hline_by.data.frame <- function(x, ...) {

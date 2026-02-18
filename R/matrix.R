@@ -13,7 +13,6 @@
 #' The `S3` method [as_flextable.matrix()] returns a \link[flextable]{flextable}.
 #' 
 #' @keywords internal
-#' @importFrom flextable flextable as_flextable init_flextable_defaults autofit hline vline fix_border_issues align add_header_row merge_h merge_v
 #' @importFrom officer fp_border
 #' @export as_flextable.matrix
 #' @export
@@ -88,7 +87,6 @@ as_flextable.matrix <- function(
 #' The `S3` method [as_flextable.noquote()] returns a \link[flextable]{flextable}.
 #' 
 #' @keywords internal
-#' @importFrom flextable as_flextable
 #' @export as_flextable.noquote
 #' @export
 as_flextable.noquote <- function(x, ...) {

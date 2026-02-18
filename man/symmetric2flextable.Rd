@@ -9,7 +9,7 @@ symmetric2flextable(x, ...)
 \arguments{
 \item{x}{\link[base]{isSymmetric} \link[base]{matrix}}
 
-\item{...}{additional parameters of function \link[base]{format.default}}
+\item{...}{parameters of the \code{S3} method \link[base]{format.default}}
 }
 \value{
 Function \code{\link[=symmetric2flextable]{symmetric2flextable()}} returns a \link[flextable]{flextable}.

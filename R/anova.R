@@ -12,7 +12,6 @@
 #' 
 #' @name flextable_aov
 #' @keywords internal
-#' @importFrom flextable as_flextable flextable autofit colformat_double
 #' @export as_flextable.anova
 #' @export
 as_flextable.anova <- function(x, row.title = ' ', ...) {
@@ -39,7 +38,6 @@ as_flextable.anova <- function(x, row.title = ' ', ...) {
 }
 
 #' @rdname flextable_aov
-#' @importFrom flextable as_flextable
 #' @export as_flextable.aov
 #' @export
 as_flextable.aov <- function(x, ...) {
@@ -50,7 +48,6 @@ as_flextable.aov <- function(x, ...) {
 
 
 #' @rdname flextable_aov
-#' @importFrom flextable as_flextable
 #' @export as_flextable.summary.aov
 #' @export
 as_flextable.summary.aov <- function(x, ...) {
@@ -62,7 +59,6 @@ as_flextable.summary.aov <- function(x, ...) {
 
 
 #' @rdname flextable_aov
-#' @importFrom flextable as_flextable
 #' @export as_flextable.aovlist
 #' @export
 as_flextable.aovlist <- function(x, ...) {
@@ -74,7 +70,6 @@ as_flextable.aovlist <- function(x, ...) {
 
 
 #' @rdname flextable_aov
-#' @importFrom flextable as_flextable wrap_flextable
 #' @importFrom patchwork plot_layout
 #' @export as_flextable.summary.aovlist
 #' @export

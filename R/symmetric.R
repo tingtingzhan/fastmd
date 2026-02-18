@@ -7,7 +7,7 @@
 #' 
 #' @param x \link[base]{isSymmetric} \link[base]{matrix}
 #' 
-#' @param ... additional parameters of function \link[base]{format.default}
+#' @param ... parameters of the `S3` method \link[base]{format.default}
 #' 
 #' @returns
 #' Function [symmetric2flextable()] returns a \link[flextable]{flextable}.

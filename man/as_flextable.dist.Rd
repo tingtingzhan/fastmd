@@ -19,6 +19,6 @@ The \code{S3} method \code{\link[=as_flextable.dist]{as_flextable.dist()}} retur
 }
 \note{
 The \code{S3} method \code{\link[=as_flextable.dist]{as_flextable.dist()}} is inspired by
-the function \link[stats]{print.dist}.
+the \code{S3} method \link[stats]{print.dist}.
 }
 \keyword{internal}

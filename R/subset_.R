@@ -51,7 +51,6 @@
 #' Function [subset_()] returns a \link[flextable]{flextable}.
 #' 
 #' @keywords internal
-#' @importFrom flextable flextable autofit highlight vline
 #' @export
 subset_ <- function(
     x, subset = NULL, 

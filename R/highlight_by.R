@@ -23,7 +23,6 @@ highlight_by <- function(x, ...) UseMethod(generic = 'highlight_by')
 
 
 #' @rdname highlight_by
-#' @importFrom flextable flextable autofit
 #' @export highlight_by.data.frame
 #' @export
 highlight_by.data.frame <- function(x, ...) {
@@ -35,7 +34,6 @@ highlight_by.data.frame <- function(x, ...) {
 
 
 #' @rdname highlight_by
-#' @importFrom flextable highlight
 #' @export highlight_by.flextable
 #' @export
 highlight_by.flextable <- function(x, i, ...) {

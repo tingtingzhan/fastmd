@@ -6,10 +6,9 @@
 #' @param ... additional parameters, currently not in use
 #' 
 #' @returns
-#' The `S3` method [as_flextable.ftable] returns a \link[flextable]{flextable}.
+#' The `S3` method [as_flextable.ftable()] returns a \link[flextable]{flextable}.
 #' 
 #' @keywords internal
-#' @importFrom flextable flextable as_flextable autofit hline vline merge_v
 #' @importFrom zoo na.locf
 #' @export as_flextable.ftable
 #' @export
@@ -19,7 +18,8 @@ as_flextable.ftable <- function(x, ...) {
   nr <- length(atr$row.vars) # lowest group
   rseq <- seq_len(nr)
   
-  xf <- format(x, quote = FALSE, method = 'compact', lsep = '', ...) # ?stats:::format.ftable
+  xf <- x |>
+    format(quote = FALSE, method = 'compact', lsep = '', ...) # ?stats:::format.ftable
   xf[] <- trimws(xf)
   cnm <- xf[1L, , drop = TRUE]
   xf <- xf[-1L, , drop = FALSE]
@@ -30,7 +30,7 @@ as_flextable.ftable <- function(x, ...) {
   
   xf |>
     as.data.frame.matrix() |>
-    na.locf(na.rm = FALSE) |> # invokes ?zoo:::na.locf.data.frame
+    na.locf(na.rm = FALSE) |> # ?zoo:::na.locf.data.frame
     flextable() |>
     autofit(part = 'all') |>
     vline(j = nr) |>

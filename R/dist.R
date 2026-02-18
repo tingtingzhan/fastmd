@@ -13,10 +13,9 @@
 #' 
 #' @note
 #' The `S3` method [as_flextable.dist()] is inspired by 
-#' the function \link[stats]{print.dist}.
+#' the `S3` method \link[stats]{print.dist}.
 #' 
 #' @keywords internal
-#' @importFrom flextable as_flextable
 #' @export as_flextable.dist
 #' @export
 as_flextable.dist <- function(x, ...) {

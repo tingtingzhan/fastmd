@@ -10,7 +10,6 @@
 #' @param ... additional parameters, currently not in use
 #' 
 #' @keywords internal
-#' @importFrom flextable as_flextable flextable autofit hline vline
 #' @importFrom scales label_percent
 #' @export as_flextable.TukeyHSD
 #' @export

@@ -73,7 +73,6 @@ p_adjust_.pairwise.htest <- function(x) {
 #' @param ... ..
 #' 
 #' @keywords internal
-#' @importFrom flextable as_flextable
 #' @export as_flextable.p_adjust
 #' @export
 as_flextable.p_adjust <- function(x, ...) {

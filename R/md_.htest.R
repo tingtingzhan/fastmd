@@ -12,7 +12,6 @@
 #' The `S3` method [md_.htest()] returns a \link[base]{character} \link[base]{vector}.
 #' 
 #' @keywords internal
-#' @importFrom methods new
 #' @export md_.htest
 #' @export
 md_.htest <- function(x, xnm, ...) {

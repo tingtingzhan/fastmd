@@ -14,7 +14,6 @@
 #' The `S3` method [as_flextable.pairwise.htest] returns a \link[flextable]{flextable}.
 #' 
 #' @keywords internal
-#' @importFrom flextable as_flextable
 #' @method as_flextable pairwise.htest
 #' @export as_flextable.pairwise.htest
 #' @export
