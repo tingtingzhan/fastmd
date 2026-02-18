@@ -5,10 +5,23 @@
 \alias{md_autoplot_}
 \title{Fast R Markdown Lines, Internal Use}
 \usage{
-md_autoplot_(x, xnm, ...)
+md_autoplot_(
+  x,
+  xnm,
+  ...,
+  fig.height = attr(x, which = "fig-height", exact = TRUE),
+  fig.width = attr(x, which = "fig-width", exact = TRUE),
+  fig.cap = attr(x, which = "fig-cap", exact = TRUE)
+)
 }
 \arguments{
-\item{x, xnm, ...}{..}
+\item{x}{an R object}
+
+\item{xnm, ...}{..}
+
+\item{fig.height, fig.width}{(optional) \link[base]{double} scalar}
+
+\item{fig.cap}{(optional) \link[base]{character} scalar}
 }
 \description{
 Fast R Markdown Lines, Internal Use

@@ -17,7 +17,14 @@
 
 md_(x, ...)
 
-\method{md_}{default}(x, xnm, ...)
+\method{md_}{default}(
+  x,
+  xnm,
+  ...,
+  fig.height = attr(x, which = "fig-height", exact = TRUE),
+  fig.width = attr(x, which = "fig-width", exact = TRUE),
+  fig.cap = attr(x, which = "fig-cap", exact = TRUE)
+)
 
 \method{md_}{data.frame}(x, xnm, ...)
 
@@ -39,6 +46,10 @@ md_(x, ...)
 \item{xnm}{..}
 
 \item{...}{additional parameters, currently not in use}
+
+\item{fig.height, fig.width}{(optional) \link[base]{double} scalar}
+
+\item{fig.cap}{(optional) \link[base]{character} scalar}
 
 \item{nm_level}{(optional) \link[base]{character} scalar,
 mark down level of the \link[base]{list} \link[base]{names},

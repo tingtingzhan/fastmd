@@ -10,6 +10,10 @@
 #' 
 #' @param ... additional parameters, currently not in use
 #' 
+#' @param fig.height,fig.width (optional) \link[base]{double} scalar
+#' 
+#' @param fig.cap (optional) \link[base]{character} scalar
+#' 
 #' @returns 
 #' The `S3` generic function [md_()] returns 
 #' an \linkS4class{md_lines} object.
@@ -65,7 +69,12 @@ md_ <- function(x, ...) {
 #' 
 #' @export md_.default
 #' @export
-md_.default <- function(x, xnm, ...) {
+md_.default <- function(
+    x, xnm, ...,
+    fig.height = attr(x, which = 'fig-height', exact = TRUE),
+    fig.width = attr(x, which = 'fig-width', exact = TRUE),
+    fig.cap = attr(x, which = 'fig-cap', exact = TRUE)
+) {
   
   txt <- attr(x, which = 'text', exact = TRUE)
   if (length(txt)) .Defunct(msg = 'remove this usage')
@@ -76,17 +85,13 @@ md_.default <- function(x, xnm, ...) {
   
   c(
     '```{r}',
-    # '#| warning: false', 
     
     # len-0 compatible
-    x |>
-      attr(which = 'fig-height', exact = TRUE) |> 
+    fig.height |> 
       sprintf(fmt = '#| fig-height: %.1f'),
-    x |>
-      attr(which = 'fig-width', exact = TRUE) |> 
+    fig.width |> 
       sprintf(fmt = '#| fig-width: %.1f'),
-    x |>
-      attr(which = 'fig-cap', exact = TRUE) |> 
+    fig.cap |> 
       sprintf(fmt = '#| fig-cap: \"%s\"'),
     # end of len-0 compatible
     
