@@ -64,7 +64,7 @@ as_flextable.TukeyHSD <- function(x, ...) {
 #' @export
 md_.TukeyHSD <- function(x, xnm, ...) {
   
-  z1 <- '@Tukey49 Honest Significant Differences (HSD) is provided using <u>**`R`**</u>.' |>
+  z1 <- '[@Tukey49 Honest Significant Differences (HSD) test](https://en.wikipedia.org/wiki/Tukey%27s_range_test) is provided using <u>**`R`**</u>.' |>
     new(Class = 'md_lines', bibentry = .tukey49())
   
   z2 <- c(

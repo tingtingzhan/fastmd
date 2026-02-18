@@ -1,6 +1,6 @@
 ---
 title: "`r file`"
-author: "tingting.zhan@jefferson.edu"
+author: tingting.zhan@jefferson.edu
 date: "`r format(Sys.time())`"
 output: 
   html_document:
