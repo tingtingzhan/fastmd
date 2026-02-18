@@ -74,7 +74,7 @@ as_flextable.aovlist <- function(x, ...) {
 
 
 #' @rdname flextable_aov
-#' @importFrom flextable as_flextable
+#' @importFrom flextable as_flextable wrap_flextable
 #' @importFrom patchwork plot_layout
 #' @export as_flextable.summary.aovlist
 #' @export
@@ -91,7 +91,7 @@ as_flextable.summary.aovlist <- function(x, ...) {
     MoreArgs = list(...)
   ) |>
     lapply(FUN = wrap_flextable) |>
-    Reduce(f = `+`)
+    Reduce(f = `+`) # fancy `+` in \CRANpkg{patchwork}
   z + plot_layout(ncol = 1L)
 }
 
