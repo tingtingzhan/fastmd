@@ -68,22 +68,16 @@ md_ <- function(x, ...) {
 #' @export
 md_.default <- function(x, xnm, ...) {
   
-  z1 <- (attr(x, which = 'text', exact = TRUE) %||% character()) |>
-    new(Class = 'md_lines')
+  #z1 <- (attr(x, which = 'text', exact = TRUE) %||% character()) |>
+  #  new(Class = 'md_lines')
+  
+  txt <- attr(x, which = 'text', exact = TRUE)
+  if (length(txt)) .Defunct(msg = 'remove this usage')
+  z1 <- NULL
   
   htest <- x |> 
     attr(which = 'htest', exact = TRUE)
   if (length(htest)) .Defunct(msg = 'remove this usage')
-  # htest_text <- if (inherits(htest, what = 'htest')) {
-  #  htest |> 
-  #    md_.htest() |> # missing `xnm` on purpose!!
-  #    slot(name = '.Data') |>
-  #    paste(collapse = ' ') |>
-  #    gsub(pattern = '\n', replacement = '', x = _) |>
-  #    trimws()
-  # } else if (inherits(htest, what = 'anova')) {
-  #  .Defunct(new = 'md_.anova', msg = 'Better, defunct this attr!!')
-  # } # else NULL
   
   z2 <- c(
     '```{r}',
