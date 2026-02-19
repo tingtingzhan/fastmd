@@ -148,6 +148,12 @@ render2html <- function(
   file.path(path, 'styles.css') |>
     file.remove()
   
+  switch(
+    EXPR = .Platform$OS.type, 
+    windows = {
+      stop('check filefiles folder is empty and delete it!!')
+    })
+  
   return(invisible(fhtml))
   
 }
