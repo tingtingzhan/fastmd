@@ -57,9 +57,10 @@ sink2.md_lines <- function(x, ..., append = TRUE) {
     if (x@chunk.r) '```',
     '\n',
     '# R & R Packages', # from `x@package`
-    c('base', x@package) |> 
+    x@package |> 
       sort.int() |>
-      lapply(FUN = \(i) i |> citation() |> md_()) |> # [md_.citation()]
+      c('base', . = _) |> 
+      lapply(FUN = \(i) i |> citation() |> md_.citation()) |>
       unlist(use.names = FALSE)
   )
   
