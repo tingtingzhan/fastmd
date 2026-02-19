@@ -78,7 +78,8 @@ render2html <- function(
       sprintf(fmt = '%s %s.%s', . = _, file, fileext) |>
       file.path(path, . = _)
     f |> 
-      file.remove()
+      file.remove() |>
+      suppressWarnings()
     return(f)
   }
   dir_date <- \(path, file) {
@@ -94,12 +95,16 @@ render2html <- function(
   frmd <- file_date(path = path, file = file, fileext = 'rmd')
   fhtml <- file_date(path = path, file = file, fileext = 'html')
   dir <- dir_date(path = path, file = file |> sprintf(fmt = '%s_files')) # only on `windows`
-  fcss <- file.path(path, 'styles.css')
-  file.remove(fcss)
-  fbib <- file.path(path, 'bibliography.bib')
-  file.remove(fbib)
-  ftempl <- file.path(path, 'skeleton.rmd')
-  file.remove(ftempl)
+  
+  (fcss <- file.path(path, 'styles.css')) |>
+    file.remove() |>
+    suppressWarnings()
+  (fbib <- file.path(path, 'bibliography.bib')) |>
+    file.remove() |>
+    suppressWarnings()
+  (ftempl <- file.path(path, 'skeleton.rmd')) |>
+    file.remove() |>
+    suppressWarnings()
   
   z <- x |>
     md_.list(xnm = 'x', nm_level = '#')
