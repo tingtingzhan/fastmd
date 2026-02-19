@@ -1,0 +1,4 @@
+name: A Simple Report Template
+description: >
+  A simple report template that requires the parent frame contains the variables `title`, `author` and `x`.
+create_dir: false

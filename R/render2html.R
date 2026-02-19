@@ -30,6 +30,8 @@
 #' @param template,package template (from which package) to use; 
 #' see function \link[rmarkdown]{draft} for details
 #' 
+#' @param author an R object convertible to a \link[utils]{person}
+#' 
 #' @param rmd.rm \link[base]{logical} scalar (default `TRUE`), 
 #' whether to remove the R markdown `.rmd` file.
 #' If `FALSE`, the `.rmd` file will be automatically opened for inspection
@@ -55,7 +57,8 @@ render2html <- function(
     x, 
     path = tempdir(),
     file = tempfile() |> basename(),
-    template = 'txz003', package = 'fastmd', 
+    template = 'report', package = 'fastmd', 
+    author = person(given = 'Tingting', family = 'Zhan', email = 'tingting.zhan@jefferson.edu'),
     rmd.rm = TRUE,
     bib.rm = TRUE,
     ...
@@ -95,6 +98,8 @@ render2html <- function(
   z@bibentry |>
     sink2.bibentry(file = fbib)
   
+  title <- file
+  author <- author |> as.person()
   draft(
     file = frmd, 
     template = template, package = package, 

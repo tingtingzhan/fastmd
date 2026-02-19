@@ -8,8 +8,10 @@ render2html(
   x,
   path = tempdir(),
   file = basename(tempfile()),
-  template = "txz003",
+  template = "report",
   package = "fastmd",
+  author = person(given = "Tingting", family = "Zhan", email =
+    "tingting.zhan@jefferson.edu"),
   rmd.rm = TRUE,
   bib.rm = TRUE,
   ...
@@ -31,6 +33,8 @@ Default value is the \link[base]{basename} of a \link[base]{tempfile}}
 
 \item{template, package}{template (from which package) to use;
 see function \link[rmarkdown]{draft} for details}
+
+\item{author}{an R object convertible to a \link[utils]{person}}
 
 \item{rmd.rm}{\link[base]{logical} scalar (default \code{TRUE}),
 whether to remove the R markdown \code{.rmd} file.
