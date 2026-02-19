@@ -72,15 +72,23 @@ render2html <- function(
   if (length(file) != 1L || !is.character(file) || is.na(file)) stop('`file` must be len-1 character')
   if (grepl(pattern = '\\:', x = file)) stop('`file` must not contain ', sQuote(':'))
   
-  foo_date <- \(path, file, fileext) {
+  file_date <- \(path, file, fileext) {
     f <- Sys.Date() |>
       format.Date() |>
       sprintf(fmt = '%s %s.%s', . = _, file, fileext) |>
       file.path(path, . = _)
-    rm_exist(f)
+    rm_file_exist(f)
     return(f)
   }
-  rm_exist <- \(file) {
+  dir_date <- \(path, file) {
+    d <- Sys.Date() |>
+      format.Date() |>
+      sprintf(fmt = '%s %s', . = _, file) |>
+      file.path(path, . = _)
+    rm_dir_exist(d)
+    return(d)
+  }
+  rm_file_exist <- \(file) {
     if (file.exists(file)) {
       file.remove(file)
       file |>
@@ -89,15 +97,26 @@ render2html <- function(
         message('Existing ', . = _, ' removed')
     }
   }
+  rm_dir_exist <- \(path) {
+    if (dir.exists(paths = path)) {
+      unlink(path)
+      path |>
+        basename() |> 
+        col_magenta() |> style_bold() |>
+        message('Existing ', . = _, ' removed')
+    }
+  }
+   
     
-  frmd <- foo_date(path = path, file = file, fileext = 'rmd')
-  fhtml <- foo_date(path = path, file = file, fileext = 'html')
+  frmd <- file_date(path = path, file = file, fileext = 'rmd')
+  fhtml <- file_date(path = path, file = file, fileext = 'html')
+  dir <- dir_date(path = path, file = file |> sprintf(fmt = '%s_files'))
   fcss <- file.path(path, 'styles.css')
-  rm_exist(fcss)
+  rm_file_exist(fcss)
   fbib <- file.path(path, 'bibliography.bib')
-  rm_exist(fbib)
+  rm_file_exist(fbib)
   ftempl <- file.path(path, 'skeleton.rmd')
-  rm_exist(ftempl)
+  rm_file_exist(ftempl)
   
   z <- x |>
     md_.list(xnm = 'x', nm_level = '#')
@@ -151,7 +170,8 @@ render2html <- function(
   switch(
     EXPR = .Platform$OS.type, 
     windows = {
-      stop('check filefiles folder is empty and delete it!!')
+      dir |> 
+        rm_dir_exist()
     })
   
   return(invisible(fhtml))
