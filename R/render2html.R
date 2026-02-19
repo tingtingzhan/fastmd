@@ -78,17 +78,23 @@ render2html <- function(
       sprintf(fmt = '%s %s.%s', . = _, file, fileext) |>
       file.path(path, . = _) |>
       normalizePath()
-    if (file.exists(f)) {
-      file.remove(f)
-      basename(f) |> 
+    rm_exist(f)
+    return(f)
+  }
+  rm_exist <- \(file) {
+    if (file.exists(file)) {
+      file.remove(file)
+      file |>
+        basename() |> 
         col_cyan() |> style_bold() |>
         message('Existing ', . = _, ' removed')
     }
-    return(f)
   }
-  
+    
   frmd <- foo_date(path = path, file = file, fileext = 'rmd')
   fhtml <- foo_date(path = path, file = file, fileext = 'html')
+  fcss <- file.path(path, 'styles.css')
+  rm_exist(fcss)
   
   z <- x |>
     md_.list(xnm = 'x', nm_level = '#')
