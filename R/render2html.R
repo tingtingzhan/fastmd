@@ -153,7 +153,8 @@ render2html <- function(
   
   # **must** remove .css file!!
   fcss |>
-    file.remove()
+    file.remove() |>
+    suppressWarnings()
   
   switch(
     EXPR = .Platform$OS.type, 
@@ -166,25 +167,3 @@ render2html <- function(
   
 }
 
-
-if (FALSE) {
-  rm_file_exist <- \(file) {
-    if (file.exists(file)) {
-      file.remove(file)
-      file |>
-        basename() |> 
-        col_cyan() |> style_bold() |>
-        message('Existing ', . = _, ' removed')
-    }
-  }
-  rm_dir_exist <- \(path) {
-    if (dir.exists(paths = path)) {
-      path |> 
-        unlink(recursive = TRUE, force = TRUE)
-      path |>
-        basename() |> 
-        col_magenta() |> style_bold() |>
-        message('Existing ', . = _, ' removed')
-    }
-  }
-}
