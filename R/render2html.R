@@ -122,7 +122,7 @@ render2html <- function(
   fmt_open <- switch(
     EXPR = .Platform$OS.type, 
     unix = 'open \'%s\'', 
-    windows = stop('tzh needs to learn..')
+    windows = NULL #stop('tzh needs to learn..')
   )
   
   if (!trace) {
