@@ -12,8 +12,7 @@ render2html(
   package = "fastmd",
   author = person(given = "Tingting", family = "Zhan", email =
     "tingting.zhan@jefferson.edu"),
-  rmd.rm = TRUE,
-  bib.rm = TRUE,
+  trace = FALSE,
   ...
 )
 }
@@ -38,12 +37,9 @@ default value is the template \code{'report'} in this package}
 \item{author}{(an R object convertible to) a \link[utils]{person} object,
 default value is the author of this package}
 
-\item{rmd.rm}{\link[base]{logical} scalar (default \code{TRUE}),
-whether to remove the R markdown \code{.rmd} file.
-If \code{FALSE}, the \code{.rmd} file will be automatically opened for inspection}
-
-\item{bib.rm}{\link[base]{logical} scalar (default \code{TRUE}), whether to remove the bibliography \code{'.bib'} file,
-If \code{FALSE}, the \code{.bib} file will be automatically opened for inspection}
+\item{trace}{\link[base]{logical} scalar.
+If \code{FALSE} (default value), the \code{.rmd} and \code{.bib} files will be removed.
+If \code{TRUE}, these files will be opened for inspection on a Unix-based operating system.}
 
 \item{...}{additional parameters, currently of no use}
 }

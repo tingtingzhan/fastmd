@@ -34,12 +34,9 @@
 #' @param author (an R object convertible to) a \link[utils]{person} object,
 #' default value is the author of this package
 #' 
-#' @param rmd.rm \link[base]{logical} scalar (default `TRUE`), 
-#' whether to remove the R markdown `.rmd` file.
-#' If `FALSE`, the `.rmd` file will be automatically opened for inspection
-#' 
-#' @param bib.rm \link[base]{logical} scalar (default `TRUE`), whether to remove the bibliography `'.bib'` file,
-#' If `FALSE`, the `.bib` file will be automatically opened for inspection
+#' @param trace \link[base]{logical} scalar.
+#' If `FALSE` (default value), the `.rmd` and `.bib` files will be removed.
+#' If `TRUE`, these files will be opened for inspection on a Unix-based operating system.
 #' 
 #' @param ... additional parameters, currently of no use
 #' 
@@ -61,8 +58,7 @@ render2html <- function(
     file = tempfile() |> basename(),
     template = 'report', package = 'fastmd', 
     author = person(given = 'Tingting', family = 'Zhan', email = 'tingting.zhan@jefferson.edu'),
-    rmd.rm = TRUE,
-    bib.rm = TRUE,
+    trace = FALSE,
     ...
 ) {
   
@@ -80,7 +76,8 @@ render2html <- function(
     f <- Sys.Date() |>
       format.Date() |>
       sprintf(fmt = '%s %s.%s', . = _, file, fileext) |>
-      file.path(path, . = _)
+      file.path(path, . = _) |>
+      normalizePath()
     if (file.exists(f)) {
       file.remove(f)
       basename(f) |> 
@@ -119,27 +116,22 @@ render2html <- function(
     quiet = TRUE
   )
   
+  fhtml |> 
+    browseURL() # both `windows` and `unix`
+  
   fmt_open <- switch(
     EXPR = .Platform$OS.type, 
     unix = 'open \'%s\'', 
-    windows = stop()
+    windows = stop('tzh needs to learn..')
   )
-    
-  fhtml |> 
-    normalizePath() |> 
-    sprintf(fmt = fmt_open) |> 
-    system()
   
-  if (rmd.rm) file.remove(frmd) else {
+  if (!trace) {
+    file.remove(frmd, fbib) 
+  } else if (.Platform$OS.type == 'unix') {
     frmd |>
-      normalizePath() |>
       sprintf(fmt = fmt_open) |> 
       system()
-  }
-  
-  if (bib.rm) file.remove(fbib) else {
     fbib |>
-      normalizePath() |>
       sprintf(fmt = fmt_open) |> 
       lapply(FUN = system) # in case tzh creates *multiple* .bib files in future!!
   }
