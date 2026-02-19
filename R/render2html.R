@@ -99,7 +99,8 @@ render2html <- function(
   }
   rm_dir_exist <- \(path) {
     if (dir.exists(paths = path)) {
-      unlink(path)
+      path |> 
+        unlink(recursive = TRUE, force = TRUE)
       path |>
         basename() |> 
         col_magenta() |> style_bold() |>
@@ -110,7 +111,7 @@ render2html <- function(
     
   frmd <- file_date(path = path, file = file, fileext = 'rmd')
   fhtml <- file_date(path = path, file = file, fileext = 'html')
-  dir <- dir_date(path = path, file = file |> sprintf(fmt = '%s_files'))
+  dir <- dir_date(path = path, file = file |> sprintf(fmt = '%s_files')) # only on `windows`
   fcss <- file.path(path, 'styles.css')
   rm_file_exist(fcss)
   fbib <- file.path(path, 'bibliography.bib')
