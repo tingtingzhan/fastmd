@@ -93,7 +93,7 @@ md_.default <- function(
       sprintf(fmt = '#| fig-cap: \"%s\"'),
     # end of len-0 compatible
     
-    xnm, 
+    xnm 
     # print, but not say print!!!!
     # must *not* say print, to correctly invoke
     # ?flextable:::print.flextable # packageDate('flextable') # "2025-05-31"
