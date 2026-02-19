@@ -98,7 +98,9 @@ render2html <- function(
   
   fbib <- file.path(path, 'bibliography.bib')
   z@bibentry |>
-    sink2.bibentry(file = fbib)
+    sink2.bibentry(file = fbib) 
+  # even if (!length(z@bibentry)),
+  # because `bibliography.bib` is hard coded in template!!!
   
   title <- file
   author <- author |> as.person()
@@ -135,13 +137,11 @@ render2html <- function(
       system()
   }
   
-  if (length(fbib)) { # surely will have a bib entry for R !
-    if (bib.rm) file.remove(fbib) else {
-      fbib |>
-        normalizePath() |>
-        sprintf(fmt = fmt_open) |> 
-        lapply(FUN = system) # in case tzh creates *multiple* .bib files in future!!
-    }
+  if (bib.rm) file.remove(fbib) else {
+    fbib |>
+      normalizePath() |>
+      sprintf(fmt = fmt_open) |> 
+      lapply(FUN = system) # in case tzh creates *multiple* .bib files in future!!
   }
   
   # **must** remove .css file!!
