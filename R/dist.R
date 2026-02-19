@@ -33,11 +33,4 @@ as_flextable.dist <- function(x, ...) {
 
 
 
-#' @rdname md_
-#' @examples
-#' list(
-#'  USJudgeRatings = dist(USJudgeRatings[1:4,])
-#' ) |> render2html()
-#' @export md_.dist
-#' @export
-md_.dist <- md_flextable_
+

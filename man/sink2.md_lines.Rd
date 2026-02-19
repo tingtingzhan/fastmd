@@ -15,8 +15,7 @@
 \link[base]{sink} an \linkS4class{md_lines} object to an \code{.rmd} file.
 }
 \details{
-The \code{S3} method \code{\link[=sink2.md_lines]{sink2.md_lines()}},
-of the generic function \link[bibentry]{sink2},
+The \code{S3} method \code{\link[=sink2.md_lines]{sink2.md_lines()}}
 is an internal workhorse for
 the function \code{\link[=render2html]{render2html()}}.
 }

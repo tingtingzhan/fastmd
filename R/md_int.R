@@ -12,7 +12,15 @@
 #' 
 #' @details
 #' Function [md_autoplot_()] creates R mark down lines by 
-#' the work hourse function \link[ggplot2]{autoplot}.
+#' the work horse function \link[ggplot2]{autoplot}.
+#' 
+#' Function [md_flextable_()] creates R mark down lines by 
+#' the work horse function \link[flextable]{as_flextable}.
+#' 
+#' @examples
+#' list(
+#'  USJudgeRatings = dist(USJudgeRatings[1:4,])
+#' ) |> render2html()
 #' 
 #' @keywords internal
 #' @name md_int
@@ -49,3 +57,7 @@ md_flextable_ <- function(x, xnm, ...) {
     sprintf(fmt = 'as_flextable(%s)') |>
     new(Class = 'md_lines', chunk.r = TRUE)
 }
+
+# @export md_.dist
+#' @export
+md_.dist <- md_flextable_

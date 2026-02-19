@@ -40,8 +40,7 @@ setClass(Class = 'md_lines', contains = 'character', slots = c(
 #' @param ...,append parameters of the function \link[base]{sink}
 #' 
 #' @details
-#' The `S3` method [sink2.md_lines()], 
-#' of the generic function \link[bibentry]{sink2}, 
+#' The `S3` method [sink2.md_lines()]
 #' is an internal workhorse for
 #' the function [render2html()].
 #' 
