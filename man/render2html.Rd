@@ -32,9 +32,11 @@ the output HTML file name (without the file extension \code{.html}).
 Default value is the \link[base]{basename} of a \link[base]{tempfile}}
 
 \item{template, package}{template (from which package) to use;
-see function \link[rmarkdown]{draft} for details}
+see function \link[rmarkdown]{draft} for details,
+default value is the template \code{'report'} in this package}
 
-\item{author}{an R object convertible to a \link[utils]{person}}
+\item{author}{(an R object convertible to) a \link[utils]{person} object,
+default value is the author of this package}
 
 \item{rmd.rm}{\link[base]{logical} scalar (default \code{TRUE}),
 whether to remove the R markdown \code{.rmd} file.

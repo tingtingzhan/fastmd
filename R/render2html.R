@@ -3,7 +3,7 @@
 # https://yihui.org/rmarkdown-cookbook/package-template
 # usethis::use_rmarkdown_template('abc')
 
-# template 'txz003'
+# template 'report'
 # CSS Rule from
 # https://stackoverflow.com/questions/34906002
 
@@ -28,9 +28,11 @@
 #' Default value is the \link[base]{basename} of a \link[base]{tempfile}
 #' 
 #' @param template,package template (from which package) to use; 
-#' see function \link[rmarkdown]{draft} for details
+#' see function \link[rmarkdown]{draft} for details, 
+#' default value is the template `'report'` in this package
 #' 
-#' @param author an R object convertible to a \link[utils]{person}
+#' @param author (an R object convertible to) a \link[utils]{person} object,
+#' default value is the author of this package
 #' 
 #' @param rmd.rm \link[base]{logical} scalar (default `TRUE`), 
 #' whether to remove the R markdown `.rmd` file.
@@ -115,15 +117,21 @@ render2html <- function(
     quiet = TRUE
   )
   
+  fmt_open <- switch(
+    EXPR = .Platform$OS.type, 
+    unix = 'open \'%s\'', 
+    windows = stop()
+  )
+    
   fhtml |> 
     normalizePath() |> 
-    sprintf(fmt = 'open \'%s\'') |> 
+    sprintf(fmt = fmt_open) |> 
     system()
   
   if (rmd.rm) file.remove(frmd) else {
     frmd |>
       normalizePath() |>
-      sprintf(fmt = 'open \'%s\'') |> 
+      sprintf(fmt = fmt_open) |> 
       system()
   }
   
@@ -131,7 +139,7 @@ render2html <- function(
     if (bib.rm) file.remove(fbib) else {
       fbib |>
         normalizePath() |>
-        sprintf(fmt = 'open \'%s\'') |> 
+        sprintf(fmt = fmt_open) |> 
         lapply(FUN = system) # in case tzh creates *multiple* .bib files in future!!
     }
   }
