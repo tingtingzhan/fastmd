@@ -14,4 +14,7 @@
 \description{
 R Markdown Lines for \link[stats]{aov}
 }
+\examples{
+# see ?md_.TukeyHSD
+}
 \keyword{internal}

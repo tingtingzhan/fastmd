@@ -2,16 +2,16 @@
 % Please edit documentation in R/p_adjust_.R
 \name{as_flextable.p_adjust}
 \alias{as_flextable.p_adjust}
-\title{\link{as_flextable.p_adjust}}
+\title{Convert \code{p_adjust} object to a \link[flextable]{flextable}}
 \usage{
 \method{as_flextable}{p_adjust}(x, ...)
 }
 \arguments{
-\item{x}{\code{p_adjust} object}
+\item{x}{a \code{p_adjust} object}
 
 \item{...}{..}
 }
 \description{
-\link{as_flextable.p_adjust}
+Convert \code{p_adjust} object to a \link[flextable]{flextable}
 }
 \keyword{internal}

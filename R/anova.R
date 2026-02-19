@@ -129,6 +129,8 @@ md_.anova <- function(x, xnm, ...) {
 #' 
 #' @param xnm,... ..
 #' 
+#' @examples
+#' # see ?md_.TukeyHSD
 #' @keywords internal
 #' @export md_.aov
 #' @export
@@ -137,9 +139,7 @@ md_.aov <- function(x, xnm, ...) {
   z1 <- 'Analysis of variance is performed using <u>**`R`**</u>.' |>
     new(Class = 'md_lines')
   
-  z2 <- xnm |> 
-    sprintf(fmt = 'as_flextable.aov(%s)') |>
-    new(Class = 'md_lines', chunk.r = TRUE)
+  z2 <- md_flextable_(xnm = xnm, ...)
   
   c(z1, z2) # [c.md_lines()]
   

@@ -41,3 +41,11 @@ md_autoplot_ <- function(
 }
 
 
+#' @rdname md_int
+#' @export
+md_flextable_ <- function(x, xnm, ...) {
+  # actually not using `x` !!
+  xnm |> 
+    sprintf(fmt = 'as_flextable(%s)') |>
+    new(Class = 'md_lines', chunk.r = TRUE)
+}

@@ -40,8 +40,4 @@ as_flextable.dist <- function(x, ...) {
 #' ) |> render2html()
 #' @export md_.dist
 #' @export
-md_.dist <- function(x, xnm, ...) {
-  xnm |> 
-    sprintf(fmt = '%s |> as_flextable.dist()') |> 
-    new(Class = 'md_lines', chunk.r = TRUE)
-}
+md_.dist <- md_flextable_

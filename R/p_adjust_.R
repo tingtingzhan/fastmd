@@ -20,7 +20,8 @@ p_adjust_ <- function(x) UseMethod(generic = 'p_adjust_')
 #' @export
 p_adjust_.numeric <- function(x) {
   
-  method <- setdiff(p.adjust.methods, y = c('fdr', if (sum(!is.na(x)) == 2L) 'hommel'))
+  method <- p.adjust.methods |> 
+    setdiff(y = c('fdr', if (sum(!is.na(x)) == 2L) 'hommel'))
   # 'fdr' is 'BH'
   # 'hommel' for n == 2L is 'hochberg'
   
@@ -66,9 +67,9 @@ p_adjust_.pairwise.htest <- function(x) {
 
 
 
-#' @title [as_flextable.p_adjust]
+#' @title Convert `p_adjust` object to a \link[flextable]{flextable}
 #' 
-#' @param x `p_adjust` object
+#' @param x a `p_adjust` object
 #' 
 #' @param ... ..
 #' 

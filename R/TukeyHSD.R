@@ -69,9 +69,7 @@ md_.TukeyHSD <- function(x, xnm, ...) {
   z1 <- '[@Tukey49 Honest Significant Differences (HSD) test](https://en.wikipedia.org/wiki/Tukey%27s_range_test) is provided using <u>**`R`**</u>.' |>
     new(Class = 'md_lines', bibentry = .tukey49())
   
-  z2 <- xnm |> 
-    sprintf(fmt = 'as_flextable.TukeyHSD(%s)') |>
-    new(Class = 'md_lines', chunk.r = TRUE)
+  z2 <- md_flextable_(xnm = xnm, ...)
   
   c(z1, z2) # [c.md_lines()]
   
