@@ -77,7 +77,8 @@ render2html <- function(
       format.Date() |>
       sprintf(fmt = '%s %s.%s', . = _, file, fileext) |>
       file.path(path, . = _)
-    rm_file_exist(f)
+    f |> 
+      file.remove()
     return(f)
   }
   dir_date <- \(path, file) {
@@ -85,39 +86,20 @@ render2html <- function(
       format.Date() |>
       sprintf(fmt = '%s %s', . = _, file) |>
       file.path(path, . = _)
-    rm_dir_exist(d)
+    d |> 
+      unlink(recursive = TRUE, force = TRUE)
     return(d)
   }
-  rm_file_exist <- \(file) {
-    if (file.exists(file)) {
-      file.remove(file)
-      file |>
-        basename() |> 
-        col_cyan() |> style_bold() |>
-        message('Existing ', . = _, ' removed')
-    }
-  }
-  rm_dir_exist <- \(path) {
-    if (dir.exists(paths = path)) {
-      path |> 
-        unlink(recursive = TRUE, force = TRUE)
-      path |>
-        basename() |> 
-        col_magenta() |> style_bold() |>
-        message('Existing ', . = _, ' removed')
-    }
-  }
-   
-    
+
   frmd <- file_date(path = path, file = file, fileext = 'rmd')
   fhtml <- file_date(path = path, file = file, fileext = 'html')
   dir <- dir_date(path = path, file = file |> sprintf(fmt = '%s_files')) # only on `windows`
   fcss <- file.path(path, 'styles.css')
-  rm_file_exist(fcss)
+  file.remove(fcss)
   fbib <- file.path(path, 'bibliography.bib')
-  rm_file_exist(fbib)
+  file.remove(fbib)
   ftempl <- file.path(path, 'skeleton.rmd')
-  rm_file_exist(ftempl)
+  file.remove(ftempl)
   
   z <- x |>
     md_.list(xnm = 'x', nm_level = '#')
@@ -172,7 +154,7 @@ render2html <- function(
     EXPR = .Platform$OS.type, 
     windows = {
       dir |> 
-        rm_dir_exist()
+        unlink(recursive = TRUE, force = TRUE)
     })
   
   return(invisible(fhtml))
@@ -180,3 +162,24 @@ render2html <- function(
 }
 
 
+if (FALSE) {
+  rm_file_exist <- \(file) {
+    if (file.exists(file)) {
+      file.remove(file)
+      file |>
+        basename() |> 
+        col_cyan() |> style_bold() |>
+        message('Existing ', . = _, ' removed')
+    }
+  }
+  rm_dir_exist <- \(path) {
+    if (dir.exists(paths = path)) {
+      path |> 
+        unlink(recursive = TRUE, force = TRUE)
+      path |>
+        basename() |> 
+        col_magenta() |> style_bold() |>
+        message('Existing ', . = _, ' removed')
+    }
+  }
+}
