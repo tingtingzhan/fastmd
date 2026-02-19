@@ -10,7 +10,6 @@
 #' @import stats
 #' @import utils
 #'
-#' @import bibentry
 '_PACKAGE'
 
 

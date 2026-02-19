@@ -12,8 +12,7 @@ RoxygenNote: 7.3.3
 Depends: R (>= 4.5.0), flextable (== 0.9.11)
 Imports: methods, 
   cli (== 3.6.5), officer (== 0.7.3), patchwork (== 1.3.2), 
-  rmarkdown (== 2.30), scales (== 1.4.0), zoo (== 1.8.15), 
-  bibentry
+  rmarkdown (== 2.30), scales (== 1.4.0), zoo (== 1.8.15)
 Suggests: 
   ggplot2 (== 4.0.2), GGally (== 2.4.0), 
   lattice (== 0.22.7), leaflet (== 2.2.3), 

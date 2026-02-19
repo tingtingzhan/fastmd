@@ -15,7 +15,6 @@
 #' ) |> render2html()
 #' 
 #' @keywords internal
-#' @importFrom bibentry url2doi
 #' @export md_.citation
 #' @export
 md_.citation <- function(x, ...) {
@@ -37,25 +36,63 @@ md_.citation <- function(x, ...) {
 
 
 
+#' @title Prioritize `doi` over `url` in \link[utils]{bibentry}
+#' 
+#' @description
+#' Prioritize `doi` over `url` in \link[utils]{bibentry} object, 
+#' especially in the derived object \link[utils]{citation}.
+#' 
+#' @param x a \link[utils]{bibentry} object
+#' 
+#' @details
+#' Function [url2doi()] converts a `url` field to `doi` field in \link[utils]{bibentry}, 
+#' if the `url` field is a DOI URL.
+#' 
+#' @returns
+#' Function [url2doi()] returns a \link[utils]{bibentry} object.
+#' 
+#' @examples
+#' 'scales' |> citation() # using doi field, correct
+#' 
+#' 'texreg' |> citation() # doi in url field, not good!
+#' 'texreg' |> citation() |> url2doi()
+#' @keywords internal
+#' @export
+url2doi <- function(x) {
+  
+  x0 <- x |>
+    unclass()
+  # must!!
+  # see # methods(class = 'bibentry')
+  # otherwise both ?utils:::`[[.bibentry` and ?utils:::`[<-.bibentry` cause error hahaha
+  
+  x0[] <- x0 |> 
+    lapply(FUN = url2doi.)
+  
+  class(x0) <- class(x)
+  # attributes intact
+  return(x0)
+  
+}
 
-if (FALSE) { # disabled for ?devtools::check
-  library(parallel)
-  ct = installed.packages() |>
-    rownames() |>
-    mclapply(mc.cores = detectCores(), FUN = citation)
-  
-  tmp = ct |> 
-    mclapply(mc.cores = detectCores(), FUN = format, style = 'text') |>
-    unlist(recursive = TRUE)
-  grep('\u2018', tmp) # none!!
-  tmp[grep('\u2019', tmp)]
-  # grep('\u201c', tmp)
-  
-  
-  tmp = ct |> 
-    mclapply(mc.cores = detectCores(), FUN = md_.bibentry)
-  tmp[lengths(tmp) > 1L]
-} 
+
+
+
+url2doi. <- \(b) {
+  # (b = unclass(x)[[1L]]) # `x` is ?utils::bibentry object
+  if (!length(b[['url']])) return(b)
+  if (!grepl(pattern = 'https://doi.org/', x = b[['url']])) return(b)
+  doi <- b[['url']] |>
+    gsub(pattern = 'https://doi.org/', replacement = '', x = _)
+  if (length(b[['doi']])) {
+    if (!identical(b[['doi']], doi)) stop()
+    # else do nothing
+  } else b[['doi']] <- doi
+  b[['url']] <- NULL
+  return(b)
+}
+
+
 
 
 
