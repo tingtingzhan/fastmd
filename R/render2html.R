@@ -93,9 +93,11 @@ render2html <- function(
   frmd <- foo_date(path = path, file = file, fileext = 'rmd')
   fhtml <- foo_date(path = path, file = file, fileext = 'html')
   fcss <- file.path(path, 'styles.css')
+  rm_exist(fcss)
   fbib <- file.path(path, 'bibliography.bib')
+  rm_exist(fcss)
   ftempl <- file.path(path, 'skeleton.rmd')
-  rm_exist(c(fcss, fbib, ftempl))
+  rm_exist(fcss)
   
   z <- x |>
     md_.list(xnm = 'x', nm_level = '#')
