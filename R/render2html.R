@@ -95,9 +95,9 @@ render2html <- function(
   fcss <- file.path(path, 'styles.css')
   rm_exist(fcss)
   fbib <- file.path(path, 'bibliography.bib')
-  rm_exist(fcss)
+  rm_exist(fbib)
   ftempl <- file.path(path, 'skeleton.rmd')
-  rm_exist(fcss)
+  rm_exist(ftempl)
   
   z <- x |>
     md_.list(xnm = 'x', nm_level = '#')
