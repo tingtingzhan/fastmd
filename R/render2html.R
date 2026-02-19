@@ -76,8 +76,7 @@ render2html <- function(
     f <- Sys.Date() |>
       format.Date() |>
       sprintf(fmt = '%s %s.%s', . = _, file, fileext) |>
-      file.path(path, . = _) |>
-      normalizePath()
+      file.path(path, . = _)
     rm_exist(f)
     return(f)
   }
