@@ -15,7 +15,8 @@ setOldClass(Classes = 'bibentry')
 #' 
 #' @slot package \link[base]{character} scalar or \link[base]{vector}
 #' 
-#' @slot chunk.r \link[base]{logical} scalar, whether this is an R code chunk
+#' @slot chunk.r \link[base]{logical} scalar (default `FALSE`), 
+#' whether this is an R code chunk
 #' 
 #' @keywords internal
 #' @export
@@ -80,6 +81,31 @@ sink2.md_lines <- function(x, ..., append = TRUE) {
 
 
 
+#' @title Convert \linkS4class{md_lines} to \link[base]{character}
+#' 
+#' @description
+#' Convert an \linkS4class{md_lines} object to 
+#' a \link[base]{character} \link[base]{vector}.
+#' 
+#' @param x an \linkS4class{md_lines} object
+#' 
+#' @param ... additional parameters, currently of no use
+#' 
+#' @returns
+#' The `S3` method [as.character.md_lines()] returns 
+#' a \link[base]{character} \link[base]{vector}.
+#' 
+#' @keywords internal
+#' @export as.character.md_lines
+#' @export
+as.character.md_lines <- function(x, ...) {
+  c(
+    if (x@chunk.r) '```{r}',
+    unclass(x), 
+    if (x@chunk.r) '```',
+    '\n\n'
+  )
+}
 
 
 #' @title Combine Multiple \linkS4class{md_lines}
@@ -87,8 +113,8 @@ sink2.md_lines <- function(x, ..., append = TRUE) {
 #' @param ... one or more \linkS4class{md_lines} objects
 #' 
 #' @returns 
-#' The `S3` method [c.md_lines()] returns an \linkS4class{md_lines} object.
-#' 
+#' The `S3` method [c.md_lines()] returns 
+#' an \linkS4class{md_lines} object.
 #' 
 #' @keywords internal
 #' @export c.md_lines
@@ -99,28 +125,17 @@ c.md_lines <- function(...) {
   x <- list(...)
   
   z <- x |>
-    lapply(FUN = \(i) {
-      c(
-        if (i@chunk.r) '```{r}',
-        unclass(i), 
-        if (i@chunk.r) '```',
-        '\n\n'
-      )
-      # tzh rather not use parameter `sep = '\n\n'`
-      # as ?base::c does not have such parameter
-    }) |>
+    lapply(FUN = as.character.md_lines) |>
     do.call(what = c, args = _) # ?base::c, Primitive
   
-  bib_ <- x |> 
-    lapply(FUN = slot, name = 'bibentry') 
-  bid <- (lengths(bib_, use.names = FALSE) > 0L)
+  bib <- x |> 
+    lapply(FUN = slot, name = 'bibentry') |>
+    do.call(what = c, args = _) |> # ?utils:::c.bibentry
+    unique() # ?utils:::unique.bibentry
   
-  if (!any(bid)) bib <- bibentry() else {
-    bib <- bib_[bid] |> # ?utils:::c.bibentry cannot take non-bibentry input
-      do.call(what = c, args = _) |> # ?utils:::c.bibentry
-      unique() # ?utils:::unique.bibentry
+  if (length(bib)) {
     key <- bib |>
-      unclass() |> # to use ?base::`[[` instead of ?utils:::`[[.bibentry` (for ?base::vapply)
+      unclass() |> # to use ?base::`[[` instead of ?utils:::`[[.bibentry` (for ?base::lapply)
       lapply(FUN = attr, which = 'key', exact = TRUE)
     # forget `key` in ?utils::bibentry, then no attr(, which = 'key')
     if (any(lengths(key, use.names = FALSE) != 1L)) stop('illegal or missing `key`')

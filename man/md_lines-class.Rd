@@ -16,7 +16,8 @@ Text lines to be written to an R Markdown (\code{.rmd}) file.
 
 \item{\code{package}}{\link[base]{character} scalar or \link[base]{vector}}
 
-\item{\code{chunk.r}}{\link[base]{logical} scalar, whether this is an R code chunk}
+\item{\code{chunk.r}}{\link[base]{logical} scalar (default \code{FALSE}),
+whether this is an R code chunk}
 }}
 
 \keyword{internal}
