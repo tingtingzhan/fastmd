@@ -65,7 +65,7 @@ md_ <- function(x, ...) {
 #'    plotly::plot_ly(ggplot2::economics, x = ~date, y = ~pop, type = 'scatter', mode = 'markers'),
 #'    plotly::plot_ly(z = ~volcano, type = "surface")
 #'  )
-#' ) |> render2html(file = 'Do Not (Need to) Say Print')
+#' ) |> render2html()
 #' 
 #' @export md_.default
 #' @export
@@ -84,8 +84,6 @@ md_.default <- function(
   if (length(htest)) .Defunct(msg = 'remove this usage')
   
   c(
-    '```{r}',
-    
     # len-0 compatible
     fig.height |> 
       sprintf(fmt = '#| fig-height: %.1f'),
@@ -113,9 +111,7 @@ md_.default <- function(
     ### ?magick::image_info; height and width
     # ?lattice::trellis.*()
     # etc.
-    
-    '```'
-  ) |> new(Class = 'md_lines')
+  ) |> new(Class = 'md_lines', chunk.r = TRUE)
   
 }
 
@@ -139,22 +135,19 @@ md_.default <- function(
 #' list(
 #'  Formaldehyde = Formaldehyde,
 #'  aml2 = aml2
-#' ) |> render2html(file = 'data.frame')
+#' ) |> render2html()
 #' @export md_.data.frame
 #' @export
 md_.data.frame <- function(x, xnm, ...) {
-  c(
-    '```{r}',
-    xnm |> 
-      sprintf(fmt = '%s |> format.data.frame() |> flextable() |> autofit(part = \'all\')'),
-    '```'
-  ) |> new(Class = 'md_lines')
+  xnm |> 
+    sprintf(fmt = '%s |> format.data.frame() |> flextable() |> autofit(part = \'all\')') |> 
+    new(Class = 'md_lines', chunk.r = TRUE)
 }
 
 
 #' @rdname md_
 #' @examples
-#' list('`xtabs`' = xtabs(~ cyl + vs, data = mtcars)) |> render2html(file = 'xtabs')
+#' list('`xtabs`' = xtabs(~ cyl + vs, data = mtcars)) |> render2html()
 #' @export md_.xtabs
 #' @export
 md_.xtabs <- function(x, xnm, ...) {
@@ -174,11 +167,9 @@ md_.xtabs <- function(x, xnm, ...) {
       new(Class = 'md_lines', bibentry = c(.fisher22(), .pearson1900()))
   }# else NULL
   
-  z2 <- c(
-    '```{r}',
-    xnm |> sprintf(fmt = '%s |> as_flextable() |> autofit(part = \'all\')'),
-    '```'
-  ) |> new(Class = 'md_lines')
+  z2 <- xnm |> 
+    sprintf(fmt = '%s |> as_flextable() |> autofit(part = \'all\')') |> 
+    new(Class = 'md_lines', chunk.r = TRUE)
   
   c(z1, z2)
   
@@ -190,17 +181,14 @@ md_.xtabs <- function(x, xnm, ...) {
 
 #' @rdname md_
 #' @examples
-#' list('`matrix`' = VADeaths) |> render2html(file = 'matrix')
+#' list('`matrix`' = VADeaths) |> render2html()
 #' 
 #' @export md_.matrix
 #' @export
 md_.matrix <- function(x, xnm, ...) {
-  c(
-    '```{r}',
-    xnm |> 
-      sprintf(fmt = 'as_flextable.matrix(%s)'),
-    '```'
-  ) |> new(Class = 'md_lines')
+  xnm |> 
+    sprintf(fmt = 'as_flextable.matrix(%s)') |> 
+    new(Class = 'md_lines', chunk.r = TRUE)
 }
 
 

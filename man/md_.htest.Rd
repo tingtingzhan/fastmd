@@ -22,6 +22,6 @@ Fast Markdown Lines for \code{htest} Object
 \examples{
 list(
  '$t$-test' = t.test(mpg ~ am, data = mtcars)
-) |> render2html(file = 'htest')
+) |> render2html()
 }
 \keyword{internal}

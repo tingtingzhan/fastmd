@@ -15,13 +15,17 @@ setOldClass(Classes = 'bibentry')
 #' 
 #' @slot package \link[base]{character} scalar or \link[base]{vector}
 #' 
+#' @slot chunk.r \link[base]{logical} scalar, whether this is an R code chunk
+#' 
 #' @keywords internal
 #' @export
 setClass(Class = 'md_lines', contains = 'character', slots = c(
   bibentry = 'bibentry',
-  package = 'character'
+  package = 'character',
+  chunk.r = 'logical'
 ), prototype = prototype(
-  bibentry = bibentry()
+  bibentry = bibentry(),
+  chunk.r = FALSE
 ))
 
 
@@ -47,7 +51,9 @@ sink2.md_lines <- function(x, ..., append = TRUE) {
   
   z <- c(
     '\n',
+    if (x@chunk.r) '```{r}',
     x, 
+    if (x@chunk.r) '```',
     '\n',
     '# R & R Packages', # from `x@package`
     c('base', x@package) |> 
@@ -94,7 +100,12 @@ c.md_lines <- function(...) {
   
   z <- x |>
     lapply(FUN = \(i) {
-      c(unclass(i), '\n\n')
+      c(
+        if (i@chunk.r) '```{r}',
+        unclass(i), 
+        if (i@chunk.r) '```',
+        '\n\n'
+      )
       # tzh rather not use parameter `sep = '\n\n'`
       # as ?base::c does not have such parameter
     }) |>

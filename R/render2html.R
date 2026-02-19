@@ -24,7 +24,8 @@
 #' `[path]/html/`.
 #' 
 #' @param file \link[base]{character} scalar, 
-#' the output HTML file name (without the file extension `.html`)
+#' the output HTML file name (without the file extension `.html`).
+#' Default value is the \link[base]{basename} of a \link[base]{tempfile}
 #' 
 #' @param template,package template (from which package) to use; 
 #' see function \link[rmarkdown]{draft} for details
@@ -53,7 +54,7 @@
 render2html <- function(
     x, 
     path = tempdir(),
-    file = stop('must specify `file` explicitly'),
+    file = tempfile() |> basename(),
     template = 'txz003', package = 'fastmd', 
     rmd.rm = TRUE,
     bib.rm = TRUE,

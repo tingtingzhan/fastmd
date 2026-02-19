@@ -25,8 +25,6 @@ md_autoplot_ <- function(
 ) {
   
   c(
-    '```{r}',
-    
     # len-0 compatible
     fig.height |> 
       sprintf(fmt = '#| fig-height: %.1f'),
@@ -36,10 +34,9 @@ md_autoplot_ <- function(
       sprintf(fmt = '#| fig-cap: \"%s\"'),
     # end of len-0 compatible
     
-    xnm |> sprintf(fmt = 'autoplot(%s)'),
-    '```'
+    xnm |> sprintf(fmt = 'autoplot(%s)')
   ) |> 
-    new(Class = 'md_lines')
+    new(Class = 'md_lines', chunk.r = TRUE)
   
 }
 

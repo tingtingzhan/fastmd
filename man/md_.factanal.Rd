@@ -15,7 +15,6 @@
 Fast Markdown Lines for \link[stats]{factanal} Objects
 }
 \examples{
-list(factanal = factanal(USJudgeRatings[-1L], factors = 3L)) |>
-  render2html(file = 'factanal')
+list(factanal = factanal(USJudgeRatings[-1L], factors = 3L)) |> render2html()
 }
 \keyword{internal}

@@ -60,7 +60,7 @@ as_flextable.TukeyHSD <- function(x, ...) {
 #' list(
 #'   'aov' = m,
 #'   '`TukeyHSD`' = m |> TukeyHSD(which = 'tension', ordered = TRUE)
-#' ) |> render2html(file = 'aov')
+#' ) |> render2html()
 #' @keywords internal
 #' @export md_.TukeyHSD
 #' @export
@@ -69,12 +69,9 @@ md_.TukeyHSD <- function(x, xnm, ...) {
   z1 <- '[@Tukey49 Honest Significant Differences (HSD) test](https://en.wikipedia.org/wiki/Tukey%27s_range_test) is provided using <u>**`R`**</u>.' |>
     new(Class = 'md_lines', bibentry = .tukey49())
   
-  z2 <- c(
-    '```{r}', 
-    xnm |> sprintf(fmt = 'as_flextable.TukeyHSD(%s)'),
-    '```'
-  ) |>
-    new(Class = 'md_lines')
+  z2 <- xnm |> 
+    sprintf(fmt = 'as_flextable.TukeyHSD(%s)') |>
+    new(Class = 'md_lines', chunk.r = TRUE)
   
   c(z1, z2) # [c.md_lines()]
   

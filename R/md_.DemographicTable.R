@@ -14,7 +14,7 @@
 #' @examples
 #' library(DemographicTable); list(
 #'   '`DemographicTable`' = DemographicTable(CO2, groups = 'Type', include = c('conc', 'uptake'))
-#' ) |> render2html(file = 'DemographicTable')
+#' ) |> render2html()
 #' @keywords internal
 #' @export md_.DemographicTable
 #' @export
@@ -26,12 +26,9 @@ md_.DemographicTable <- function(x, xnm, ...) {
   # @importClassesFrom fastmd.tzh md_lines
   # if to move to package \CRANpkg{DemographicTable}
   
-  z2 <- c(
-    '```{r}', 
-    xnm |> sprintf(fmt = 'as_flextable.DemographicTable(%s)'),
-    '```'
-  ) |>
-    new(Class = 'md_lines')
+  z2 <- xnm |> 
+    sprintf(fmt = 'as_flextable.DemographicTable(%s)') |>
+    new(Class = 'md_lines', chunk.r = TRUE)
 
   c(z1, z2) # [c.md_lines()]
   

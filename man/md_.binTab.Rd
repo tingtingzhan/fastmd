@@ -20,6 +20,6 @@ Do not want to \code{Imports: fastmd} in package \CRANpkg{DanielBiostatistics10t
 \examples{
 library(DanielBiostatistics10th); list(
   '`binTab`' = array(c(7L, 3L, 8L, 6L), dim = c(2,2)) |> binTab()
-) |> render2html(file = 'binTab')
+) |> render2html()
 }
 \keyword{internal}

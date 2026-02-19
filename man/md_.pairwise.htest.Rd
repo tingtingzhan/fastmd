@@ -23,7 +23,7 @@ list(
       Month = factor(Month, labels = month.abb[5:9])
     }) |>
     with(expr = pairwise.t.test(Ozone, Month, pool.sd = FALSE, p.adj = 'none'))
-) |> render2html(file = 'pairwise.htest')
+) |> render2html()
 
 }
 \keyword{internal}

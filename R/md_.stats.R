@@ -6,8 +6,7 @@
 #' @param ... ..
 #' 
 #' @examples
-#' list(factanal = factanal(USJudgeRatings[-1L], factors = 3L)) |>
-#'   render2html(file = 'factanal')
+#' list(factanal = factanal(USJudgeRatings[-1L], factors = 3L)) |> render2html()
 #' @keywords internal
 #' @export md_.factanal
 #' @export
@@ -43,7 +42,7 @@ md_.factanal <- function(x, ...) {
 #' @examples
 #' list(
 #'  '$t$-test' = t.test(mpg ~ am, data = mtcars)
-#' ) |> render2html(file = 'htest')
+#' ) |> render2html()
 #' @keywords internal
 #' @export md_.htest
 #' @export

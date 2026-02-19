@@ -7,7 +7,7 @@
 render2html(
   x,
   path = tempdir(),
-  file = stop("must specify `file` explicitly"),
+  file = basename(tempfile()),
   template = "txz003",
   package = "fastmd",
   rmd.rm = TRUE,
@@ -26,7 +26,8 @@ The \code{.rmd} and \code{.html} files will be created in the sub-directory
 \verb{[path]/html/}.}
 
 \item{file}{\link[base]{character} scalar,
-the output HTML file name (without the file extension \code{.html})}
+the output HTML file name (without the file extension \code{.html}).
+Default value is the \link[base]{basename} of a \link[base]{tempfile}}
 
 \item{template, package}{template (from which package) to use;
 see function \link[rmarkdown]{draft} for details}

@@ -57,7 +57,7 @@ as_flextable.summary.matchit <- function(x, ...) {
 #' list(
 #'  '`matchit1`' = m,
 #'  '`matchit2`' = m |> summary(addlvariables = 're78')
-#' ) |> render2html(file = 'matchit')
+#' ) |> render2html()
 #' @keywords internal
 #' @name md_matchit
 #' @export md_.matchit
@@ -90,12 +90,9 @@ md_.summary.matchit <- function(x, xnm, ...) {
   ) |>
     new(Class = 'md_lines', package = 'MatchIt')
   
-  z2 <- c(
-    '```{r}', 
-    xnm |> sprintf(fmt = 'as_flextable(%s)'),
-    '```'
-  ) |>
-    new(Class = 'md_lines')
+  z2 <- xnm |> 
+    sprintf(fmt = 'as_flextable(%s)') |>
+    new(Class = 'md_lines', chunk.r = TRUE)
   
   c(z1, z2) # [c.md_lines()]
   

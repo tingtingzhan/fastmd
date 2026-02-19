@@ -12,7 +12,7 @@
 #' @examples
 #' library(DanielBiostatistics10th); list(
 #'   '`binTab`' = array(c(7L, 3L, 8L, 6L), dim = c(2,2)) |> binTab()
-#' ) |> render2html(file = 'binTab')
+#' ) |> render2html()
 #' @keywords internal
 #' @export md_.binTab
 #' @export
@@ -25,19 +25,13 @@ md_.binTab <- function(x, xnm, ...) {
   ) |> 
     new(Class = 'md_lines')
   
-  z2 <- c(
-    '```{r}', 
-    xnm |> sprintf(fmt = 'as_flextable(%s)'),
-    '```'
-  ) |>
-    new(Class = 'md_lines')
+  z2 <- xnm |> 
+    sprintf(fmt = 'as_flextable(%s)') |>
+    new(Class = 'md_lines', chunk.r = TRUE)
   
-  z3 <- c(
-    '```{r}', 
-    xnm |> sprintf(fmt = 'summary.binTab(%s)'), # how to put in `prevalence` here??
-    '```'
-  ) |> 
-    new(Class = 'md_lines')
+  z3 <- xnm |> 
+    sprintf(fmt = 'summary.binTab(%s)') |> # how to put in `prevalence` here??
+    new(Class = 'md_lines', chunk.r = TRUE)
   
   c(z1, z2, z3) # [c.md_lines()]
   

@@ -37,13 +37,11 @@ as_flextable.dist <- function(x, ...) {
 #' @examples
 #' list(
 #'  USJudgeRatings = dist(USJudgeRatings[1:4,])
-#' ) |> render2html(file = 'dist')
+#' ) |> render2html()
 #' @export md_.dist
 #' @export
 md_.dist <- function(x, xnm, ...) {
-  c(
-    '```{r}',
-    xnm |> sprintf(fmt = '%s |> as_flextable.dist()'),
-    '```'
-  ) |> new(Class = 'md_lines')
+  xnm |> 
+    sprintf(fmt = '%s |> as_flextable.dist()') |> 
+    new(Class = 'md_lines', chunk.r = TRUE)
 }

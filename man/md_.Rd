@@ -70,7 +70,7 @@ on how to stack \code{'plotly'} objects
 \examples{
 list(
  USJudgeRatings = dist(USJudgeRatings[1:4,])
-) |> render2html(file = 'dist')
+) |> render2html()
 library(lattice); Depth = equal.count(quakes$depth, number=8, overlap=.1)
 library(ggplot2)
 library(leaflet)
@@ -100,7 +100,7 @@ list(
    plotly::plot_ly(ggplot2::economics, x = ~date, y = ~pop, type = 'scatter', mode = 'markers'),
    plotly::plot_ly(z = ~volcano, type = "surface")
  )
-) |> render2html(file = 'Do Not (Need to) Say Print')
+) |> render2html()
 
 aml2 = survival::aml |>
  within.data.frame(expr = {
@@ -112,9 +112,9 @@ tryCatch(expr = flextable(aml2), error = identity)
 list(
  Formaldehyde = Formaldehyde,
  aml2 = aml2
-) |> render2html(file = 'data.frame')
-list('`xtabs`' = xtabs(~ cyl + vs, data = mtcars)) |> render2html(file = 'xtabs')
-list('`matrix`' = VADeaths) |> render2html(file = 'matrix')
+) |> render2html()
+list('`xtabs`' = xtabs(~ cyl + vs, data = mtcars)) |> render2html()
+list('`matrix`' = VADeaths) |> render2html()
 
 }
 \keyword{internal}
