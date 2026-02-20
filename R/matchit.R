@@ -90,9 +90,7 @@ md_.summary.matchit <- function(x, xnm, ...) {
   ) |>
     new(Class = 'md_lines', package = 'MatchIt')
   
-  z2 <- xnm |> 
-    sprintf(fmt = 'as_flextable(%s)') |>
-    new(Class = 'md_lines', chunk.r = TRUE)
+  z2 <- md_flextable_(xnm = xnm, ...)
   
   c(z1, z2) # [c.md_lines()]
   

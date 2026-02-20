@@ -59,7 +59,7 @@ sink2.md_lines <- function(x, ..., append = TRUE) {
     x@package |> 
       sort.int() |>
       c('base', . = _) |> 
-      lapply(FUN = \(i) i |> citation() |> md_.citation()) |>
+      lapply(FUN = \(i) i |> citation() |> format_citation_w_package()) |>
       unlist(use.names = FALSE)
   )
   

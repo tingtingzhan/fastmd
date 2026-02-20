@@ -1,26 +1,20 @@
 
 
-#' @title Markdown Lines of \link[utils]{bibentry} Object
-#' 
-#' @param x a \link[utils]{bibentry} object
-#' 
-#' @param ... additional parameters, currently of no use
-#' 
-#' @examples 
-#' list(
-#'  texreg = 'R regression output to LaTeX or HTML by <u>**`R`**</u> package <u>**`texreg`**</u>.' |> 
-#'    new(Class = 'md_lines', package = 'texreg'),
-#'  stats = 'Linear regression by <u>**`R`**</u> package <u>**`stats`**</u>.' |> 
-#'    new(Class = 'md_lines', package = 'stats')
-#' ) |> render2html()
-#' 
-#' @keywords internal
-#' @export md_.citation
-#' @export
-md_.citation <- function(x, ...) {
+# @examples 
+# list(
+#  texreg = 'R regression output to LaTeX or HTML by <u>**`R`**</u> package <u>**`texreg`**</u>.' |> 
+#    new(Class = 'md_lines', package = 'texreg'),
+#  stats = 'Linear regression by <u>**`R`**</u> package <u>**`stats`**</u>.' |> 
+#    new(Class = 'md_lines', package = 'stats')
+# ) |> render2html()
+# @note
+# Function \link[tools]{bibstyle} does funny things to the environment..
+
+# md_.citation
+format_citation_w_package <- \(x) {
   
   pkg <- attr(x, which = 'package', exact = TRUE)
-  
+
   sprintf(
     fmt = '<u>**`%s`**</u> %s\n', 
     switch(pkg, base = 'R', pkg), 
@@ -28,10 +22,11 @@ md_.citation <- function(x, ...) {
       citation() |>
       url2doi() |> 
       format(style = 'text') # ?utils:::format.citation
-  ) |> 
-    new(Class = 'md_lines')
+  )
   
 }
+
+
 
 
 
