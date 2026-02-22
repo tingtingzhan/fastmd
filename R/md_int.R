@@ -66,14 +66,6 @@ md_flextable_ <- function(x, xnm, ...) {
     new(Class = 'md_lines', chunk.r = TRUE)
 }
 
-#' @rdname md_int
-#' @export
-md_summary_ <- function(x, xnm, ...) {
-  # actually not using `x` !!
-  xnm |> 
-    sprintf(fmt = 'summary(%s)') |>
-    new(Class = 'md_lines', chunk.r = TRUE)
-}
 
 
 
@@ -86,19 +78,4 @@ md_.dist <- md_flextable_
 md_.DemographicTable <- md_flextable_
 
 #' @export
-md_.binTab <- md_flextable_ # function(x, xnm, ...) {
-
-#dnm <- dimnames(x)
-#z1 <- sprintf(
-#  fmt = 'Sensitivity, specificity and predictive values, as well as their 95%% exact confidence intervals, are provided for the 2-by-2 table of `%s` and `%s`.',
-#  names(dnm)[1L], names(dnm)[2L]
-#) |> 
-#  new(Class = 'md_lines')
-
-#z2 <- md_flextable_(xnm = xnm, ...)
-#  
-#  z3 <- md_summary_(xnm = xnm, ...)
-
-# c(z1, z2, z3) # [c.md_lines()]
-
-#}
+md_.binTab <- md_flextable_

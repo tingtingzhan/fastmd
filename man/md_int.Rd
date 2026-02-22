@@ -4,7 +4,6 @@
 \alias{md_int}
 \alias{md_autoplot_}
 \alias{md_flextable_}
-\alias{md_summary_}
 \title{Fast R Markdown Lines, Internal Use}
 \usage{
 md_autoplot_(
@@ -17,8 +16,6 @@ md_autoplot_(
 )
 
 md_flextable_(x, xnm, ...)
-
-md_summary_(x, xnm, ...)
 }
 \arguments{
 \item{x}{an R object}
