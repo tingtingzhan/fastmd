@@ -105,7 +105,6 @@ as_flextable.p_adjust <- function(x, ...) {
   
   z |>
     as_flextable.matrix() |> 
-    vline(j = ncol(z) - 1L) |> 
     colformat_md(
       # part = 'all' # cross-ref correct, but bib does not print! must be a bug
       part = 'header' # https://stackoverflow.com/questions/70892751/citing-inside-the-cell-of-flextable
