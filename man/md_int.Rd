@@ -20,7 +20,9 @@ md_flextable_(x, xnm, ...)
 \arguments{
 \item{x}{an R object}
 
-\item{xnm, ...}{..}
+\item{xnm}{}
+
+\item{...}{additional slots of \linkS4class{md_lines}}
 
 \item{fig.height, fig.width}{(optional) \link[base]{double} scalar}
 

@@ -4,7 +4,9 @@
 #' 
 #' @param x an R object
 #' 
-#' @param xnm,... ..
+#' @param xnm
+#' 
+#' @param ... additional slots of \linkS4class{md_lines}
 #' 
 #' @param fig.height,fig.width (optional) \link[base]{double} scalar
 #' 
@@ -52,7 +54,7 @@ md_autoplot_ <- function(
     
     xnm |> sprintf(fmt = 'autoplot(%s)')
   ) |> 
-    new(Class = 'md_lines', chunk.r = TRUE)
+    new(Class = 'md_lines', chunk.r = TRUE, ...)
   
 }
 
@@ -63,7 +65,7 @@ md_flextable_ <- function(x, xnm, ...) {
   # actually not using `x` !!
   xnm |> 
     sprintf(fmt = 'as_flextable(%s)') |>
-    new(Class = 'md_lines', chunk.r = TRUE)
+    new(Class = 'md_lines', chunk.r = TRUE, ...)
 }
 
 
@@ -73,9 +75,9 @@ md_flextable_ <- function(x, xnm, ...) {
 #' @export
 md_.dist <- md_flextable_
 
-
 #' @export
 md_.DemographicTable <- md_flextable_
 
 #' @export
 md_.binTab <- md_flextable_
+

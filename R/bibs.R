@@ -108,7 +108,7 @@
     journal = 'Journal of the Royal Statistical Society: Series B (Methodological)',
     volume = '57',
     number = '1',
-    pages = '289-300',
+    pages = '289--300',
     year = '1995',
     month = '12',
     doi = '10.1111/j.2517-6161.1995.tb02031.x'

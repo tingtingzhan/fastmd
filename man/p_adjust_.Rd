@@ -16,9 +16,16 @@ p_adjust_(x)
 \item{x}{see \strong{Usage}}
 }
 \value{
-All method dispatches of generic function \link{p_adjust_} return a \link[base]{matrix} of adjusted \eqn{p}-values using all available \link[stats]{p.adjust.methods}.
+All method dispatches of the \code{S3} generic function \code{\link[=p_adjust_]{p_adjust_()}} return a \link[base]{matrix} of adjusted \eqn{p}-values using all available \link[stats]{p.adjust.methods}.
 }
 \description{
 Adjusted \eqn{p}-values in all correction methods.
+}
+\examples{
+runif(n = 10L, min = .01, max = .2) |>
+ p_adjust_() |>
+ list(p.adjust = _) |>
+ render2html() # bib not shown; not sure why 
+
 }
 \keyword{internal}
