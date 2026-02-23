@@ -96,7 +96,7 @@ sideway.default <- function(
 sideway.data.frame <- function(x, ...) {
   
   rseq <- x |> 
-    .row_names_info(type = 2L) |>
+    nrow() |>
     seq_len()
   
   .mapply(FUN = \(x, rnm, rid) {

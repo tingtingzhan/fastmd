@@ -84,7 +84,7 @@ subset_ <- function(
   rid <- if (!length(.subset)) {
     # all rows
     x |> 
-      .row_names_info(type = 2L) |>
+      nrow() |>
       seq_len()
   } else {
     .subset |> 

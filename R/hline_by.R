@@ -41,7 +41,7 @@ hline_by.flextable <- function(x, i, ...) {
   d <- x$body$dataset
   if (!is.data.frame(d)) stop('wont happen')
   
-  nr <- .row_names_info(d, type = 2L)
+  nr <- nrow(d)
   
   if (!is.call(i) || i[[1L]] != '~') stop('`i` must be formula')
   
