@@ -6,7 +6,7 @@
 #' 
 #' @param xnm
 #' 
-#' @param ... additional slots of \linkS4class{md_lines}
+#' @param bibentry,... \link[methods]{slot}s of \linkS4class{md_lines}
 #' 
 #' @param fig.height,fig.width (optional) \link[base]{double} scalar
 #' 
@@ -71,13 +71,40 @@ md_flextable_ <- function(x, xnm, ...) {
 
 
 
-
+#' @rdname md_int
+#' @export md_.dist
 #' @export
 md_.dist <- md_flextable_
 
+#' @rdname md_int
+#' @export md_.DemographicTable
 #' @export
 md_.DemographicTable <- md_flextable_
 
+#' @rdname md_int
+#' @export md_.binTab
 #' @export
 md_.binTab <- md_flextable_
+
+#' @rdname md_int
+#' @export md_.where_duplicated
+#' @export
+md_.where_duplicated <- md_flextable_
+
+#' @rdname md_int
+#' @export md_.p_adjust
+#' @export
+md_.p_adjust <- function(
+    x, xnm, 
+    bibentry = c(
+      .holm79(),
+      .hochberg88(),
+      .hommel88(),
+      .benjamini_hochberg95(),
+      .benjamini_yekutieli01()
+    ), 
+    ...
+) {
+  md_flextable_(xnm = xnm, bibentry = bibentry, ...)
+}
 

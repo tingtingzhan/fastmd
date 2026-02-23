@@ -72,8 +72,6 @@ setMethod(f = show, signature = 'where_duplicated', definition = \(object) {
 })
 
 
-#' @export
-md_.where_duplicated <- md_flextable_
 
 
 

@@ -112,15 +112,7 @@ as_flextable.p_adjust <- function(x, ...) {
     
 }
 
-#' @export
-md_.p_adjust <- function(x, xnm, ...) {
-  md_flextable_(xnm = xnm, bibentry = c(
-    .holm79(),
-    .hochberg88(),
-    .hommel88(),
-    .benjamini_hochberg95(),
-    .benjamini_yekutieli01()
-  ))
-}
+
+
 
 
