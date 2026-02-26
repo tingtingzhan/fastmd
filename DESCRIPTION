@@ -24,6 +24,4 @@ Suggests:
   reactable (== 0.4.5), 
   survival (== 3.8.6), 
   texreg (== 1.39.5),
-  DanielBiostatistics10th, DemographicTable,
-  knitr, quarto
-VignetteBuilder: quarto
+  DanielBiostatistics10th, DemographicTable
