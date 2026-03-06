@@ -54,21 +54,17 @@ md_.pairwise.htest <- function(x, xnm, ...) {
   
   z1 <- x$method |> 
     sprintf(fmt = 'Pairwise %s are performed using <u>**`R`**</u>.  Adjusted $p$-values [@Holm79; @Hochberg88; @Hommel88; @BenjaminiHochberg95; @BenjaminiYekutieli01] for multiple comparison are provided as well.') |> 
-    new(Class = 'md_lines', bibentry = c(
-      .holm79(),
-      .hochberg88(),
-      .hommel88(),
-      .benjamini_hochberg95(),
-      .benjamini_yekutieli01()
-    ))
+    new(Class = 'md_lines')
   
-  z2 <- md_flextable_(x = x, xnm = xnm, ...)
+  z2 <- md_flextable_(x = x, xnm = xnm, ...) # to get default bib_()
   
   z3 <- xnm |> 
     sprintf(fmt = '(%s) |> p_adjust_()') |>
-    md_flextable_(x = x, xnm = _, ...)
+    md_flextable_(xnm = _, ...)
   
   c(z1, z2, z3)
   
 }
+
+
 

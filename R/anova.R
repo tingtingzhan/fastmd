@@ -94,14 +94,6 @@ as_flextable.summary.aovlist <- function(x, ...) {
 
 
 
-#' @title R Markdown Lines for \link[stats]{anova}
-#' 
-#' @param x an \link[stats]{anova} object
-#' 
-#' @param xnm,... ..
-#' 
-#' @keywords internal
-#' @export md_.anova
 #' @export
 md_.anova <- function(x, xnm, ...) {
   
@@ -123,23 +115,15 @@ md_.anova <- function(x, xnm, ...) {
 
 
 
-#' @title R Markdown Lines for \link[stats]{aov}
-#' 
-#' @param x an \link[stats]{aov} object
-#' 
-#' @param xnm,... ..
-#' 
-#' @examples
-#' # see ?md_.TukeyHSD
-#' @keywords internal
-#' @export md_.aov
+# @examples
+# # see ?md_.TukeyHSD
 #' @export
 md_.aov <- function(x, xnm, ...) {
   
   z1 <- 'Analysis of variance is performed using <u>**`R`**</u>.' |>
     new(Class = 'md_lines')
   
-  z2 <- md_flextable_(x = x, xnm = xnm, ...)
+  z2 <- md_flextable_(xnm = xnm, ...)
   
   c(z1, z2) # [c.md_lines()]
   

@@ -45,11 +45,7 @@ as_flextable.summary.matchit <- function(x, ...) {
 
 
 
-#' @title R Markdown Lines for \link[MatchIt]{matchit}
-#' 
-#' @param x a \link[MatchIt]{matchit} or \link[MatchIt]{summary.matchit} object
-#' 
-#' @param xnm,... ..
+#' @title \link[MatchIt]{matchit}
 #' 
 #' @examples
 #' library(MatchIt)
@@ -58,9 +54,10 @@ as_flextable.summary.matchit <- function(x, ...) {
 #'  '`matchit1`' = m,
 #'  '`matchit2`' = m |> summary(addlvariables = 're78')
 #' ) |> render2html()
-#' @keywords internal
-#' @name md_matchit
-#' @export md_.matchit
+#' 
+#' @name matchit
+NULL
+
 #' @export
 md_.matchit <- function(x, xnm, ...) {
   md_.summary.matchit(
@@ -73,8 +70,8 @@ md_.matchit <- function(x, xnm, ...) {
 
 
 
-#' @rdname md_matchit
-#' @export md_.summary.matchit
+
+
 #' @export
 md_.summary.matchit <- function(x, xnm, ...) {
   
@@ -90,7 +87,7 @@ md_.summary.matchit <- function(x, xnm, ...) {
   ) |>
     new(Class = 'md_lines', package = 'MatchIt')
   
-  z2 <- md_flextable_(x = x, xnm = xnm, ...)
+  z2 <- md_flextable_(xnm = xnm, ...)
   
   c(z1, z2) # [c.md_lines()]
   

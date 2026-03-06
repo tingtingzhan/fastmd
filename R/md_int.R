@@ -56,8 +56,12 @@ md_autoplot_ <- function(
 
 #' @rdname md_int
 #' @export
-md_flextable_ <- function(x, xnm, bibentry. = bib_(x), ...) {
-  # actually not using `x` !!
+md_flextable_ <- function(
+    x, 
+    xnm, 
+    bibentry. = if (missing(x)) bibentry() else bib_(x), 
+    ...
+) {
   xnm |> 
     sprintf(fmt = 'as_flextable(%s)') |>
     new(Class = 'md_lines', chunk.r = TRUE, bibentry = bibentry., ...)
@@ -81,17 +85,4 @@ md_.where_duplicated <- md_flextable_
 #' @export
 md_.p_adjust <- md_flextable_
   
-  #function(
-  #  x, xnm, 
-  #  bibentry = c(
-  #    .holm79(),
-  #    .hochberg88(),
-  #    .hommel88(),
-  #    .benjamini_hochberg95(),
-  #    .benjamini_yekutieli01()
-  #  ), 
-  #  ...
-#) {
-#  md_flextable_(xnm = xnm, bibentry = bibentry, ...)
-#}
 

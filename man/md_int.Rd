@@ -14,7 +14,7 @@ md_autoplot_(
   fig.width = attr(x, which = "fig-width", exact = TRUE)
 )
 
-md_flextable_(x, xnm, bibentry. = bib_(x), ...)
+md_flextable_(x, xnm, bibentry. = if (missing(x)) bibentry() else bib_(x), ...)
 }
 \arguments{
 \item{x}{an R object}

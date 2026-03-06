@@ -24,3 +24,8 @@ bib_.p_adjust <- function(x) {
     .benjamini_yekutieli01()
   )
 }
+
+
+#' @export
+bib_.pairwise.htest <- bib_.p_adjust
+
