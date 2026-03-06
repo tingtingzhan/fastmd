@@ -19,6 +19,9 @@ knitr::opts_chunk$set(
   dev = 'ragg_png', # unicode support!!
   comment = ''
 )
+options(
+  bitmapType = 'cairo' # unicode support 
+)  
 library(ggplot2)
 theme_minimal() |> theme_set()
 ```
