@@ -26,13 +26,13 @@
 #' Step 3: Apply function \link[stats]{symnum} (also see function \link[stats]{printCoefmat}).
 #' 
 #' @note
-#' Function \link[scales]{label_pvalue} is much prettier and more flexible than function \link[base]{format.pval}.
+#' The function \link[scales]{label_pvalue} is much prettier and more flexible than function \link[base]{format.pval}.
 #' 
-#' Function [label_pvalue_sym()] is used so extensively, 
+#' The function [label_pvalue_sym()] is used so extensively, 
 #' therefore tzh keeps it in package \pkg{fastmd} instead of package \pkg{scales.tzh}.
 #' 
 #' @returns 
-#' Function [label_pvalue_sym()] returns a \link[base]{function}.
+#' The function [label_pvalue_sym()] returns a \link[base]{function}.
 #' 
 #' @examples 
 #' p = c(a = pi^-100, b = .02, c = .05, d = .1, e = .9999, f = NA_real_)

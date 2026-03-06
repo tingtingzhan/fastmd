@@ -4,7 +4,7 @@
 #' @param x \link[base]{character} scalar, the returned object of function [fromPackage()]
 #' 
 #' @returns 
-#' Function [pkg_text()] returns a \link[base]{character} scalar.
+#' The function [pkg_text()] returns a \link[base]{character} scalar.
 #' 
 #' @keywords internal
 #' @export

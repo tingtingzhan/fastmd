@@ -41,12 +41,12 @@
 #' @param ... additional parameters, currently of no use
 #' 
 #' @details
-#' Function [render2html()] 
+#' The function [render2html()] 
 #' first \link[rmarkdown]{draft}s an `.rmd` file from a template,
 #' then \link[rmarkdown]{render}s it into a single `.html` file.
 #' 
 #' @returns 
-#' Function [render2html()] \link[base]{invisible}y returns
+#' The function [render2html()] \link[base]{invisible}y returns
 #' the full path of the output `.html` file.
 #' 
 #' @keywords internal

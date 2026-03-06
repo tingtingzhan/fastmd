@@ -49,13 +49,13 @@ Default is the \href{https://en.wikipedia.org/wiki/Regular_expression#Assertions
 \item{...}{additional parameters, currently of no use}
 }
 \value{
-Function \code{\link[=subset_]{subset_()}} returns a \link[flextable]{flextable}.
+The function \code{\link[=subset_]{subset_()}} returns a \link[flextable]{flextable}.
 }
 \description{
 An alternative subset method for \link[base]{data.frame}.
 }
 \details{
-Function \code{\link[=subset_]{subset_()}} is different from function
+The function \code{\link[=subset_]{subset_()}} is different from function
 \link[base]{subset.data.frame}, such that
 \itemize{
 \item {if both \code{select} and \code{select_rx} are missing, only variables mentioned in \code{subset} are selected;}

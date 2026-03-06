@@ -25,7 +25,7 @@ Input \code{x} must be named}
 \code{list(col_cyan, col_magenta)}}
 }
 \value{
-Function \code{\link[=sideway]{sideway()}} does not have a return value.
+The function \code{\link[=sideway]{sideway()}} does not have a return value.
 }
 \description{
 Print Sideways

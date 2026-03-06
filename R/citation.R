@@ -40,11 +40,11 @@ format_citation_w_package <- \(x) {
 #' @param x a \link[utils]{bibentry} object
 #' 
 #' @details
-#' Function [url2doi()] converts a `url` field to `doi` field in \link[utils]{bibentry}, 
+#' The function [url2doi()] converts a `url` field to `doi` field in \link[utils]{bibentry}, 
 #' if the `url` field is a DOI URL.
 #' 
 #' @returns
-#' Function [url2doi()] returns a \link[utils]{bibentry} object.
+#' The function [url2doi()] returns a \link[utils]{bibentry} object.
 #' 
 #' @examples
 #' 'scales' |> citation() # using doi field, correct

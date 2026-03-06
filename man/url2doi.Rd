@@ -10,14 +10,14 @@ url2doi(x)
 \item{x}{a \link[utils]{bibentry} object}
 }
 \value{
-Function \code{\link[=url2doi]{url2doi()}} returns a \link[utils]{bibentry} object.
+The function \code{\link[=url2doi]{url2doi()}} returns a \link[utils]{bibentry} object.
 }
 \description{
 Prioritize \code{doi} over \code{url} in \link[utils]{bibentry} object,
 especially in the derived object \link[utils]{citation}.
 }
 \details{
-Function \code{\link[=url2doi]{url2doi()}} converts a \code{url} field to \code{doi} field in \link[utils]{bibentry},
+The function \code{\link[=url2doi]{url2doi()}} converts a \code{url} field to \code{doi} field in \link[utils]{bibentry},
 if the \code{url} field is a DOI URL.
 }
 \examples{

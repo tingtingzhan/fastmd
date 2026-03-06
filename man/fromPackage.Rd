@@ -10,7 +10,7 @@ fromPackage(x)
 \item{x}{an R object}
 }
 \value{
-Function \code{\link[=fromPackage]{fromPackage()}} returns
+The function \code{\link[=fromPackage]{fromPackage()}} returns
 a \link[base]{character} scalar.
 }
 \description{

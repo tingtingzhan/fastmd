@@ -12,7 +12,7 @@ symmetric2flextable(x, ...)
 \item{...}{parameters of the \code{S3} method \link[base]{format.default}}
 }
 \value{
-Function \code{\link[=symmetric2flextable]{symmetric2flextable()}} returns a \link[flextable]{flextable}.
+The function \code{\link[=symmetric2flextable]{symmetric2flextable()}} returns a \link[flextable]{flextable}.
 }
 \description{
 To convert an \link[base]{isSymmetric} matrix to a \link[flextable]{flextable}.

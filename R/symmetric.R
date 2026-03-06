@@ -10,7 +10,7 @@
 #' @param ... parameters of the `S3` method \link[base]{format.default}
 #' 
 #' @returns
-#' Function [symmetric2flextable()] returns a \link[flextable]{flextable}.
+#' The function [symmetric2flextable()] returns a \link[flextable]{flextable}.
 #' 
 #' @keywords internal
 #' @seealso \link[stats]{cov2cor}

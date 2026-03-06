@@ -10,7 +10,7 @@ pkg_text(x)
 \item{x}{\link[base]{character} scalar, the returned object of function \code{\link[=fromPackage]{fromPackage()}}}
 }
 \value{
-Function \code{\link[=pkg_text]{pkg_text()}} returns a \link[base]{character} scalar.
+The function \code{\link[=pkg_text]{pkg_text()}} returns a \link[base]{character} scalar.
 }
 \description{
 Text for Package to Create an R Object

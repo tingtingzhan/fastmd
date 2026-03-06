@@ -12,8 +12,6 @@
 #' 
 #' @param fig.height,fig.width (optional) \link[base]{double} scalar
 #' 
-#' @param fig.cap (optional) \link[base]{character} scalar
-#' 
 #' @returns 
 #' The `S3` generic function [md_()] returns 
 #' an \linkS4class{md_lines} object.
@@ -72,8 +70,7 @@ md_ <- function(x, ...) {
 md_.default <- function(
     x, xnm, ...,
     fig.height = attr(x, which = 'fig-height', exact = TRUE),
-    fig.width = attr(x, which = 'fig-width', exact = TRUE),
-    fig.cap = attr(x, which = 'fig-cap', exact = TRUE)
+    fig.width = attr(x, which = 'fig-width', exact = TRUE)
 ) {
   
   txt <- attr(x, which = 'text', exact = TRUE)
@@ -89,8 +86,6 @@ md_.default <- function(
       sprintf(fmt = '#| fig-height: %.1f'),
     fig.width |> 
       sprintf(fmt = '#| fig-width: %.1f'),
-    fig.cap |> 
-      sprintf(fmt = '#| fig-cap: \"%s\"'),
     # end of len-0 compatible
     
     xnm 

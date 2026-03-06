@@ -40,7 +40,7 @@
 #' @param ... additional parameters, currently of no use
 #' 
 #' @details 
-#' Function [subset_()] is different from function 
+#' The function [subset_()] is different from function 
 #' \link[base]{subset.data.frame}, such that 
 #' \itemize{
 #' \item {if both `select` and `select_rx` are missing, only variables mentioned in `subset` are selected;}
@@ -48,7 +48,7 @@
 #' }
 #' 
 #' @returns
-#' Function [subset_()] returns a \link[flextable]{flextable}.
+#' The function [subset_()] returns a \link[flextable]{flextable}.
 #' 
 #' @keywords internal
 #' @export

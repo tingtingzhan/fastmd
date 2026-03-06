@@ -17,7 +17,7 @@
 #' @param ... additional parameters for future use
 #' 
 #' @returns
-#' Function [sideway()] does not have a return value.
+#' The function [sideway()] does not have a return value.
 #' 
 #' @examples
 #' c(a = 'a1', bc = '2\n3') |> sideway()

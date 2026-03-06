@@ -16,8 +16,7 @@ md_autoplot_(
   xnm,
   ...,
   fig.height = attr(x, which = "fig-height", exact = TRUE),
-  fig.width = attr(x, which = "fig-width", exact = TRUE),
-  fig.cap = attr(x, which = "fig-cap", exact = TRUE)
+  fig.width = attr(x, which = "fig-width", exact = TRUE)
 )
 
 md_flextable_(x, xnm, ...)
@@ -45,18 +44,16 @@ md_flextable_(x, xnm, ...)
 
 \item{fig.height, fig.width}{(optional) \link[base]{double} scalar}
 
-\item{fig.cap}{(optional) \link[base]{character} scalar}
-
 \item{bibentry, ...}{\link[methods]{slot}s of \linkS4class{md_lines}}
 }
 \description{
 Fast R Markdown Lines, Internal Use
 }
 \details{
-Function \code{\link[=md_autoplot_]{md_autoplot_()}} creates R mark down lines by
+The function \code{\link[=md_autoplot_]{md_autoplot_()}} creates R mark down lines by
 the work horse function \link[ggplot2]{autoplot}.
 
-Function \code{\link[=md_flextable_]{md_flextable_()}} creates R mark down lines by
+The function \code{\link[=md_flextable_]{md_flextable_()}} creates R mark down lines by
 the work horse function \link[flextable]{as_flextable}.
 }
 \examples{

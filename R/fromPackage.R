@@ -4,7 +4,7 @@
 #' @param x an R object
 #' 
 #' @returns 
-#' Function [fromPackage()] returns 
+#' The function [fromPackage()] returns 
 #' a \link[base]{character} scalar.
 #' 
 #' @keywords internal

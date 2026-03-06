@@ -44,7 +44,7 @@ If \code{TRUE}, these files will be opened for inspection on a Unix-based operat
 \item{...}{additional parameters, currently of no use}
 }
 \value{
-Function \code{\link[=render2html]{render2html()}} \link[base]{invisible}y returns
+The function \code{\link[=render2html]{render2html()}} \link[base]{invisible}y returns
 the full path of the output \code{.html} file.
 }
 \description{
@@ -52,7 +52,7 @@ Draft and render one or more analyses in R into
 an HyperText Markup Language (HTML) file.
 }
 \details{
-Function \code{\link[=render2html]{render2html()}}
+The function \code{\link[=render2html]{render2html()}}
 first \link[rmarkdown]{draft}s an \code{.rmd} file from a template,
 then \link[rmarkdown]{render}s it into a single \code{.html} file.
 }
