@@ -139,7 +139,7 @@ md_.aov <- function(x, xnm, ...) {
   z1 <- 'Analysis of variance is performed using <u>**`R`**</u>.' |>
     new(Class = 'md_lines')
   
-  z2 <- md_flextable_(xnm = xnm, ...)
+  z2 <- md_flextable_(x = x, xnm = xnm, ...)
   
   c(z1, z2) # [c.md_lines()]
   

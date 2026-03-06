@@ -56,50 +56,42 @@ md_autoplot_ <- function(
 
 #' @rdname md_int
 #' @export
-md_flextable_ <- function(x, xnm, ...) {
+md_flextable_ <- function(x, xnm, bibentry. = bib_(x), ...) {
   # actually not using `x` !!
   xnm |> 
     sprintf(fmt = 'as_flextable(%s)') |>
-    new(Class = 'md_lines', chunk.r = TRUE, ...)
+    new(Class = 'md_lines', chunk.r = TRUE, bibentry = bibentry., ...)
 }
 
 
 
 
-#' @rdname md_int
-#' @export md_.dist
 #' @export
 md_.dist <- md_flextable_
 
-#' @rdname md_int
-#' @export md_.DemographicTable
 #' @export
 md_.DemographicTable <- md_flextable_
 
-#' @rdname md_int
-#' @export md_.binTab
 #' @export
 md_.binTab <- md_flextable_
 
-#' @rdname md_int
-#' @export md_.where_duplicated
 #' @export
 md_.where_duplicated <- md_flextable_
 
-#' @rdname md_int
-#' @export md_.p_adjust
 #' @export
-md_.p_adjust <- function(
-    x, xnm, 
-    bibentry = c(
-      .holm79(),
-      .hochberg88(),
-      .hommel88(),
-      .benjamini_hochberg95(),
-      .benjamini_yekutieli01()
-    ), 
-    ...
-) {
-  md_flextable_(xnm = xnm, bibentry = bibentry, ...)
-}
+md_.p_adjust <- md_flextable_
+  
+  #function(
+  #  x, xnm, 
+  #  bibentry = c(
+  #    .holm79(),
+  #    .hochberg88(),
+  #    .hommel88(),
+  #    .benjamini_hochberg95(),
+  #    .benjamini_yekutieli01()
+  #  ), 
+  #  ...
+#) {
+#  md_flextable_(xnm = xnm, bibentry = bibentry, ...)
+#}
 

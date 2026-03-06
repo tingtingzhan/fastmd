@@ -4,11 +4,6 @@
 \alias{md_int}
 \alias{md_autoplot_}
 \alias{md_flextable_}
-\alias{md_.dist}
-\alias{md_.DemographicTable}
-\alias{md_.binTab}
-\alias{md_.where_duplicated}
-\alias{md_.p_adjust}
 \title{Fast R Markdown Lines, Internal Use}
 \usage{
 md_autoplot_(
@@ -19,23 +14,7 @@ md_autoplot_(
   fig.width = attr(x, which = "fig-width", exact = TRUE)
 )
 
-md_flextable_(x, xnm, ...)
-
-\method{md_}{dist}(x, xnm, ...)
-
-\method{md_}{DemographicTable}(x, xnm, ...)
-
-\method{md_}{binTab}(x, xnm, ...)
-
-\method{md_}{where_duplicated}(x, xnm, ...)
-
-\method{md_}{p_adjust}(
-  x,
-  xnm,
-  bibentry = c(.holm79(), .hochberg88(), .hommel88(), .benjamini_hochberg95(),
-    .benjamini_yekutieli01()),
-  ...
-)
+md_flextable_(x, xnm, bibentry. = bib_(x), ...)
 }
 \arguments{
 \item{x}{an R object}

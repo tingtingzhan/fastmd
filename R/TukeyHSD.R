@@ -70,7 +70,7 @@ md_.TukeyHSD <- function(x, xnm, ...) {
     new(Class = 'md_lines', bibentry = .tukey49()) |>
     c(
       . = _, 
-      md_flextable_(xnm = xnm, ...)
+      md_flextable_(x = x, xnm = xnm, ...)
     ) # [c.md_lines()]
   
 }

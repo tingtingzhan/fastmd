@@ -62,11 +62,11 @@ md_.pairwise.htest <- function(x, xnm, ...) {
       .benjamini_yekutieli01()
     ))
   
-  z2 <- md_flextable_(xnm = xnm, ...)
+  z2 <- md_flextable_(x = x, xnm = xnm, ...)
   
   z3 <- xnm |> 
     sprintf(fmt = '(%s) |> p_adjust_()') |>
-    md_flextable_(xnm = _, ...)
+    md_flextable_(x = x, xnm = _, ...)
   
   c(z1, z2, z3)
   
