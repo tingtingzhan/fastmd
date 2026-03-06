@@ -2,9 +2,12 @@
 % Please edit documentation in R/bib_.R
 \name{bib_}
 \alias{bib_}
+\alias{bib_.p_adjust}
 \title{\link{bib_}}
 \usage{
 bib_(x)
+
+\method{bib_}{p_adjust}(x)
 }
 \arguments{
 \item{x}{an R object}

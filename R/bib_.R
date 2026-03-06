@@ -4,13 +4,16 @@
 #' 
 #' @param x an R object
 #' 
+#' @name bib_
 #' @export 
 bib_ <- function(x) UseMethod(generic = 'bib_')
 
 #' @export
 bib_.default <- function(x) bibentry()
 
-
+# must export!!! will be used in \pkg{htest.tzh}
+#' @rdname bib_
+#' @export bib_.p_adjust
 #' @export
 bib_.p_adjust <- function(x) {
   c(
