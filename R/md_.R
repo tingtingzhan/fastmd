@@ -34,35 +34,52 @@ md_ <- function(x, ...) {
 #' (via function \link[plotly]{subplot}).
 #' 
 #' @examples
-#' library(lattice); Depth = equal.count(quakes$depth, number=8, overlap=.1)
-#' library(ggplot2)
-#' library(leaflet)
-#' washingtonDC = leaflet() |>
+#' list(
+#'  '`power.htest`' = power.t.test(power = .90, delta = 1)
+#' ) |> render2html()
+#' 
+#' list(
+#'  '`trellis`' = lattice::xyplot(Sepal.Length + Sepal.Width ~ Petal.Length + Petal.Width | Species,
+#'     data = iris, scales = "free", layout = c(2, 2),
+#'     auto.key = list(x = .75, y = .75, corner = c(0.5, 0.5)))
+#' ) |> render2html()
+#' 
+#' list(
+#'  '`ggmatrix`, an `S7_object`' = GGally::ggpairs(swiss, columns = c(1:2, 6))
+#' ) |> render2html()
+#' 
+#' list(
+#'  '`flextable`' = Formaldehyde |> flextable::flextable()
+#' ) |> render2html()
+#' 
+#' list(
+#'  '`magick-image` from package `magick`' = magick::wizard
+#' ) |> render2html()
+#' 
+#' list(
+#'  '`reactable`, an `htmlwidget`' = Formaldehyde |> reactable::reactable()
+#' ) |> render2html()
+#' 
+#' library(leaflet); list(
+#'  '`leaflet`, an `htmlwidget`' = leaflet() |>
 #'   addTiles() |>
 #'   fitBounds(lat1 = 38.85, lat2 = 38.92, lng1 = -77.07, lng2 = -77.0) |>
 #'   addPopups(
 #'     lng = c(-77.0365, -77.0563), lat = c(38.8977, 38.8719), 
 #'     popup = c('white house', 'pentagon')
 #'   )
+#' ) |> render2html()
+#' 
+#' list(
+#'  '`plotly`, an `htmlwidget`' = plotly::plot_ly(z = ~volcano, type = "surface")
+#' ) |> render2html()
 #' 
 #' library(patchwork) # ?patchwork::`patchwork-package`
 #' p1 = ggplot(mtcars) + geom_point(aes(mpg, disp))
 #' p2 = ggplot(mtcars) + geom_boxplot(aes(gear, disp, group = gear))
-#' 
 #' list(
-#'  '`power.htest`' = power.t.test(power = .90, delta = 1),
-#'  '`trellis` from package `lattice`' = xyplot(lat ~ long | Depth, data = quakes),
-#'  '`ggplot2::ggplot`' = ggplot() + geom_point(data = mtcars, mapping = aes(wt, mpg)),
-#'  '`GGally::ggmatrix`, an `S7_object`' = GGally::ggpairs(swiss, columns = c(1:2, 6)),
-#'  '`patchwork` from package `patchwork`' = p1 + p2,
-#'  '`flextable::flextable`' = Formaldehyde |> flextable::flextable(),
-#'  '`magick-image` from package `magick`' = magick::wizard,
-#'  '`reactable::reactable`, an `htmlwidget`' = Formaldehyde |> reactable::reactable(),
-#'  '`leaflet::leaflet`, an `htmlwidget`' = washingtonDC,
-#'  '`htmlwidget`' = list(
-#'    plotly::plot_ly(ggplot2::economics, x = ~date, y = ~pop, type = 'scatter', mode = 'markers'),
-#'    plotly::plot_ly(z = ~volcano, type = "surface")
-#'  )
+#'  '`ggplot`' = p1,
+#'  '`patchwork`' = p1 + p2
 #' ) |> render2html()
 #' 
 #' @export md_.default
@@ -84,6 +101,7 @@ md_.default <- function(
   }
   
   c(
+    
     # len-0 compatible
     fig.height |> 
       sprintf(fmt = '#| fig-height: %.1f'),
@@ -93,13 +111,13 @@ md_.default <- function(
     
     xnm 
     # print, but not say print!!!!
-    # must *not* say print, to correctly invoke
-    # ?flextable:::print.flextable # packageDate('flextable') # "2025-05-31"
+    # must *not* say print, otherwise print to RStudio Viewer-panel!!!
+    # ?flextable:::print.flextable # packageDate('flextable') # "2026-02-12"
     # ?htmlwidgets:::print.htmlwidget # packageDate('htmlwidgets') # "2023-12-06"
     # etc.
     
     # okay to say or not say print
-    # i.e., `xnm |> sprintf(fmt = '%s |> print()')`
+    # xnm |> sprintf(fmt = '%s |> print()')
     # ?stats:::print.htest
     # ?stats:::print.power.htest
     # ?ggplot2:::print.ggplot
@@ -109,6 +127,7 @@ md_.default <- function(
     ### ?magick::image_info; height and width
     # ?lattice::trellis.*()
     # etc.
+    
   ) |> new(Class = 'md_lines', chunk.r = TRUE)
   
 }

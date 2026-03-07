@@ -17,7 +17,9 @@ knitr::opts_chunk$set(
   warning = FALSE,
   message = FALSE,
   dev = 'ragg_png', # unicode support!!
-  comment = ''
+  comment = '',
+  fig.height = 4,
+  fig.width = 6
 )
 options(
   bitmapType = 'cairo' # unicode support 
