@@ -32,7 +32,7 @@ setClass(Class = 'where_duplicated', contains = 'list', slots = c(
 #'  list(dup = _) |> render2html()
 #' 
 #' @export
-where_duplicated <- function(x, ...) UseMethod(generic = 'where_duplicated')
+where_duplicated <- function(x, at, ...) UseMethod(generic = 'where_duplicated')
 
 #' @export
 where_duplicated.default <- function(x, at = 'element', ...) {

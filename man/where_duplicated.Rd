@@ -4,14 +4,14 @@
 \alias{where_duplicated}
 \title{\link{where_duplicated}}
 \usage{
-where_duplicated(x, ...)
+where_duplicated(x, at, ...)
 }
 \arguments{
 \item{x}{see \strong{Usage}}
 
-\item{...}{additional parameters, currently of no use}
-
 \item{at}{\link[base]{character} scalar}
+
+\item{...}{additional parameters, currently of no use}
 }
 \description{
 \link{where_duplicated}
