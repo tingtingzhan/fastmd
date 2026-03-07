@@ -3,10 +3,19 @@
 \name{md_int}
 \alias{md_int}
 \alias{md_autoplot_}
+\alias{md_grid_draw_}
 \alias{md_flextable_}
 \title{Fast R Markdown Lines, Internal Use}
 \usage{
 md_autoplot_(
+  x,
+  xnm,
+  ...,
+  fig.height = attr(x, which = "fig-height", exact = TRUE),
+  fig.width = attr(x, which = "fig-width", exact = TRUE)
+)
+
+md_grid_draw_(
   x,
   xnm,
   ...,

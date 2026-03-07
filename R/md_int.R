@@ -54,6 +54,32 @@ md_autoplot_ <- function(
 }
 
 
+
+#' @rdname md_int
+#' @export
+md_grid_draw_ <- function(
+    x, xnm, ...,
+    fig.height = attr(x, which = 'fig-height', exact = TRUE),
+    fig.width = attr(x, which = 'fig-width', exact = TRUE)
+) {
+  
+  c(
+    # len-0 compatible
+    fig.height |> 
+      sprintf(fmt = '#| fig-height: %.1f'),
+    fig.width |> 
+      sprintf(fmt = '#| fig-width: %.1f'),
+    # end of len-0 compatible
+    
+    xnm |> 
+      sprintf(fmt = 'grid.draw(%s)') # grid::grid.draw
+  ) |> 
+    new(Class = 'md_lines', chunk.r = TRUE, ...)
+  
+}
+
+
+
 #' @rdname md_int
 #' @export
 md_flextable_ <- function(x, xnm, bibentry. = bib_(x), ...) {
