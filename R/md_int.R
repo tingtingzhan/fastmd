@@ -115,3 +115,7 @@ md_.p_adjust <- md_flextable_
   
 #' @export
 md_.matrix <- md_flextable_
+
+# methods(grid::grid.draw)
+#' @export
+md_.grob <- md_grid_draw_
