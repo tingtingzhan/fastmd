@@ -4,7 +4,7 @@
 #' 
 #' @param x an R object
 #' 
-#' @param xnm
+#' @param xnm \link[base]{character} scalar
 #' 
 #' @param bibentry,... \link[methods]{slot}s of \linkS4class{md_lines}
 #' 
@@ -56,15 +56,17 @@ md_autoplot_ <- function(
 
 #' @rdname md_int
 #' @export
-md_flextable_ <- function(
-    x, 
-    xnm, 
-    bibentry. = if (missing(x)) bibentry() else bib_(x), 
-    ...
-) {
+md_flextable_ <- function(x, xnm, bibentry. = bib_(x), ...) {
   xnm |> 
-    sprintf(fmt = 'as_flextable(%s)') |>
-    new(Class = 'md_lines', chunk.r = TRUE, bibentry = bibentry., ...)
+    #sprintf(fmt = '%s |> as_flextable() |> autofit(part = \'all\')') |>
+    sprintf(fmt = '%s |> as_flextable()') |> 
+    # not all tzh's as_flextable.*() return a \link[flextable]{flextable}!!!! 
+    # could be a patchwork..
+    new(
+      Class = 'md_lines', 
+      chunk.r = TRUE, 
+      bibentry = bibentry., 
+      ...)
 }
 
 
@@ -85,4 +87,5 @@ md_.where_duplicated <- md_flextable_
 #' @export
 md_.p_adjust <- md_flextable_
   
-
+#' @export
+md_.matrix <- md_flextable_

@@ -3,13 +3,7 @@
 \name{md_}
 \alias{md_}
 \alias{md_.default}
-\alias{md_.data.frame}
-\alias{md_.xtabs}
-\alias{md_.matrix}
 \alias{md_.list}
-\alias{md_.numeric}
-\alias{md_.character}
-\alias{md_.noquote}
 \title{R Markdown Lines}
 \usage{
 md_(x, ...)
@@ -22,19 +16,7 @@ md_(x, ...)
   fig.width = attr(x, which = "fig-width", exact = TRUE)
 )
 
-\method{md_}{data.frame}(x, xnm, ...)
-
-\method{md_}{xtabs}(x, xnm, ...)
-
-\method{md_}{matrix}(x, xnm, ...)
-
 \method{md_}{list}(x, xnm, nm_level, ...)
-
-\method{md_}{numeric}(x, ...)
-
-\method{md_}{character}(x, ...)
-
-\method{md_}{noquote}(x, xnm, ...)
 }
 \arguments{
 \item{x}{see \strong{Usage}}
@@ -92,20 +74,6 @@ list(
    plotly::plot_ly(z = ~volcano, type = "surface")
  )
 ) |> render2html()
-
-aml2 = survival::aml |>
- within.data.frame(expr = {
-  edp = survival::Surv(time, status)
-  time = status = NULL
- })
-tryCatch(expr = as_flextable(aml2), error = identity)
-tryCatch(expr = flextable(aml2), error = identity)
-list(
- Formaldehyde = Formaldehyde,
- aml2 = aml2
-) |> render2html()
-list('`xtabs`' = xtabs(~ cyl + vs, data = mtcars)) |> render2html()
-list('`matrix`' = VADeaths) |> render2html()
 
 }
 \keyword{internal}

@@ -1,42 +1,12 @@
 
-#' @title Convert \eqn{p}-values of `pairwise.htest` Object into \link[flextable]{flextable}
+
+
+#' @title `pairwise.htest` object
 #' 
 #' @description
-#' Convert \eqn{p}-values of a `pairwise.htest` object into a \link[flextable]{flextable}.
-#' 
-#' @param x a `'pairwise.htest'` object, as returned from functions \link[stats]{pairwise.t.test},
+#' The returned object from functions \link[stats]{pairwise.t.test},
 #' \link[stats]{pairwise.wilcox.test} or
 #' \link[stats]{pairwise.prop.test}.
-#' 
-#' @param row.title,... additional parameters of function [as_flextable.matrix()].
-#' 
-#' @returns
-#' The `S3` method [as_flextable.pairwise.htest] returns a \link[flextable]{flextable}.
-#' 
-#' @keywords internal
-#' @method as_flextable pairwise.htest
-#' @export as_flextable.pairwise.htest
-#' @export
-as_flextable.pairwise.htest <- function(x, row.title = x$method, ...) {
-  x$p.value |>
-    label_pvalue_sym()() |>
-    as_flextable.matrix(row.title = row.title, ...)
-}
-
-
-
-
-
-
-
-
-#' @title Markdown Lines for `pairwise.htest` object
-#' 
-#' @param x `pairwise.htest` object
-#' 
-#' @param xnm ..
-#' 
-#' @param ... ..
 #' 
 #' @examples
 #' list(
@@ -47,8 +17,42 @@ as_flextable.pairwise.htest <- function(x, row.title = x$method, ...) {
 #'     with(expr = pairwise.t.test(Ozone, Month, pool.sd = FALSE, p.adj = 'none'))
 #' ) |> render2html()
 #' 
-#' @keywords internal
-#' @export md_.pairwise.htest
+#' @name pairwise_htest
+NULL
+
+
+
+
+#' @method as_flextable pairwise.htest
+#' @export
+as_flextable.pairwise.htest <- function(x, row.title = x$method, ...) {
+  x$p.value |>
+    label_pvalue_sym()() |>
+    as_flextable.matrix(row.title = row.title, ...)
+}
+
+
+#' @method p_adjust_ pairwise.htest
+#' @export
+p_adjust_.pairwise.htest <- function(x) {
+  
+  if (x$p.adjust.method != 'none') stop('input must use `p.adjust.method = \'none\'`')
+  if (!is.matrix(pv0 <- x$p.value)) stop('input must have matrix `$p.value`')
+  
+  id <- lower.tri(pv0, diag = TRUE)
+  pv <- pv0[id]
+  
+  dnm <- dimnames(pv0)
+  names(pv) <- outer(dnm[[1L]], dnm[[2L]], FUN = paste, sep = ' vs. ')[id]
+  
+  ret <- p_adjust_.numeric(pv) # 'matrix'
+  names(dimnames(ret)) <- c(x$method, '') # for ?as_flextable.matrix
+  return(ret)
+  
+}
+
+
+
 #' @export
 md_.pairwise.htest <- function(x, xnm, ...) {
   

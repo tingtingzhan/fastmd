@@ -1,22 +1,6 @@
 
 
-#' @title Convert \link[stats]{dist} into \link[flextable]{flextable}
-#' 
-#' @description ..
-#' 
-#' @param x \link[stats]{dist} object
-#' 
-#' @param ... additional parameters of function [as_flextable.matrix()]
-#' 
-#' @returns 
-#' The `S3` method [as_flextable.dist()] returns a \link[flextable]{flextable}.
-#' 
-#' @note
-#' The `S3` method [as_flextable.dist()] is inspired by 
-#' the `S3` method \link[stats]{print.dist}.
-#' 
-#' @keywords internal
-#' @export as_flextable.dist
+# Inspired by the `S3` method \link[stats]{print.dist}.
 #' @export
 as_flextable.dist <- function(x, ...) {
   Labels <- x |> attr(which = 'Labels', exact = TRUE)

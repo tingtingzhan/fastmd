@@ -47,30 +47,6 @@ p_adjust_.numeric <- function(x) {
 
 
 
-#' @rdname p_adjust_
-#  a `'pairwise.htest'` object, as returned from functions \link[stats]{pairwise.t.test},
-# \link[stats]{pairwise.wilcox.test} or
-# \link[stats]{pairwise.prop.test}.
-#' 
-#' @method p_adjust_ pairwise.htest
-#' @export p_adjust_.pairwise.htest
-#' @export
-p_adjust_.pairwise.htest <- function(x) {
-  
-  if (x$p.adjust.method != 'none') stop('input must use `p.adjust.method = \'none\'`')
-  if (!is.matrix(pv0 <- x$p.value)) stop('input must have matrix `$p.value`')
-  
-  id <- lower.tri(pv0, diag = TRUE)
-  pv <- pv0[id]
-  
-  dnm <- dimnames(pv0)
-  names(pv) <- outer(dnm[[1L]], dnm[[2L]], FUN = paste, sep = ' vs. ')[id]
-  
-  ret <- p_adjust_.numeric(pv) # 'matrix'
-  names(dimnames(ret)) <- c(x$method, '') # for ?as_flextable.matrix
-  return(ret)
-  
-}
 
 
 

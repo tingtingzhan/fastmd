@@ -6,7 +6,11 @@
 #' 
 #' @name bib_
 #' @export 
-bib_ <- function(x) UseMethod(generic = 'bib_')
+bib_ <- function(x) {
+  if (missing(x)) return(bibentry())
+  UseMethod(generic = 'bib_')
+}
+
 
 #' @export
 bib_.default <- function(x) bibentry()

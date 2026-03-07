@@ -73,13 +73,6 @@ md_.default <- function(
     fig.width = attr(x, which = 'fig-width', exact = TRUE)
 ) {
   
-  txt <- attr(x, which = 'text', exact = TRUE)
-  if (length(txt)) .Defunct(msg = 'remove this usage')
-  
-  htest <- x |> 
-    attr(which = 'htest', exact = TRUE)
-  if (length(htest)) .Defunct(msg = 'remove this usage')
-  
   c(
     # len-0 compatible
     fig.height |> 
@@ -118,73 +111,8 @@ md_.default <- function(
 
 
 
-#' @rdname md_
-#' @examples
-#' aml2 = survival::aml |>
-#'  within.data.frame(expr = {
-#'   edp = survival::Surv(time, status)
-#'   time = status = NULL
-#'  })
-#' tryCatch(expr = as_flextable(aml2), error = identity)
-#' tryCatch(expr = flextable(aml2), error = identity)
-#' list(
-#'  Formaldehyde = Formaldehyde,
-#'  aml2 = aml2
-#' ) |> render2html()
-#' @export md_.data.frame
-#' @export
-md_.data.frame <- function(x, xnm, ...) {
-  xnm |> 
-    sprintf(fmt = '%s |> format.data.frame() |> flextable() |> autofit(part = \'all\')') |> 
-    new(Class = 'md_lines', chunk.r = TRUE)
-}
 
 
-#' @rdname md_
-#' @examples
-#' list('`xtabs`' = xtabs(~ cyl + vs, data = mtcars)) |> render2html()
-#' @export md_.xtabs
-#' @export
-md_.xtabs <- function(x, xnm, ...) {
-  
-  z1 <- if (length(dim(x)) == 2L) {
-    sprintf(
-      fmt = '[@Fisher22 exact test](https://en.wikipedia.org/wiki/Fisher\'s_exact_test) (%s) and [@Pearson1900 $\\chi^2$ test](https://en.wikipedia.org/wiki/Pearson\'s_chi-squared_test) (%s) on this cross tabulation are performed using <u>**`R`**</u>.',
-      x |>
-        fisher.test() |>
-        getElement(name = 'p.value') |>
-        label_pvalue_sym(add_p = TRUE)(),
-      x |>
-        chisq.test() |>
-        getElement(name = 'p.value') |>
-        label_pvalue_sym(add_p = TRUE)()
-    ) |>
-      new(Class = 'md_lines', bibentry = c(.fisher22(), .pearson1900()))
-  }# else NULL
-  
-  z2 <- xnm |> 
-    sprintf(fmt = '%s |> as_flextable() |> autofit(part = \'all\')') |> 
-    new(Class = 'md_lines', chunk.r = TRUE)
-  
-  c(z1, z2)
-  
-}
-
-
-
-
-
-#' @rdname md_
-#' @examples
-#' list('`matrix`' = VADeaths) |> render2html()
-#' 
-#' @export md_.matrix
-#' @export
-md_.matrix <- function(x, xnm, ...) {
-  xnm |> 
-    sprintf(fmt = 'as_flextable.matrix(%s)') |> 
-    new(Class = 'md_lines', chunk.r = TRUE)
-}
 
 
 
@@ -231,25 +159,16 @@ md_.list <- function(x, xnm, nm_level, ...) {
   
 }
 
-#' @rdname md_
-#' @export md_.numeric
 #' @export
 md_.numeric <- function(x, ...) {
-  paste(x, collapse = ', ') |> new(Class = 'md_lines')
+  x |>
+    paste(collapse = ', ') |> 
+    new(Class = 'md_lines')
 }
 
-#' @rdname md_
-#' @export md_.character
 #' @export
-md_.character <- function(x, ...) x |> new(Class = 'md_lines')
-
-
-#' @rdname md_
-#' @export md_.noquote
-#' @export
-md_.noquote <- function(x, xnm, ...) {
-  md_(x = unclass(x), xnm = sprintf(fmt = 'unclass(%s)', xnm), ...)
+md_.character <- function(x, ...) {
+  x |> 
+    new(Class = 'md_lines')
 }
-
-
 

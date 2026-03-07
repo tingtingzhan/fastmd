@@ -116,7 +116,7 @@ md_.anova <- function(x, xnm, ...) {
 
 
 # @examples
-# # see ?md_.TukeyHSD
+# # see ?TukeyHSD
 #' @export
 md_.aov <- function(x, xnm, ...) {
   

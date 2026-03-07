@@ -1,20 +1,14 @@
 
-#' @title Convert a \link[base]{matrix} to \link[flextable]{flextable} 
+#' @title \link[base]{matrix}
 #' 
-#' @description ..
+#' @examples
+#' list('`matrix`' = VADeaths) |> render2html()
 #' 
-#' @param x a \link[base]{matrix}
-#' 
-#' @param row.title \link[base]{character} scalar
-#' 
-#' @param ... ..
-#' 
-#' @returns 
-#' The `S3` method [as_flextable.matrix()] returns a \link[flextable]{flextable}.
-#' 
-#' @keywords internal
+#' @name matrix
+NULL
+
+
 #' @importFrom officer fp_border
-#' @export as_flextable.matrix
 #' @export
 as_flextable.matrix <- function(
     x, 
@@ -75,23 +69,6 @@ as_flextable.matrix <- function(
 }
 
 
-
-
-#' @title as_flextable.noquote
-#' 
-#' @param x a \link[base]{noquote} object
-#' 
-#' @param ... additional parameters of S3 generic \link[flextable]{as_flextable}
-#' 
-#' @returns 
-#' The `S3` method [as_flextable.noquote()] returns a \link[flextable]{flextable}.
-#' 
-#' @keywords internal
-#' @export as_flextable.noquote
-#' @export
-as_flextable.noquote <- function(x, ...) {
-  x |> unclass() |> as_flextable(...)
-}
 
 
 

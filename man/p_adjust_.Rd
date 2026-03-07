@@ -3,14 +3,11 @@
 \name{p_adjust_}
 \alias{p_adjust_}
 \alias{p_adjust_.numeric}
-\alias{p_adjust_.pairwise.htest}
 \title{Adjusted \eqn{p}-Values in All Correction Methods}
 \usage{
 p_adjust_(x)
 
 \method{p_adjust_}{numeric}(x)
-
-\method{p_adjust_}{pairwise.htest}(x)
 }
 \arguments{
 \item{x}{see \strong{Usage}}

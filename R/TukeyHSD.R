@@ -1,17 +1,20 @@
 
 
-#' @title Convert \link[stats]{TukeyHSD} into \link[flextable]{flextable}
+#' @title \link[stats]{TukeyHSD}
 #' 
-#' @description
-#' Convert \link[stats]{TukeyHSD} into a \link[flextable]{flextable}.
+#' @examples
+#' m = aov(breaks ~ wool + tension, data = warpbreaks)
+#' list(
+#'   'aov' = m,
+#'   '`TukeyHSD`' = m |> TukeyHSD(which = 'tension', ordered = TRUE)
+#' ) |> render2html()
 #' 
-#' @param x a \link[stats]{TukeyHSD}
-#' 
-#' @param ... additional parameters, currently not in use
-#' 
-#' @keywords internal
+#' @name TukeyHSD
+NULL
+
+
+
 #' @importFrom scales label_percent
-#' @export as_flextable.TukeyHSD
 #' @export
 as_flextable.TukeyHSD <- function(x, ...) {
   
@@ -49,20 +52,6 @@ as_flextable.TukeyHSD <- function(x, ...) {
 
 
 
-#' @title R Markdown Lines for \link[stats]{TukeyHSD}
-#' 
-#' @param x a \link[stats]{TukeyHSD} object
-#' 
-#' @param xnm,... ..
-#' 
-#' @examples
-#' m = aov(breaks ~ wool + tension, data = warpbreaks)
-#' list(
-#'   'aov' = m,
-#'   '`TukeyHSD`' = m |> TukeyHSD(which = 'tension', ordered = TRUE)
-#' ) |> render2html()
-#' @keywords internal
-#' @export md_.TukeyHSD
 #' @export
 md_.TukeyHSD <- function(x, xnm, ...) {
   
