@@ -78,7 +78,6 @@ setMethod(f = show, signature = 'where_duplicated', definition = \(object) {
 
 
 #' @importFrom english ordinal
-#' @importFrom flextable flextable autofit
 #' @export
 as_flextable.where_duplicated <- function(x, ...) {
   

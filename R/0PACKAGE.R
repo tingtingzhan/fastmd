@@ -13,4 +13,6 @@
 #'
 '_PACKAGE'
 
-
+# clash
+# flextable:::as_flextable.data.frame
+# ftExtra:::as_flextable.data.frame
