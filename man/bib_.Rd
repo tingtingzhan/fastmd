@@ -3,7 +3,7 @@
 \name{bib_}
 \alias{bib_}
 \alias{bib_.p_adjust}
-\title{\link{bib_}}
+\title{\link[utils]{bibentry}-es for R Objects}
 \usage{
 bib_(x)
 
@@ -13,5 +13,5 @@ bib_(x)
 \item{x}{an R object}
 }
 \description{
-\link{bib_}
+\link[utils]{bibentry}-es for R Objects
 }

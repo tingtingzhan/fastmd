@@ -1,17 +1,19 @@
 
+#' @title \link[MatchIt]{matchit}
+#' 
+#' @examples
+#' library(MatchIt)
+#' m = matchit(treat ~ age+educ+race+nodegree+married+re74+re75, data = lalonde)
+#' list(
+#'  '`matchit1`' = m,
+#'  '`matchit2`' = m |> summary(addlvariables = 're78')
+#' ) |> render2html()
+#' 
+#' @name matchit
+NULL
 
-#' @title Convert \link[MatchIt]{matchit} to \link[flextable]{flextable}
-#' 
-#' @param x a \link[MatchIt]{matchit} object
-#' 
-#' @param ... additional parameters of function `MatchIt:::summary.matchit`
-#' 
-#' @returns 
-#' The `S3` methods [as_flextable.matchit()] and [as_flextable.summary.matchit()] both return a \link[flextable]{flextable}.
-#' 
-#' @name flextable_matchit
-#' @keywords internal
-#' @export as_flextable.matchit
+
+
 #' @export
 as_flextable.matchit <- function(x, ...) {
   x |> 
@@ -21,8 +23,6 @@ as_flextable.matchit <- function(x, ...) {
   # 'factor's in `addlvariables` could also be expanded in multiple rows..
 }
 
-#' @rdname flextable_matchit
-#' @export as_flextable.summary.matchit
 #' @export
 as_flextable.summary.matchit <- function(x, ...) {
   mv <- all.vars(x$call$formula[[3L]]) # covariates to be matched; (m)atched-co(v)ariates
@@ -44,20 +44,6 @@ as_flextable.summary.matchit <- function(x, ...) {
 
 
 
-
-#' @title \link[MatchIt]{matchit}
-#' 
-#' @examples
-#' library(MatchIt)
-#' m = matchit(treat ~ age+educ+race+nodegree+married+re74+re75, data = lalonde)
-#' list(
-#'  '`matchit1`' = m,
-#'  '`matchit2`' = m |> summary(addlvariables = 're78')
-#' ) |> render2html()
-#' 
-#' @name matchit
-NULL
-
 #' @export
 md_.matchit <- function(x, xnm, ...) {
   md_.summary.matchit(
@@ -65,10 +51,6 @@ md_.matchit <- function(x, xnm, ...) {
     xnm = sprintf(fmt = 'summary(%s)', xnm),
     ...)
 }
-
-
-
-
 
 
 

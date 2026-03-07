@@ -12,3 +12,6 @@ list(
 ) |> render2html()
 
 }
+\seealso{
+\link[flextable]{as_flextable.htest}
+}

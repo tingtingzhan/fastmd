@@ -2,11 +2,13 @@
 % Please edit documentation in R/xtabs.R
 \name{xtabs}
 \alias{xtabs}
-\title{xtabs}
+\title{\link[stats]{xtabs}}
 \description{
-xtabs
+\link[stats]{xtabs}
 }
 \examples{
-list('`xtabs`' = xtabs(~ cyl + vs, data = mtcars)) |> render2html()
+list(
+ '`xtabs`' = xtabs(~ cyl + vs, data = mtcars)
+) |> render2html() # citations not shown, probably \pkg{ftExtra} bug
 
 }

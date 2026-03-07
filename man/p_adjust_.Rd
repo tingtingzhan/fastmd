@@ -21,8 +21,8 @@ Adjusted \eqn{p}-values in all correction methods.
 \examples{
 runif(n = 10L, min = .01, max = .2) |>
  p_adjust_() |>
- list(p.adjust = _) |>
- render2html() # bib not shown; not sure why 
+ list('Multile Test Adjustment' = _) |>
+ render2html()
 
 }
 \keyword{internal}

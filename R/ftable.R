@@ -1,16 +1,18 @@
 
-#' @title Convert \link[stats]{ftable} to \link[flextable]{flextable}
+#' @title \link[stats]{ftable}
 #' 
-#' @param x an \link[stats]{ftable}
+#' @examples
+#' list(
+#'  '`ftable`' = ftable(Titanic, row.vars = 1:3)
+#' ) |> render2html()
 #' 
-#' @param ... additional parameters, currently not in use
-#' 
-#' @returns
-#' The `S3` method [as_flextable.ftable()] returns a \link[flextable]{flextable}.
-#' 
-#' @keywords internal
+#' @name ftable
+NULL
+
+
+
+
 #' @importFrom zoo na.locf
-#' @export as_flextable.ftable
 #' @export
 as_flextable.ftable <- function(x, ...) {
   

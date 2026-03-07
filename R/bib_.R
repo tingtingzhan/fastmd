@@ -1,6 +1,6 @@
 
 
-#' @title [bib_]
+#' @title \link[utils]{bibentry}-es for R Objects
 #' 
 #' @param x an R object
 #' 

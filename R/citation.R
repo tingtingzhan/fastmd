@@ -75,21 +75,16 @@ url2doi <- function(x) {
 
 url2doi. <- \(b) {
   # (b = unclass(x)[[1L]]) # `x` is ?utils::bibentry object
-  if (!length(b[['url']])) return(b)
-  if (!grepl(pattern = 'https://doi.org/', x = b[['url']])) return(b)
-  doi <- b[['url']] |>
+  if (!length(b$url)) return(b)
+  if (!grepl(pattern = 'https://doi.org/', x = b$url)) return(b)
+  doi <- b$url |>
     gsub(pattern = 'https://doi.org/', replacement = '', x = _)
-  if (length(b[['doi']])) {
-    if (!identical(b[['doi']], doi)) stop()
+  if (length(b$doi)) {
+    if (!identical(b$doi, doi)) stop()
     # else do nothing
-  } else b[['doi']] <- doi
-  b[['url']] <- NULL
+  } else b$doi <- doi
+  b$url <- NULL
   return(b)
 }
-
-
-
-
-
 
 

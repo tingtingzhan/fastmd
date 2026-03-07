@@ -1,5 +1,8 @@
 #' @title `htest` Object
 #' 
+#' @seealso
+#' \link[flextable]{as_flextable.htest}
+#' 
 #' @examples
 #' list(
 #'  '$t$-test' = t.test(mpg ~ am, data = mtcars)
@@ -7,6 +10,31 @@
 #' 
 #' @name htest
 NULL
+
+
+md_htest_ <- function(x, ...) {
+  
+  p <- x |> 
+    getElement(name = 'p.value') |>
+    label_pvalue_sym(add_p = TRUE)()
+  
+  x$method |>
+    switch(EXPR = _, 'Fisher\'s Exact Test for Count Data' = {
+      # stats::fisher.test
+      p |>
+        sprintf(fmt = '[@Fisher22 exact test](https://en.wikipedia.org/wiki/Fisher\'s_exact_test) (%s)') |>
+        new(Class = 'md_lines', bibentry = .fisher22())
+      
+    }, 'Pearson\'s Chi-squared test' = {
+      # stats::chisq.test
+      p |>
+        #sprintf(fmt = '[@Pearson1900 $\\chi^2$ test](https://en.wikipedia.org/wiki/Pearson\'s_chi-squared_test) (%s)') |> # cause error in ftExtra::as_paragraph_md ???
+        sprintf(fmt = '[@Pearson1900 \u03c7\u00b2 test](https://en.wikipedia.org/wiki/Pearson\'s_chi-squared_test) (%s)') |>
+        new(Class = 'md_lines', bibentry = .pearson1900())
+      
+    })
+}
+
 
 
 
@@ -27,12 +55,7 @@ md_.htest <- function(x, xnm, ...) {
   } else if (is.symbol(data.name)) {
     x$data.name
   } else if (data.name[[1L]] == 'xtabs') {
-    if (is.null(data.name$formula)) stop('call stats::xtabs() with `formula =`')
-    data.name$formula[[2L]] |>
-      deparse1() |>
-      strsplit(split = ' \\+ ') |>
-      unlist() |>
-      paste0('`', .x =_, '`', collapse = ' and ')
+    .Defunct(msg = 'use stats::xtabs directly')
   } else { # exception handling
     x$data.name |>
       deparse1()
