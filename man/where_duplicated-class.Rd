@@ -17,7 +17,7 @@
 \section{Slots}{
 
 \describe{
-\item{\code{.Data}}{..}
+\item{\code{.S3Class}}{a \link[stats]{listof} \link[base]{integer} \link[base]{vector}s}
 
 \item{\code{id}}{..}
 

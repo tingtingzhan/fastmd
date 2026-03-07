@@ -1,14 +1,17 @@
 
+setOldClass('listof')
+
+
 #' @title \linkS4class{where_duplicated}
 #' 
-#' @slot .Data ..
+#' @slot .S3Class a \link[stats]{listof} \link[base]{integer} \link[base]{vector}s
 #' 
 #' @slot id ..
 #' 
 #' @slot at \link[base]{character} scalar
 #' 
 #' @export
-setClass(Class = 'where_duplicated', contains = 'list', slots = c(
+setClass(Class = 'where_duplicated', contains = 'listof', slots = c(
   id = 'integer',
   at = 'character'
 ))
@@ -40,6 +43,8 @@ where_duplicated.default <- function(x, at = 'element', ...) {
   tmp <- x |> 
     seq_along() |>
     split.default(f = factor(x))
+  class(tmp) <- c('listof', class(tmp)) |>
+    unique.default()
   id <- (lengths(tmp, use.names = FALSE) > 1L) |> 
     which()
   new(Class = 'where_duplicated', tmp[id], id = id, at = at)

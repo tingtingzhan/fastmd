@@ -73,6 +73,16 @@ md_.default <- function(
     fig.width = attr(x, which = 'fig-width', exact = TRUE)
 ) {
   
+  has_flextable <- getS3method(f = 'as_flextable', class = class(x)[1L], optional = TRUE)
+  if (length(has_flextable)) {
+    return(md_flextable_(x = x, xnm = xnm, ...))
+  }
+  
+  has_grid_draw <- getS3method(f = 'grid.draw', class = class(x)[1L], optional = TRUE)
+  if (length(has_grid_draw)) {
+    return(md_grid_draw_(x = x, xnm = xnm, ..., fig.height = fig.height, fig.width = fig.width))
+  }
+  
   c(
     # len-0 compatible
     fig.height |> 
@@ -159,16 +169,18 @@ md_.list <- function(x, xnm, nm_level, ...) {
   
 }
 
-#' @export
-md_.numeric <- function(x, ...) {
-  x |>
-    paste(collapse = ', ') |> 
-    new(Class = 'md_lines')
-}
+# @export
+#md_.numeric <- function(x, ...) {
+#  .Defunct(new = 'md_.default')
+#  x |>
+#    paste(collapse = ', ') |> 
+#    new(Class = 'md_lines')
+#}
 
-#' @export
-md_.character <- function(x, ...) {
-  x |> 
-    new(Class = 'md_lines')
-}
+# @export
+#md_.character <- function(x, ...) {
+#  .Defunct(new = 'md_.default')
+#  x |> 
+#    new(Class = 'md_lines')
+#}
 

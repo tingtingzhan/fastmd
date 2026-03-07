@@ -50,16 +50,8 @@ p_adjust_.numeric <- function(x) {
 
 
 
-#' @title Convert `p_adjust` object to a \link[flextable]{flextable}
-#' 
-#' @param x a `p_adjust` object
-#' 
-#' @param ... ..
-#' 
-#' @keywords internal
 #' @importFrom dplyr recode_values
 #' @importFrom ftExtra colformat_md
-#' @export as_flextable.p_adjust
 #' @export
 as_flextable.p_adjust <- function(x, ...) {
   

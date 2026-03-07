@@ -94,34 +94,4 @@ md_flextable_ <- function(x, xnm, bibentry. = bib_(x), ...) {
 
 
 
-#' @export
-md_.dist <- md_flextable_
 
-#' @export
-md_.DemographicTable <- md_flextable_
-
-#' @export
-md_.binTab <- md_flextable_
-
-#' @export
-md_.where_duplicated <- md_flextable_
-
-#' @export
-md_.p_adjust <- md_flextable_
-  
-#' @export
-md_.matrix <- md_flextable_
-
-#' @export
-md_.aovlist <- md_flextable_
-
-#' @export
-md_.aov <- md_flextable_
-
-#' @export
-md_.anova <- md_flextable_
-
-
-# methods(grid::grid.draw)
-#' @export
-md_.grob <- md_grid_draw_
