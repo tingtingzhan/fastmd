@@ -1,5 +1,4 @@
 
-# this is a simplified version of tzh's experiment::::SUBSET
 
 #' @title Alternative Subset of \link[base]{data.frame}
 #' 

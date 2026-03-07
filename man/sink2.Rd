@@ -2,15 +2,9 @@
 % Please edit documentation in R/sink2.R
 \name{sink2}
 \alias{sink2}
-\alias{sink2.Bibtex}
-\alias{sink2.bibentry}
 \title{Sink an Object to a File}
 \usage{
 sink2(x, file, ...)
-
-\method{sink2}{Bibtex}(x, file, ...)
-
-\method{sink2}{bibentry}(x, ...)
 }
 \arguments{
 \item{x}{an R object}

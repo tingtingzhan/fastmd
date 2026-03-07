@@ -2,15 +2,9 @@
 % Please edit documentation in R/where_duplicated.R
 \name{where_duplicated}
 \alias{where_duplicated}
-\alias{where_duplicated.default}
-\alias{where_duplicated.data.frame}
 \title{\link{where_duplicated}}
 \usage{
 where_duplicated(x, ...)
-
-\method{where_duplicated}{default}(x, at = "element", ...)
-
-\method{where_duplicated}{data.frame}(x, at = "row", ...)
 }
 \arguments{
 \item{x}{see \strong{Usage}}

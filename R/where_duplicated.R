@@ -31,11 +31,9 @@ setClass(Class = 'where_duplicated', contains = 'list', slots = c(
 #'  where_duplicated() |>
 #'  list(dup = _) |> render2html()
 #' 
-#' @name where_duplicated
 #' @export
 where_duplicated <- function(x, ...) UseMethod(generic = 'where_duplicated')
 
-#' @rdname where_duplicated
 #' @export
 where_duplicated.default <- function(x, at = 'element', ...) {
   if (!anyDuplicated.default(x)) return(invisible())
@@ -48,7 +46,6 @@ where_duplicated.default <- function(x, at = 'element', ...) {
 }
 
 
-#' @rdname where_duplicated
 #' @export
 where_duplicated.data.frame <- function(x, at = 'row', ...) {
   x0 <- x |>
@@ -75,15 +72,8 @@ setMethod(f = show, signature = 'where_duplicated', definition = \(object) {
 
 
 
-#' @title [as_flextable.where_duplicated]
-#' 
-#' @param x a \linkS4class{where_duplicated} object
-#' 
-#' @param ... additional parameters, currently of no use
-#' 
 #' @importFrom english ordinal
 #' @importFrom flextable flextable autofit
-#' @export as_flextable.where_duplicated
 #' @export
 as_flextable.where_duplicated <- function(x, ...) {
   

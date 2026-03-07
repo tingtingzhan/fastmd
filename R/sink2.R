@@ -5,7 +5,6 @@
 #' @description
 #' \link[base]{sink} an R object to a local file.
 #' 
-#' 
 #' @param x an R object
 #' 
 #' @param file,... parameters of the function \link[base]{sink}
@@ -14,12 +13,9 @@
 #' Too bad the function \link[base]{sink} is not an `S3` generic.
 #' 
 #' @keywords internal
-#' @name sink2
 #' @export
 sink2 <- function(x, file, ...) UseMethod(generic = 'sink2')
 
-#' @rdname sink2
-#' @export sink2.Bibtex
 #' @export
 sink2.Bibtex <- function(x, file, ...) {
   
@@ -36,8 +32,6 @@ sink2.Bibtex <- function(x, file, ...) {
 }
 
 
-#' @rdname sink2
-#' @export sink2.bibentry
 #' @export
 sink2.bibentry <- function(x, ...) {
   x |> 
