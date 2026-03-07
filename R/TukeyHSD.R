@@ -5,8 +5,11 @@
 #' @examples
 #' m = aov(breaks ~ wool + tension, data = warpbreaks)
 #' list(
-#'   'aov' = m,
-#'   '`TukeyHSD`' = m |> TukeyHSD(which = 'tension', ordered = TRUE)
+#'  '`aov` ver1' = aov(yield ~  N*P*K + Error(block), npk),
+#'  '`aov` ver2' = list(
+#'   m,
+#'   m |> TukeyHSD(which = 'tension', ordered = TRUE)
+#'  )
 #' ) |> render2html()
 #' 
 #' @name TukeyHSD

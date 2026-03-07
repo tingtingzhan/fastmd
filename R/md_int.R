@@ -18,10 +18,6 @@
 #' the work horse function \link[flextable]{as_flextable}.
 #' 
 #' @examples
-#' list(
-#'  USJudgeRatings = dist(USJudgeRatings[1:4,])
-#' ) |> render2html()
-#' 
 #' library(DemographicTable); list(
 #'   '`DemographicTable`' = DemographicTable(CO2, groups = 'Type', include = c('conc', 'uptake'))
 #' ) |> render2html()
@@ -115,6 +111,16 @@ md_.p_adjust <- md_flextable_
   
 #' @export
 md_.matrix <- md_flextable_
+
+#' @export
+md_.aovlist <- md_flextable_
+
+#' @export
+md_.aov <- md_flextable_
+
+#' @export
+md_.anova <- md_flextable_
+
 
 # methods(grid::grid.draw)
 #' @export

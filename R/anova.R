@@ -1,18 +1,16 @@
 
-#' @title Convert \link[stats]{aov}, \link[stats]{anova} Objects To \link[flextable]{flextable}
+#' @title \link[stats]{anova}
 #' 
-#' @description
-#' Convert \link[stats]{aov}, \link[stats]{anova}, or their \link[base]{summary} returns to \link[flextable]{flextable}.
+#' @examples
+#' list(
+#'  '`anova`' = lm(dist ~ speed, data = cars) |> anova()
+#' ) |> render2html()
 #' 
-#' @param x \link[stats]{aov}, \link[stats]{anova}, or their \link[base]{summary} returns
-#' 
-#' @param row.title \link[base]{character} scalar
-#' 
-#' @param ... additional parameters, currently not in use
-#' 
-#' @name flextable_aov
-#' @keywords internal
-#' @export as_flextable.anova
+#' @name anova
+NULL
+
+
+
 #' @export
 as_flextable.anova <- function(x, row.title = ' ', ...) {
   
@@ -37,8 +35,6 @@ as_flextable.anova <- function(x, row.title = ' ', ...) {
   
 }
 
-#' @rdname flextable_aov
-#' @export as_flextable.aov
 #' @export
 as_flextable.aov <- function(x, ...) {
   x |> 
@@ -47,8 +43,6 @@ as_flextable.aov <- function(x, ...) {
 }
 
 
-#' @rdname flextable_aov
-#' @export as_flextable.summary.aov
 #' @export
 as_flextable.summary.aov <- function(x, ...) {
   if (length(x) != 1L) stop('deal with this')
@@ -58,8 +52,6 @@ as_flextable.summary.aov <- function(x, ...) {
 }
 
 
-#' @rdname flextable_aov
-#' @export as_flextable.aovlist
 #' @export
 as_flextable.aovlist <- function(x, ...) {
   x |> 
@@ -69,9 +61,7 @@ as_flextable.aovlist <- function(x, ...) {
 
 
 
-#' @rdname flextable_aov
 #' @importFrom patchwork plot_layout
-#' @export as_flextable.summary.aovlist
 #' @export
 as_flextable.summary.aovlist <- function(x, ...) {
   id <- x |>
@@ -94,40 +84,12 @@ as_flextable.summary.aovlist <- function(x, ...) {
 
 
 
-#' @export
-md_.anova <- function(x, xnm, ...) {
-  
-  z1 <- 'Analysis of variance is performed using <u>**`R`**</u>.' |>
-    new(Class = 'md_lines')
-  
-  z2 <- xnm |> 
-    sprintf(fmt = 'as_flextable.anova(%s)') |>
-    new(Class = 'md_lines', chunk.r = TRUE)
-  
-  c(z1, z2) # [c.md_lines()]
-  
-}
 
 
 
 
 
 
-
-
-# @examples
-# # see ?TukeyHSD
-#' @export
-md_.aov <- function(x, xnm, ...) {
-  
-  z1 <- 'Analysis of variance is performed using <u>**`R`**</u>.' |>
-    new(Class = 'md_lines')
-  
-  z2 <- md_flextable_(xnm = xnm, ...)
-  
-  c(z1, z2) # [c.md_lines()]
-  
-}
 
 
 

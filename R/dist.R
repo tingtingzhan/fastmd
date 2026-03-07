@@ -1,4 +1,15 @@
 
+#' @title \link[stats]{dist}
+#' 
+#' @examples
+#' list('`dist`' = datasets::eurodist) |> render2html()
+#' 
+#' @name dist
+NULL
+
+
+
+
 
 # Inspired by the `S3` method \link[stats]{print.dist}.
 #' @export

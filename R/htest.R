@@ -1,50 +1,15 @@
-
-#' @title Fast Markdown Lines for \link[stats]{factanal} Objects
-#' 
-#' @param x a \link[stats]{factanal} object
-#' 
-#' @param ... ..
-#' 
-#' @examples
-#' list(factanal = factanal(USJudgeRatings[-1L], factors = 3L)) |> render2html()
-#' @keywords internal
-#' @export md_.factanal
-#' @export
-md_.factanal <- function(x, ...) {
-  
-  z1 <- x$call$x |>
-    deparse1() |>
-    sprintf(fmt = 'Factor analysis [@LawleyMaxwell71] of `%s` is performed using <u>**`R`**</u>.') |>
-    new(Class = 'md_lines', bibentry = .lawley_maxwell71())
-  
-  z2 <- md_.default(x, ...)
-  
-  c(z1, z2) # [c.md_lines()]
-  
-}
-
-
-
-
-
-
-#' @title Fast Markdown Lines for `htest` Object
-#' 
-#' @param x an `htest` object
-#' 
-#' @param xnm ..
-#' 
-#' @param ... ..
-#' 
-#' @returns 
-#' The `S3` method [md_.htest()] returns a \link[base]{character} \link[base]{vector}.
+#' @title `htest` Object
 #' 
 #' @examples
 #' list(
 #'  '$t$-test' = t.test(mpg ~ am, data = mtcars)
 #' ) |> render2html()
-#' @keywords internal
-#' @export md_.htest
+#' 
+#' @name htest
+NULL
+
+
+
 #' @export
 md_.htest <- function(x, xnm, ...) {
   

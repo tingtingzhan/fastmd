@@ -7,6 +7,6 @@
 \link[base]{matrix}
 }
 \examples{
-list('`matrix`' = VADeaths) |> render2html()
+list('`matrix`' = datasets::VADeaths) |> render2html()
 
 }
