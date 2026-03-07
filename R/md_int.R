@@ -72,7 +72,7 @@ md_grid_draw_ <- function(
     # end of len-0 compatible
     
     xnm |> 
-      sprintf(fmt = 'grid.draw(%s)') # grid::grid.draw
+      sprintf(fmt = 'grid::grid.draw(%s)') # rmd rendering requires `grid::`
   ) |> 
     new(Class = 'md_lines', chunk.r = TRUE, ...)
   
