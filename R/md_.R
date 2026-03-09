@@ -133,7 +133,10 @@ md_.default <- function(
 }
 
 
-
+#' @export
+md_.aov <- md_.default
+# 'aov' inherits from 'lm'
+# will dispatch to [md_.lm()]
 
 
 

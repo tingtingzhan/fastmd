@@ -83,15 +83,3 @@ as_flextable.summary.aovlist <- function(x, ...) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
