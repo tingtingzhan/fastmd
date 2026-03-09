@@ -10,6 +10,7 @@ render2html(
   file = basename(tempfile()),
   template = "report",
   package = "fastmd",
+  title = file,
   author = person(given = "Tingting", family = "Zhan", email =
     "tingting.zhan@jefferson.edu"),
   trace = FALSE,
@@ -34,7 +35,9 @@ Default value is the \link[base]{basename} of a \link[base]{tempfile}}
 see function \link[rmarkdown]{draft} for details,
 default value is the template \code{'report'} in this package}
 
-\item{author}{(an R object convertible to) a \link[utils]{person} object,
+\item{title}{(optional) \link[base]{character} scalar, to appear in the YAML header}
+
+\item{author}{(an R object convertible to) a \link[utils]{person} object to appear in the YAML header,
 default value is the author of this package}
 
 \item{trace}{\link[base]{logical} scalar.

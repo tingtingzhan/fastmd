@@ -31,7 +31,9 @@
 #' see function \link[rmarkdown]{draft} for details, 
 #' default value is the template `'report'` in this package
 #' 
-#' @param author (an R object convertible to) a \link[utils]{person} object,
+#' @param title (optional) \link[base]{character} scalar, to appear in the YAML header
+#' 
+#' @param author (an R object convertible to) a \link[utils]{person} object to appear in the YAML header,
 #' default value is the author of this package
 #' 
 #' @param trace \link[base]{logical} scalar.
@@ -57,6 +59,7 @@ render2html <- function(
     path = tempdir(),
     file = tempfile() |> basename(),
     template = 'report', package = 'fastmd', 
+    title = file,
     author = person(given = 'Tingting', family = 'Zhan', email = 'tingting.zhan@jefferson.edu'),
     trace = FALSE,
     ...
@@ -114,7 +117,6 @@ render2html <- function(
   # even if (!length(z@bibentry)),
   # because `bibliography.bib` is hard coded in template!!!
   
-  title <- file
   author <- author |> as.person()
   draft(
     file = frmd, 
