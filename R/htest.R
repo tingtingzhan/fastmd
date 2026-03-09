@@ -31,7 +31,6 @@ md_htest_ <- \(x, ...) {
     }, 'Pearson\'s Chi-squared test' = {
       # stats::chisq.test
       p |>
-        #sprintf(fmt = '[@Pearson1900 $\\chi^2$ test](https://en.wikipedia.org/wiki/Pearson\'s_chi-squared_test) (%s)') |> # cause error in ftExtra::as_paragraph_md ???
         sprintf(fmt = '[@Pearson1900 \u03c7\u00b2 test](https://en.wikipedia.org/wiki/Pearson\'s_chi-squared_test) (%s)') |>
         new(Class = 'md_lines', bibentry = .pearson1900())
       
@@ -40,10 +39,17 @@ md_htest_ <- \(x, ...) {
       p |>
         sprintf(fmt = '[@Pearson1900 \u03c7\u00b2 test](https://en.wikipedia.org/wiki/Pearson\'s_chi-squared_test) with [@Yates34 continuity correction](https://en.wikipedia.org/wiki/Yates\'s_correction_for_continuity) (%s)') |>
         new(Class = 'md_lines', bibentry = c(.pearson1900(), .yates34()))
-    })
+    }, 'Welch Two Sample t-test' = {
+      # stats::t.test; two-sample, 
+      p |> 
+        sprintf(fmt = '[@Welch47 - @Satterthwaite46 *t*-test](https://en.wikipedia.org/wiki/Welch\'s_t-test) (%s)') |>
+        new(Class = 'md_lines', bibentry = c(.welch47(), .satterthwaite46()))
+    }) 
 }
 
-
+if (FALSE) {
+  '$p$' |> ftExtra::as_paragraph_md() # error!!
+}
 
 
 #' @export

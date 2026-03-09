@@ -82,6 +82,44 @@
 
 #' @rdname bib
 #' @export
+.welch47 <- \(key = 'Welch47', ...) {
+  bibentry(bibtype = 'article', key = key, ...,
+    author = person(given = 'Bernard Lewis', family = 'Welch'),
+    title = 'the generalization of \u2018student\'s\u2019 problem when several different population varlances are involved',
+    journal = 'Biometrika',
+    volume = '34',
+    number = '1-2',
+    pages = '28--35',
+    year = '1947',
+    month = '01',
+    issn = '0006-3444',
+    doi = '10.1093/biomet/34.1-2.28'
+  )
+}
+
+#' @rdname bib
+#' @export
+.satterthwaite46 <- \(key = 'Satterthwaite46', ...) {
+  bibentry(
+    bibtype = 'article', key = key, ...,
+    issn = '00994987',
+    author = person(given = 'Franklin E.', family = 'Satterthwaite'),
+    journal = 'Biometrics Bulletin',
+    year = '1946',
+    volume = '2',
+    number = '6',
+    pages = '110--114',
+    publisher = 'International Biometric Society, Wiley',
+    title = 'An Approximate Distribution of Estimates of Variance Components',
+    doi = '10.2307/3002019'
+  )
+}
+
+
+
+
+#' @rdname bib
+#' @export
 .hochberg88 <- \(key = 'Hochberg88', ...) {
   bibentry(
     bibtype = 'Article', key = key, ...,

@@ -44,12 +44,6 @@ p_adjust_.numeric <- function(x) {
 
 
 
-
-
-
-
-
-
 #' @importFrom dplyr recode_values
 #' @importFrom ftExtra colformat_md
 #' @export
@@ -79,8 +73,5 @@ as_flextable.p_adjust <- function(x, ...) {
     ) 
     
 }
-
-
-
 
 
