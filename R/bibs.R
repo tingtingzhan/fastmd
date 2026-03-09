@@ -42,6 +42,27 @@
   )
 }
 
+
+#' @rdname bib
+#' @export
+.yates34 <- \(key = 'Yates34', ...) {
+  bibentry(
+    bibtype = 'article', key = key, ...,
+    issn = '14666162',
+    author = person(given = 'Frank', family = 'Yates'),
+    journal = 'Supplement to the Journal of the Royal Statistical Society',
+    year = '1934',
+    volume = '1',
+    number = '2',
+    pages = '217--235',
+    publisher = 'Oxford University Press, Royal Statistical Society',
+    title = 'Contingency Tables Involving Small Numbers and the \u03c7\u00b2 Test',
+    doi = '10.2307/2983604'
+  )
+}
+
+
+
 #' @rdname bib
 #' @export
 .holm79 <- \(key = 'Holm79', ...) {

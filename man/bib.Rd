@@ -4,6 +4,7 @@
 \alias{bib}
 \alias{.fisher22}
 \alias{.pearson1900}
+\alias{.yates34}
 \alias{.holm79}
 \alias{.hochberg88}
 \alias{.hommel88}
@@ -16,6 +17,8 @@
 .fisher22(key = "Fisher22", ...)
 
 .pearson1900(key = "Pearson1900", ...)
+
+.yates34(key = "Yates34", ...)
 
 .holm79(key = "Holm79", ...)
 

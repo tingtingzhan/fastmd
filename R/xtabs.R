@@ -42,7 +42,7 @@ as_flextable.xtabs <- function(x, ...) {
 
 #' @export
 bib_.xtabs <- function(x) {
-  c(.fisher22(), .pearson1900())
+  c(.fisher22(), .pearson1900(), .yates34())
 }
 
 

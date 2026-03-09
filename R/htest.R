@@ -12,10 +12,13 @@
 NULL
 
 
-md_htest_ <- function(x, ...) {
+md_htest_ <- \(x, ...) {
   
-  p <- x |> 
-    getElement(name = 'p.value') |>
+  pv <- x |> 
+    getElement(name = 'p.value')
+  if (is.na(pv)) return(new(Class = 'md_lines')) # exception handling
+  
+  p <- pv |>
     label_pvalue_sym(add_p = TRUE)()
   
   x$method |>
@@ -32,6 +35,11 @@ md_htest_ <- function(x, ...) {
         sprintf(fmt = '[@Pearson1900 \u03c7\u00b2 test](https://en.wikipedia.org/wiki/Pearson\'s_chi-squared_test) (%s)') |>
         new(Class = 'md_lines', bibentry = .pearson1900())
       
+    }, 'Pearson\'s Chi-squared test with Yates\' continuity correction' = {
+      # stats::chisq.test
+      p |>
+        sprintf(fmt = '[@Pearson1900 \u03c7\u00b2 test](https://en.wikipedia.org/wiki/Pearson\'s_chi-squared_test) with [@Yates34 continuity correction](https://en.wikipedia.org/wiki/Yates\'s_correction_for_continuity) (%s)') |>
+        new(Class = 'md_lines', bibentry = c(.pearson1900(), .yates34()))
     })
 }
 
