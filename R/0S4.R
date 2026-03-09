@@ -18,12 +18,19 @@ setOldClass(Classes = 'bibentry')
 #' @slot chunk.r \link[base]{logical} scalar (default `FALSE`), 
 #' whether this is an R code chunk
 #' 
+#' @slot summary. \link[base]{character} scalar, whether
+#' the markdown lines should be folded with a `summary`
+#' 
+#' @slot fig.height,fig.width \link[base]{double} scalars
+#' 
 #' @keywords internal
 #' @export
 setClass(Class = 'md_lines', contains = 'character', slots = c(
   bibentry = 'bibentry',
   package = 'character',
-  chunk.r = 'logical'
+  chunk.r = 'logical',
+  summary. = 'character',
+  fig.height = 'numeric', fig.width = 'numeric'
 ), prototype = prototype(
   bibentry = bibentry(),
   chunk.r = FALSE
@@ -51,9 +58,9 @@ sink2.md_lines <- function(x, ..., append = TRUE) {
   
   z <- c(
     '\n',
-    if (x@chunk.r) '```{r}',
+    #if (x@chunk.r) '```{r}',
     x, 
-    if (x@chunk.r) '```',
+    #if (x@chunk.r) '```',
     '\n',
     '# R & R Packages', # from `x@package`
     x@package |> 
@@ -81,29 +88,32 @@ sink2.md_lines <- function(x, ..., append = TRUE) {
 
 
 
-#' @title Convert \linkS4class{md_lines} to \link[base]{character}
-#' 
-#' @description
-#' Convert an \linkS4class{md_lines} object to 
-#' a \link[base]{character} \link[base]{vector}.
-#' 
-#' @param x an \linkS4class{md_lines} object
-#' 
-#' @param ... additional parameters, currently of no use
-#' 
-#' @returns
-#' The `S3` method [as.character.md_lines()] returns 
-#' a \link[base]{character} \link[base]{vector}.
-#' 
-#' @keywords internal
-#' @export as.character.md_lines
 #' @export
 as.character.md_lines <- function(x, ...) {
   c(
+    
+    if (length(x@summary.)) {
+      x@summary. |>
+        sprintf(fmt = '<details><summary>%s</summary>')
+    },
+    
     if (x@chunk.r) '```{r}',
+    
+    # len-0 compatible
+    x@fig.height |> 
+      sprintf(fmt = '#| fig-height: %.1f'),
+    x@fig.width |> 
+      sprintf(fmt = '#| fig-width: %.1f'),
+    # end of len-0 compatible
+    
     unclass(x), 
+    
     if (x@chunk.r) '```',
+    
+    if (length(x@summary.)) '</details>',
+    
     '\n\n'
+    
   )
 }
 

@@ -78,7 +78,8 @@ md_ <- function(x, ...) {
 #' p1 = ggplot(mtcars) + geom_point(aes(mpg, disp))
 #' p2 = ggplot(mtcars) + geom_boxplot(aes(gear, disp, group = gear))
 #' list(
-#'  '`ggplot`' = p1,
+#'  '`ggplot`' = p1 |> 
+#'   structure(fig.height = 3, fig.width = 5),
 #'  '`patchwork`' = p1 + p2
 #' ) |> render2html()
 #' 
@@ -86,49 +87,35 @@ md_ <- function(x, ...) {
 #' @export
 md_.default <- function(
     x, xnm, ...,
-    fig.height = attr(x, which = 'fig-height', exact = TRUE),
-    fig.width = attr(x, which = 'fig-width', exact = TRUE)
+    summary. = attr(x, which = 'summary.', exact = TRUE) %||% character(),
+    fig.height = attr(x, which = 'fig.height', exact = TRUE) %||% double(),
+    fig.width = attr(x, which = 'fig.width', exact = TRUE) %||% double()
 ) {
   
   has_flextable <- getS3method(f = 'as_flextable', class = class(x)[1L], optional = TRUE)
   if (length(has_flextable)) {
-    return(md_flextable_(x = x, xnm = xnm, ...))
+    return(md_flextable_(x = x, xnm = xnm, summary. = summary., ...))
   }
   
   has_grid_draw <- getS3method(f = 'grid.draw', class = class(x)[1L], optional = TRUE)
   if (length(has_grid_draw)) {
-    return(md_grid_draw_(x = x, xnm = xnm, ..., fig.height = fig.height, fig.width = fig.width))
+    return(md_grid_draw_(x = x, xnm = xnm, summary. = summary., ..., fig.height = fig.height, fig.width = fig.width))
   }
+
+  # print, but **not** say print, otherwise print to RStudio Viewer-panel!!!
+  # ?flextable:::print.flextable # packageDate('flextable') # "2026-02-12"
+  # ?htmlwidgets:::print.htmlwidget # packageDate('htmlwidgets') # "2023-12-06"
+  # etc.
   
-  c(
-    
-    # len-0 compatible
-    fig.height |> 
-      sprintf(fmt = '#| fig-height: %.1f'),
-    fig.width |> 
-      sprintf(fmt = '#| fig-width: %.1f'),
-    # end of len-0 compatible
-    
-    xnm 
-    # print, but not say print!!!!
-    # must *not* say print, otherwise print to RStudio Viewer-panel!!!
-    # ?flextable:::print.flextable # packageDate('flextable') # "2026-02-12"
-    # ?htmlwidgets:::print.htmlwidget # packageDate('htmlwidgets') # "2023-12-06"
-    # etc.
-    
-    # okay to say or not say print
-    # xnm |> sprintf(fmt = '%s |> print()')
-    # ?stats:::print.htest
-    # ?stats:::print.power.htest
-    # ?ggplot2:::print.ggplot
-    # ?S7:::print.S7_object # \CRANpkg{ggplot2} v4.0.0 is switching to \CRANpkg{S7} !!! 
-    # ?magick:::`print.magick-image`
-    ### ?magick::image_write; write to a file
-    ### ?magick::image_info; height and width
-    # ?lattice::trellis.*()
-    # etc.
-    
-  ) |> new(Class = 'md_lines', chunk.r = TRUE)
+  xnm |>
+    # sprintf(fmt = '%s |> print()') |> # most objects, it's okay to say or not say print
+    new(
+      Class = 'md_lines', 
+      chunk.r = TRUE, 
+      summary. = summary., 
+      fig.height = fig.height, fig.width = fig.width,
+      ...
+    )
   
 }
 
@@ -199,10 +186,13 @@ md_.list <- function(x, xnm, nm_level, ...) {
 #    new(Class = 'md_lines')
 #}
 
-# @export
-#md_.character <- function(x, ...) {
-#  .Defunct(new = 'md_.default')
-#  x |> 
-#    new(Class = 'md_lines')
-#}
+
+#' @export
+md_.character <- function(x, ...) {
+  #.Defunct(new = 'md_.default')
+  # important!
+  # this is how I write some md-lines directly!
+  x |> 
+    new(Class = 'md_lines')
+}
 

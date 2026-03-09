@@ -11,16 +11,18 @@ md_autoplot_(
   x,
   xnm,
   ...,
-  fig.height = attr(x, which = "fig-height", exact = TRUE),
-  fig.width = attr(x, which = "fig-width", exact = TRUE)
+  summary. = attr(x, which = "summary.", exact = TRUE) \%||\% character(),
+  fig.height = attr(x, which = "fig.height", exact = TRUE) \%||\% double(),
+  fig.width = attr(x, which = "fig.width", exact = TRUE) \%||\% double()
 )
 
 md_grid_draw_(
   x,
   xnm,
   ...,
-  fig.height = attr(x, which = "fig-height", exact = TRUE),
-  fig.width = attr(x, which = "fig-width", exact = TRUE)
+  summary. = attr(x, which = "summary.", exact = TRUE) \%||\% character(),
+  fig.height = attr(x, which = "fig.height", exact = TRUE) \%||\% double(),
+  fig.width = attr(x, which = "fig.width", exact = TRUE) \%||\% double()
 )
 
 md_flextable_(x, xnm, bibentry. = bib_(x), ...)
@@ -30,9 +32,7 @@ md_flextable_(x, xnm, bibentry. = bib_(x), ...)
 
 \item{xnm}{\link[base]{character} scalar}
 
-\item{fig.height, fig.width}{(optional) \link[base]{double} scalar}
-
-\item{bibentry, ...}{\link[methods]{slot}s of \linkS4class{md_lines}}
+\item{bibentry, summary., fig.height, fig.width, ...}{\link[methods]{slot}s of \linkS4class{md_lines}}
 }
 \description{
 Fast R Markdown Lines, Internal Use

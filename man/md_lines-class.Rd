@@ -18,6 +18,11 @@ Text lines to be written to an R Markdown (\code{.rmd}) file.
 
 \item{\code{chunk.r}}{\link[base]{logical} scalar (default \code{FALSE}),
 whether this is an R code chunk}
+
+\item{\code{summary.}}{\link[base]{character} scalar, whether
+the markdown lines should be folded with a \code{summary}}
+
+\item{\code{fig.height,fig.width}}{\link[base]{double} scalars}
 }}
 
 \keyword{internal}

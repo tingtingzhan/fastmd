@@ -16,7 +16,7 @@ tryCatch(expr = as_flextable(aml2), error = identity)
 tryCatch(expr = flextable(aml2), error = identity)
 list(
  Formaldehyde = Formaldehyde,
- aml2 = aml2
+ aml2 = aml2 |> structure(summary. = '`aml2`, folded')
 ) |> render2html()
 
 }

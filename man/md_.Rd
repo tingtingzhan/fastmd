@@ -12,8 +12,9 @@ md_(x, ...)
   x,
   xnm,
   ...,
-  fig.height = attr(x, which = "fig-height", exact = TRUE),
-  fig.width = attr(x, which = "fig-width", exact = TRUE)
+  summary. = attr(x, which = "summary.", exact = TRUE) \%||\% character(),
+  fig.height = attr(x, which = "fig.height", exact = TRUE) \%||\% double(),
+  fig.width = attr(x, which = "fig.width", exact = TRUE) \%||\% double()
 )
 
 \method{md_}{list}(x, xnm, nm_level, ...)
@@ -88,7 +89,8 @@ library(patchwork) # ?patchwork::`patchwork-package`
 p1 = ggplot(mtcars) + geom_point(aes(mpg, disp))
 p2 = ggplot(mtcars) + geom_boxplot(aes(gear, disp, group = gear))
 list(
- '`ggplot`' = p1,
+ '`ggplot`' = p1 |> 
+  structure(fig.height = 3, fig.width = 5),
  '`patchwork`' = p1 + p2
 ) |> render2html()
 

@@ -6,9 +6,7 @@
 #' 
 #' @param xnm \link[base]{character} scalar
 #' 
-#' @param bibentry,... \link[methods]{slot}s of \linkS4class{md_lines}
-#' 
-#' @param fig.height,fig.width (optional) \link[base]{double} scalar
+#' @param bibentry,summary.,fig.height,fig.width,... \link[methods]{slot}s of \linkS4class{md_lines}
 #' 
 #' @details
 #' The function [md_autoplot_()] creates R mark down lines by 
@@ -31,21 +29,20 @@
 #' @export
 md_autoplot_ <- function(
     x, xnm, ...,
-    fig.height = attr(x, which = 'fig-height', exact = TRUE),
-    fig.width = attr(x, which = 'fig-width', exact = TRUE)
+    summary. = attr(x, which = 'summary.', exact = TRUE) %||% character(),
+    fig.height = attr(x, which = 'fig.height', exact = TRUE) %||% double(),
+    fig.width = attr(x, which = 'fig.width', exact = TRUE) %||% double()
 ) {
   
-  c(
-    # len-0 compatible
-    fig.height |> 
-      sprintf(fmt = '#| fig-height: %.1f'),
-    fig.width |> 
-      sprintf(fmt = '#| fig-width: %.1f'),
-    # end of len-0 compatible
-    
-    xnm |> sprintf(fmt = 'autoplot(%s)')
-  ) |> 
-    new(Class = 'md_lines', chunk.r = TRUE, ...)
+  xnm |> 
+    sprintf(fmt = 'autoplot(%s)') |>
+    new(
+      Class = 'md_lines', 
+      chunk.r = TRUE, 
+      summary. = summary.,
+      fig.height = fig.height, fig.width = fig.width,
+      ...
+    )
   
 }
 
@@ -55,22 +52,20 @@ md_autoplot_ <- function(
 #' @export
 md_grid_draw_ <- function(
     x, xnm, ...,
-    fig.height = attr(x, which = 'fig-height', exact = TRUE),
-    fig.width = attr(x, which = 'fig-width', exact = TRUE)
+    summary. = attr(x, which = 'summary.', exact = TRUE) %||% character(),
+    fig.height = attr(x, which = 'fig.height', exact = TRUE) %||% double(),
+    fig.width = attr(x, which = 'fig.width', exact = TRUE) %||% double()
 ) {
   
-  c(
-    # len-0 compatible
-    fig.height |> 
-      sprintf(fmt = '#| fig-height: %.1f'),
-    fig.width |> 
-      sprintf(fmt = '#| fig-width: %.1f'),
-    # end of len-0 compatible
-    
-    xnm |> 
-      sprintf(fmt = 'grid::grid.draw(%s)') # rmd rendering requires `grid::`
-  ) |> 
-    new(Class = 'md_lines', chunk.r = TRUE, ...)
+  xnm |> 
+    sprintf(fmt = 'grid::grid.draw(%s)') |> # rmd rendering requires `grid::`
+    new(
+      Class = 'md_lines', 
+      chunk.r = TRUE, 
+      summary. = summary.,
+      fig.height = fig.height, fig.width = fig.width,
+      ...
+    )
   
 }
 
