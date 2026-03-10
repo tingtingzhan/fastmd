@@ -2,13 +2,10 @@
 % Please edit documentation in R/md_.R
 \name{md_}
 \alias{md_}
-\alias{md_.default}
 \alias{md_.list}
 \title{R Markdown Lines}
 \usage{
 md_(x, ...)
-
-\method{md_}{default}(x, xnm, ...)
 
 \method{md_}{list}(x, xnm, nm_level, ...)
 }

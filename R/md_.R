@@ -14,19 +14,6 @@
 #' The `S3` generic function [md_()] returns 
 #' an \linkS4class{md_lines} object.
 #' 
-#' @keywords internal
-#' @name md_
-#' @export
-md_ <- function(x, ...) {
-  if (!length(x)) return(invisible())
-  UseMethod(generic = 'md_')
-}
-
-#' @export
-md_.md_lines <- function(x, ...) x # exception handling
-
-#' @rdname md_
-#' 
 #' @note
 #' Read \url{https://plotly.com/r/subplots/} 
 #' on how to stack `'plotly'` objects 
@@ -83,7 +70,18 @@ md_.md_lines <- function(x, ...) x # exception handling
 #'  '`patchwork`' = p1 + p2
 #' ) |> render2html()
 #' 
-#' @export md_.default
+#' @keywords internal
+#' @name md_
+#' @export
+md_ <- function(x, ...) {
+  if (!length(x)) return(invisible())
+  UseMethod(generic = 'md_')
+}
+
+#' @export
+md_.md_lines <- function(x, ...) x # exception handling
+
+
 #' @export
 md_.default <- function(x, xnm, ...) {
   
