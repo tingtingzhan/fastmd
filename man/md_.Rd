@@ -8,14 +8,7 @@
 \usage{
 md_(x, ...)
 
-\method{md_}{default}(
-  x,
-  xnm,
-  ...,
-  summary. = attr(x, which = "summary.", exact = TRUE) \%||\% character(),
-  fig.height = attr(x, which = "fig.height", exact = TRUE) \%||\% double(),
-  fig.width = attr(x, which = "fig.width", exact = TRUE) \%||\% double()
-)
+\method{md_}{default}(x, xnm, ...)
 
 \method{md_}{list}(x, xnm, nm_level, ...)
 }
@@ -25,8 +18,6 @@ md_(x, ...)
 \item{...}{additional parameters, currently not in use}
 
 \item{xnm}{..}
-
-\item{fig.height, fig.width}{(optional) \link[base]{double} scalar}
 
 \item{nm_level}{(optional) \link[base]{character} scalar,
 mark down level of the \link[base]{list} \link[base]{names},
@@ -78,7 +69,8 @@ library(leaflet); list(
   addPopups(
     lng = c(-77.0365, -77.0563), lat = c(38.8977, 38.8719), 
     popup = c('white house', 'pentagon')
-  )
+  ) |>
+  structure(fig.height = 3, fig.width = 5)
 ) |> render2html()
 
 list(

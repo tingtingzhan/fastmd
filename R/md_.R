@@ -10,8 +10,6 @@
 #' 
 #' @param ... additional parameters, currently not in use
 #' 
-#' @param fig.height,fig.width (optional) \link[base]{double} scalar
-#' 
 #' @returns 
 #' The `S3` generic function [md_()] returns 
 #' an \linkS4class{md_lines} object.
@@ -24,7 +22,8 @@ md_ <- function(x, ...) {
   UseMethod(generic = 'md_')
 }
 
-
+#' @export
+md_.md_lines <- function(x, ...) x # exception handling
 
 #' @rdname md_
 #' 
@@ -67,7 +66,8 @@ md_ <- function(x, ...) {
 #'   addPopups(
 #'     lng = c(-77.0365, -77.0563), lat = c(38.8977, 38.8719), 
 #'     popup = c('white house', 'pentagon')
-#'   )
+#'   ) |>
+#'   structure(fig.height = 3, fig.width = 5)
 #' ) |> render2html()
 #' 
 #' list(
@@ -85,48 +85,21 @@ md_ <- function(x, ...) {
 #' 
 #' @export md_.default
 #' @export
-md_.default <- function(
-    x, xnm, ...,
-    summary. = attr(x, which = 'summary.', exact = TRUE) %||% character(),
-    fig.height = attr(x, which = 'fig.height', exact = TRUE) %||% double(),
-    fig.width = attr(x, which = 'fig.width', exact = TRUE) %||% double()
-) {
+md_.default <- function(x, xnm, ...) {
   
   has_flextable <- getS3method(f = 'as_flextable', class = class(x)[1L], optional = TRUE)
   if (length(has_flextable)) {
-    return(md_flextable_(x = x, xnm = xnm, summary. = summary., ...))
+    return(md_flextable_(x = x, xnm = xnm, ...))
   }
   
   has_grid_draw <- getS3method(f = 'grid.draw', class = class(x)[1L], optional = TRUE)
   if (length(has_grid_draw)) {
-    return(md_grid_draw_(x = x, xnm = xnm, summary. = summary., ..., fig.height = fig.height, fig.width = fig.width))
+    return(md_grid_draw_(x = x, xnm = xnm, ...))
   }
 
-  # print, but **not** say print, otherwise print to RStudio Viewer-panel!!!
-  # ?flextable:::print.flextable # packageDate('flextable') # "2026-02-12"
-  # ?htmlwidgets:::print.htmlwidget # packageDate('htmlwidgets') # "2023-12-06"
-  # etc.
-  
-  xnm |>
-    # sprintf(fmt = '%s |> print()') |> # most objects, it's okay to say or not say print
-    new(
-      Class = 'md_lines', 
-      chunk.r = TRUE, 
-      summary. = summary., 
-      fig.height = fig.height, fig.width = fig.width,
-      ...
-    )
+  md_print_(x, xnm, ...)
   
 }
-
-
-#' @export
-md_.aov <- md_.default
-# 'aov' inherits from 'lm'
-# will dispatch to [md_.lm()]
-
-
-
 
 
 
@@ -144,39 +117,42 @@ md_.aov <- md_.default
 #' @export md_.list
 #' @export
 md_.list <- function(x, xnm, nm_level, ...) {
-  
-  if (missing(nm_level)) {
-    
-    z <- x |> 
-      seq_along() |>
-      lapply(FUN = \(i) {
-        md_(x = x[[i]], xnm = paste0(xnm, '[[', i, ']]'), ...)
-      }) 
 
-  } else {
+  id <- x |> 
+    seq_along() 
   
+  z <- id |>
+    lapply(FUN = \(i) {
+      md_(x = x[[i]], xnm = paste0(xnm, '[[', i, ']]'), ...)
+    }) 
+    
+  if (!missing(nm_level)) {
+    
     if (!is.character(nm_level) || length(nm_level) != 1L) stop('illegal `nm_level`')
     
     nm <- names(x)
     if (!length(nm) || anyNA(nm) || !all(nzchar(nm))) stop('names must be complete')
     
-    z <- x |> 
-      seq_along() |>
+    headr <- id |>
       lapply(FUN = \(i) {
-        c.md_lines(
-          nm[i] |> 
-            sprintf(fmt = '\n%s %s\n', nm_level, . = _) |> 
-            new(Class = 'md_lines'), # must use an extra '\n' to separate from previous 'character'
-          md_(x = x[[i]], xnm = paste0(xnm, '[[', i, ']]'), ...)
-        )
+        nm[i] |> 
+          sprintf(fmt = '\n%s %s\n', nm_level, . = _) |> # must use an extra '\n' to separate from previous 'character'
+          new(Class = 'md_lines')
       })
-    
+       
+    z <- .mapply(FUN = c.md_lines, dots = list(headr, z), MoreArgs = NULL)
+   
   }
   
   z |>
     do.call(what = c.md_lines, args = _)
   
 }
+
+
+
+
+
 
 # @export
 #md_.numeric <- function(x, ...) {
