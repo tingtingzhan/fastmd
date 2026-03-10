@@ -69,7 +69,7 @@ md_.summary.matchit <- function(x, xnm, ...) {
   ) |>
     new(Class = 'md_lines', package = 'MatchIt')
   
-  z2 <- md_flextable_(xnm = xnm, ...)
+  z2 <- md_int(x = x, xnm = xnm, engine = 'flextable', ...)
   
   c(z1, z2) # [c.md_lines()]
   

@@ -87,15 +87,15 @@ md_.default <- function(x, xnm, ...) {
   
   has_flextable <- getS3method(f = 'as_flextable', class = class(x)[1L], optional = TRUE)
   if (length(has_flextable)) {
-    return(md_flextable_(x = x, xnm = xnm, ...))
+    return(md_int(x = x, xnm = xnm, engine = 'flextable', ...))
   }
   
   has_grid_draw <- getS3method(f = 'grid.draw', class = class(x)[1L], optional = TRUE)
   if (length(has_grid_draw)) {
-    return(md_grid_draw_(x = x, xnm = xnm, ...))
+    return(md_int(x = x, xnm = xnm, engine = 'grid.draw', ...))
   }
 
-  md_print_(x, xnm, ...)
+  md_int(x, xnm, engine = 'print', ...)
   
 }
 

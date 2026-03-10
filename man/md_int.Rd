@@ -2,39 +2,14 @@
 % Please edit documentation in R/md_int.R
 \name{md_int}
 \alias{md_int}
-\alias{md_autoplot_}
-\alias{md_grid_draw_}
-\alias{md_flextable_}
-\alias{md_print_}
 \title{Fast R Markdown Lines, Internal Use}
 \usage{
-md_autoplot_(
+md_int(
   x,
   xnm,
-  bibentry. = bib_(x),
   ...,
-  summary. = attr(x, which = "summary.", exact = TRUE),
-  fig.height = attr(x, which = "fig.height", exact = TRUE),
-  fig.width = attr(x, which = "fig.width", exact = TRUE)
-)
-
-md_grid_draw_(
-  x,
-  xnm,
+  engine = c("print", "autoplot", "grid.draw", "flextable"),
   bibentry. = bib_(x),
-  ...,
-  summary. = attr(x, which = "summary.", exact = TRUE),
-  fig.height = attr(x, which = "fig.height", exact = TRUE),
-  fig.width = attr(x, which = "fig.width", exact = TRUE)
-)
-
-md_flextable_(x, xnm, bibentry. = bib_(x), ...)
-
-md_print_(
-  x,
-  xnm,
-  bibentry. = bib_(x),
-  ...,
   summary. = attr(x, which = "summary.", exact = TRUE),
   fig.height = attr(x, which = "fig.height", exact = TRUE),
   fig.width = attr(x, which = "fig.width", exact = TRUE)
@@ -45,21 +20,22 @@ md_print_(
 
 \item{xnm}{\link[base]{character} scalar}
 
+\item{engine}{\link[base]{character} scalar}
+
 \item{bibentry, summary., fig.height, fig.width, ...}{optional, \link[methods]{slot}s of \linkS4class{md_lines}}
 }
 \description{
 Fast R Markdown Lines, Internal Use
 }
 \details{
-The function \code{\link[=md_autoplot_]{md_autoplot_()}} creates R mark down lines by
-the work horse function \link[ggplot2]{autoplot}.
-
-The function \code{\link[=md_flextable_]{md_flextable_()}} creates R mark down lines by
-the work horse function \link[flextable]{as_flextable}.
-
-The function \code{\link[=md_grid_draw_]{md_grid_draw_()}} ..
-
-The function \code{\link[=md_print_]{md_print_()}} ..
+To create R mark down lines by
+the work horse function
+\describe{
+\item{\code{engine = 'print'}}{\link[base]{print}}
+\item{\code{engine = 'autoplot'}}{\link[ggplot2]{autoplot}}
+\item{\code{engine = 'grid.draw'}}{\link[grid]{grid.draw}}
+\item{\code{engine = 'flextable'}}{\link[flextable]{as_flextable}}
+}
 }
 \examples{
 library(DemographicTable); list(

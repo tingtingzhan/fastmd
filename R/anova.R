@@ -83,3 +83,8 @@ as_flextable.summary.aovlist <- function(x, ...) {
 
 
 
+#' @export
+md_.aov <- function(x, ...) md_int(x, engine = 'flextable', ...)
+# 'aov' inherits from 'lm'
+# will dispatch to [md_.lm()]
+

@@ -62,7 +62,7 @@ md_.TukeyHSD <- function(x, xnm, ...) {
     new(Class = 'md_lines') |>
     c(
       . = _, 
-      md_flextable_(x = x, xnm = xnm, ...) # to get default bib_()
+      md_int(x = x, xnm = xnm, engine = 'flextable', ...) # to get default bib_()
     ) # [c.md_lines()]
   
 }

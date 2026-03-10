@@ -60,15 +60,23 @@ md_.pairwise.htest <- function(x, xnm, ...) {
     sprintf(fmt = 'Pairwise %s are performed using <u>**`R`**</u>.  Adjusted $p$-values [@Holm79; @Hochberg88; @Hommel88; @BenjaminiHochberg95; @BenjaminiYekutieli01] for multiple comparison are provided as well.') |> 
     new(Class = 'md_lines')
   
-  z2 <- md_flextable_(x = x, xnm = xnm, ...) # to get default bib_()
+  z2 <- md_int(x = x, xnm = xnm, engine = 'flextable', ...)
   
   z3 <- xnm |> 
     sprintf(fmt = '(%s) |> p_adjust_()') |>
-    md_flextable_(xnm = _, ...)
+    md_int(x = x, xnm = _, engine = 'flextable', ...)
   
   c(z1, z2, z3)
   
 }
 
+
+
+#' @export
+md_.htest <- function(x, ...) {
+  md_int(x, engine = 'print', ...)
+}
+# do *not* want to use
+# ?flextable:::as_flextable.htest
 
 
