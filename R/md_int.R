@@ -75,10 +75,4 @@ md_int <- function(
 
 
 
-# md_flextable_ 
-# md_print_ 
-# md_autoplot_
-
-
-
 
