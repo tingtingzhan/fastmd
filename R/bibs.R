@@ -82,6 +82,24 @@
 
 #' @rdname bib
 #' @export
+.student08 <- \(key = 'Student08', ...) {
+  bibentry(
+    bibtype = 'article', key = key, ...,
+    issn = '00063444, 14643510',
+    author = person(given = 'William Sealy', family = 'Gosset', comment = 'Student'),
+    journal = 'Biometrika',
+    number = '1',
+    pages = '1--25',
+    publisher = 'Oxford University Press, Biometrika Trust',
+    title = 'The Probable Error of a Mean',
+    volume = '6',
+    year = '1908',
+    doi = '10.2307/2331554'
+  )
+}
+
+#' @rdname bib
+#' @export
 .welch47 <- \(key = 'Welch47', ...) {
   bibentry(bibtype = 'article', key = key, ...,
     author = person(given = 'Bernard Lewis', family = 'Welch'),

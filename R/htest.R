@@ -39,12 +39,20 @@ md_htest_ <- \(x, ...) {
       p |>
         sprintf(fmt = '[@Pearson1900 \u03c7\u00b2 test](https://en.wikipedia.org/wiki/Pearson\'s_chi-squared_test) with [@Yates34 continuity correction](https://en.wikipedia.org/wiki/Yates\'s_correction_for_continuity) (%s)') |>
         new(Class = 'md_lines', bibentry = c(.pearson1900(), .yates34()))
+      
+    }, 'One Sample t-test' = {
+      # stats::t.test; one-sample
+      p |> 
+        sprintf(fmt = '[@Student08 Student\'s *t*-test](https://en.wikipedia.org/wiki/Welch\'s_t-test) (%s)') |>
+        new(Class = 'md_lines', bibentry = .student08())
+      
     }, 'Welch Two Sample t-test' = {
-      # stats::t.test; two-sample, 
+      # stats::t.test; two-sample, unequal variance
       p |> 
         sprintf(fmt = '[@Welch47 - @Satterthwaite46 *t*-test](https://en.wikipedia.org/wiki/Welch\'s_t-test) (%s)') |>
         new(Class = 'md_lines', bibentry = c(.welch47(), .satterthwaite46()))
-    }) 
+      
+    }, stop('un-written')) 
 }
 
 if (FALSE) {

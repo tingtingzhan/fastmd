@@ -6,6 +6,7 @@
 \alias{.pearson1900}
 \alias{.yates34}
 \alias{.holm79}
+\alias{.student08}
 \alias{.welch47}
 \alias{.satterthwaite46}
 \alias{.hochberg88}
@@ -23,6 +24,8 @@
 .yates34(key = "Yates34", ...)
 
 .holm79(key = "Holm79", ...)
+
+.student08(key = "Student08", ...)
 
 .welch47(key = "Welch47", ...)
 
