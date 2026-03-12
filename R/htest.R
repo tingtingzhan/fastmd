@@ -52,12 +52,35 @@ md_htest_ <- \(x, ...) {
         sprintf(fmt = '[@Welch47 - @Satterthwaite46 *t*-test](https://en.wikipedia.org/wiki/Welch\'s_t-test) (%s)') |>
         new(Class = 'md_lines', bibentry = c(.welch47(), .satterthwaite46()))
       
+    }, 'Wilcoxon signed rank exact test' = {
+      # stats::wilcox.test
+      p |> 
+        sprintf(fmt = '[@Wilcoxon45 signed-rank test](https://en.wikipedia.org/wiki/Wilcoxon_signed-rank_test) (%s)') |>
+        new(Class = 'md_lines', bibentry = .wilcoxon45())
+    }, 'Wilcoxon rank sum exact test' =,
+    'Wilcoxon rank sum test with continuity correction' = {
+      # stats::wilcox.test
+      p |> 
+        sprintf(fmt = '[@Wilcoxon45 - @MannWhitney47 rank-sum $U$-test](https://en.wikipedia.org/wiki/Mann\u2013Whitney_U_test) (%s)') |>
+        new(Class = 'md_lines', bibentry = c(.wilcoxon45(), .mann_whitney47()))
     }, stop('un-written')) 
 }
 
 if (FALSE) {
   '$p$' |> ftExtra::as_paragraph_md() # error!!
 }
+
+
+
+#' @export
+md_.htest <- function(x, ...) {
+  c(
+    # md_htest_(x),
+    md_int(x, engine = 'print', ...)
+  )
+}
+# do *not* want to use
+# ?flextable:::as_flextable.htest
 
 
 

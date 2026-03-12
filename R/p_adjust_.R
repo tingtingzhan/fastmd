@@ -56,10 +56,10 @@ as_flextable.p_adjust <- function(x, ...) {
   nm <- colnames(z)
   colnames(z) <- nm |>
     recode_values(
+      'bonferroni' ~ '@Bonferroni36',
       'holm' ~ '@Holm79',
       'hochberg' ~ '@Hochberg88',
       'hommel' ~ '@Hommel88',
-      'bonferroni' ~ 'Bonferroni',
       'BH' ~ '@BenjaminiHochberg95',
       'BY' ~ '@BenjaminiYekutieli01',
       default = nm
@@ -70,7 +70,9 @@ as_flextable.p_adjust <- function(x, ...) {
     colformat_md(
       # part = 'all' # cross-ref correct, but bib does not print! must be a bug
       part = 'header' # https://stackoverflow.com/questions/70892751/citing-inside-the-cell-of-flextable
-    ) 
+    ) |>
+    add_footer_lines(values = attr(x, which = 'method', exact = TRUE)) |>
+    set_caption(caption = 'Multiple Comparisons Adjustment')
     
 }
 

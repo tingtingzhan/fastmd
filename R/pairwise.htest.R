@@ -25,10 +25,13 @@ NULL
 
 #' @method as_flextable pairwise.htest
 #' @export
-as_flextable.pairwise.htest <- function(x, row.title = x$method, ...) {
+as_flextable.pairwise.htest <- function(x, ...) {
   x$p.value |>
     label_pvalue_sym()() |>
-    as_flextable.matrix(row.title = row.title, ...)
+    as_flextable.matrix(...) |>
+    set_caption(
+      caption = x$method |> sprintf(fmt = 'Pairwise %s')
+    )
 }
 
 
@@ -46,7 +49,7 @@ p_adjust_.pairwise.htest <- function(x) {
   names(pv) <- outer(dnm[[1L]], dnm[[2L]], FUN = paste, sep = ' vs. ')[id]
   
   ret <- p_adjust_.numeric(pv) # 'matrix'
-  names(dimnames(ret)) <- c(x$method, '') # for ?as_flextable.matrix
+  attr(ret, which = 'method') <- x$method |> sprintf(fmt = 'Pairwise %s')
   return(ret)
   
 }
@@ -56,27 +59,16 @@ p_adjust_.pairwise.htest <- function(x) {
 #' @export
 md_.pairwise.htest <- function(x, xnm, ...) {
   
-  z1 <- x$method |> 
-    sprintf(fmt = 'Pairwise %s are performed using <u>**`R`**</u>.  Adjusted $p$-values [@Holm79; @Hochberg88; @Hommel88; @BenjaminiHochberg95; @BenjaminiYekutieli01] for multiple comparison are provided as well.') |> 
-    new(Class = 'md_lines')
+  z1 <- md_int(x = x, xnm = xnm, engine = 'flextable', ...)
   
-  z2 <- md_int(x = x, xnm = xnm, engine = 'flextable', ...)
-  
-  z3 <- xnm |> 
+  z2 <- xnm |> 
     sprintf(fmt = '(%s) |> p_adjust_()') |>
     md_int(x = x, xnm = _, engine = 'flextable', ...)
   
-  c(z1, z2, z3)
+  c(z1, z2)
   
 }
 
 
-
-#' @export
-md_.htest <- function(x, ...) {
-  md_int(x, engine = 'print', ...)
-}
-# do *not* want to use
-# ?flextable:::as_flextable.htest
 
 

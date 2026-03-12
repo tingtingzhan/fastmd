@@ -45,6 +45,55 @@
 
 #' @rdname bib
 #' @export
+.wilcoxon45 <- \(key = 'Wilcoxon45', ...) {
+  bibentry(
+    bibtype = 'article', key = key, ...,
+    issn = '00994987',
+    doi = '10.2307/3001968',
+    author = person(given = 'Frank', family = 'Wilcoxon'),
+    journal = 'Biometrics Bulletin',
+    number = 6,
+    pages = '80--83',
+    publisher = 'International Biometric Society, Wiley',
+    title = 'Individual Comparisons by Ranking Methods',
+    volume = '1',
+    year = '1945'
+  )
+}
+
+#' @rdname bib
+#' @export
+.mann_whitney47 <- \(key = 'MannWhitney47', ...) {
+  bibentry(
+    bibtype = 'article', key = key, ...,
+    author = c(person(given = 'Henry. B.', family = 'Mann'), 
+               person(given = 'Donald Ransom', family = 'Whitney')),
+    title = 'On a Test of Whether one of Two Random Variables is Stochastically Larger than the Other',
+    volume = '18',
+    journal = 'The Annals of Mathematical Statistics',
+    number = '1',
+    publisher = 'Institute of Mathematical Statistics',
+    pages = '50--60',
+    year = '1947',
+    doi = '10.1214/aoms/1177730491'
+  )
+}
+
+#' @rdname bib
+#' @export
+.bonferroni36 <- \(key = 'Bonferroni36', ...) {
+  bibentry(
+    bibtype = 'article', key = key, ...,
+    title = 'Teoria statistica delle classi e calcolo delle probabilit\'{a}',
+    journal = 'Pubblicazioni del R Istituto Superiore di Scienze Economiche e Commerciali di Firenze',
+    author = person(given = 'Carlo Emilio', family = 'Bonferroni'),
+    year = '1936'
+  )
+}
+
+
+#' @rdname bib
+#' @export
 .yates34 <- \(key = 'Yates34', ...) {
   bibentry(
     bibtype = 'article', key = key, ...,

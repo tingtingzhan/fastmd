@@ -4,6 +4,9 @@
 \alias{bib}
 \alias{.fisher22}
 \alias{.pearson1900}
+\alias{.wilcoxon45}
+\alias{.mann_whitney47}
+\alias{.bonferroni36}
 \alias{.yates34}
 \alias{.holm79}
 \alias{.student08}
@@ -20,6 +23,12 @@
 .fisher22(key = "Fisher22", ...)
 
 .pearson1900(key = "Pearson1900", ...)
+
+.wilcoxon45(key = "Wilcoxon45", ...)
+
+.mann_whitney47(key = "MannWhitney47", ...)
+
+.bonferroni36(key = "Bonferroni36", ...)
 
 .yates34(key = "Yates34", ...)
 

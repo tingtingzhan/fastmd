@@ -21,6 +21,7 @@ bib_.default <- function(x) bibentry()
 #' @export
 bib_.p_adjust <- function(x) {
   c(
+    .bonferroni36(),
     .holm79(),
     .hochberg88(),
     .hommel88(),
