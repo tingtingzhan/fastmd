@@ -7,7 +7,7 @@
 pkg_text(x)
 }
 \arguments{
-\item{x}{\link[base]{character} scalar, the returned object of function \code{\link[=fromPackage]{fromPackage()}}}
+\item{x}{\link[base]{character} scalar, the returned object of the function \code{\link[=fromPackage]{fromPackage()}}}
 }
 \value{
 The function \code{\link[=pkg_text]{pkg_text()}} returns a \link[base]{character} scalar.

@@ -44,7 +44,7 @@
 .tukey49(key = "Tukey49", ...)
 }
 \arguments{
-\item{key, ...}{additional parameters of function \link[utils]{bibentry}}
+\item{key, ...}{additional parameters of the function \link[utils]{bibentry}}
 }
 \description{
 \link[utils]{bibentry} of statistical methods in plain R packages, especially \strong{stats}.

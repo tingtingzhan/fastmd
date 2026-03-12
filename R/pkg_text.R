@@ -1,7 +1,7 @@
 
 #' @title Text for Package to Create an R Object
 #' 
-#' @param x \link[base]{character} scalar, the returned object of function [fromPackage()]
+#' @param x \link[base]{character} scalar, the returned object of the function [fromPackage()]
 #' 
 #' @returns 
 #' The function [pkg_text()] returns a \link[base]{character} scalar.
