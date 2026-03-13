@@ -3,13 +3,16 @@
 
 #' @keywords internal
 #'
-#' @import cli
-#' @import flextable
+#' @importFrom cli col_blue col_cyan col_magenta col_br_red style_bold
+#' @importFrom flextable as_flextable flextable autofit hline vline merge_h merge_v align fix_border_issues highlight set_caption
+#' @importFrom flextable add_footer_lines add_header_row colformat_double wrap_flextable
+#' @importFrom flextable init_flextable_defaults
 #' 
-#' @import grid
-#' @import methods
-#' @import stats
-#' @import utils
+#' @importFrom methods new show slot
+#' @importFrom stats fisher.test chisq.test
+#' @importFrom stats formula getCall p.adjust p.adjust.methods
+#' @importFrom utils bibentry toBibtex person as.person browseURL citation
+#' @importFrom utils getAnywhere getS3method installed.packages
 #'
 '_PACKAGE'
 

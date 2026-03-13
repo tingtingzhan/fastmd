@@ -38,7 +38,7 @@ as_flextable.anova <- function(x, row.title = ' ', ...) {
 #' @export
 as_flextable.aov <- function(x, ...) {
   x |> 
-    summary.aov() |> 
+    summary() |> # stats::summary.aov
     as_flextable.summary.aov(...)
 }
 
@@ -84,7 +84,17 @@ as_flextable.summary.aovlist <- function(x, ...) {
 
 
 #' @export
-md_.aov <- function(x, ...) md_int(x, engine = 'flextable', ...)
+md_.aov <- function(x, ...) {
+  md_int(x, engine = 'flextable', ...)
+}
 # 'aov' inherits from 'lm'
 # will dispatch to [md_.lm()]
+
+
+#' @export
+md_.anova <- function(x, ...) {
+  md_int(x, engine = 'flextable', ...)
+}
+# 'anova' inherits from 'data.frame'
+# will dispatch to [md_.data.frame()]
 
