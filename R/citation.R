@@ -1,36 +1,5 @@
 
 
-# @examples 
-# list(
-#  texreg = 'R regression output to LaTeX or HTML by <u>**`R`**</u> package <u>**`texreg`**</u>.' |> 
-#    new(Class = 'md_lines', package = 'texreg'),
-#  stats = 'Linear regression by <u>**`R`**</u> package <u>**`stats`**</u>.' |> 
-#    new(Class = 'md_lines', package = 'stats')
-# ) |> render2html()
-# @note
-# Function \link[tools]{bibstyle} does funny things to the environment..
-
-# md_.citation
-format_citation_w_package <- \(x) {
-  
-  pkg <- attr(x, which = 'package', exact = TRUE)
-
-  sprintf(
-    fmt = '<u>**`%s`**</u> %s\n', 
-    switch(pkg, base = 'R', pkg), 
-    pkg |>
-      citation() |>
-      url2doi() |> 
-      format(style = 'text') # ?utils:::format.citation
-  )
-  
-}
-
-
-
-
-
-
 #' @title Prioritize `doi` over `url` in \link[utils]{bibentry}
 #' 
 #' @description
@@ -55,10 +24,11 @@ format_citation_w_package <- \(x) {
 #' @export
 url2doi <- function(x) {
   
+  # methods(class = 'bibentry')
+  
   x0 <- x |>
     unclass()
   # must!!
-  # see # methods(class = 'bibentry')
   # otherwise both ?utils:::`[[.bibentry` and ?utils:::`[<-.bibentry` cause error hahaha
   
   x0[] <- x0 |> 

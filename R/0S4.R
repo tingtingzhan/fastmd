@@ -1,8 +1,5 @@
 
-
 setOldClass(Classes = 'bibentry')
-
-
 
 #' @title S4 Class \linkS4class{md_lines}
 #' 
@@ -37,51 +34,36 @@ setClass(Class = 'md_lines', contains = 'character', slots = c(
 ))
 
 
-#' @title `S3` method [sink2.md_lines()]
-#' 
-#' @description
-#' \link[base]{sink} an \linkS4class{md_lines} object to an `.rmd` file.
-#' 
-#' @param x an \linkS4class{md_lines} object
-#' 
-#' @param ...,append parameters of the function \link[base]{sink}
-#' 
-#' @details
-#' The `S3` method [sink2.md_lines()]
-#' is an internal workhorse for
-#' the function [render2html()].
-#' 
-#' @keywords internal
-#' @export sink2.md_lines
+
 #' @export
-sink2.md_lines <- function(x, ..., append = TRUE) {
+sink2.md_lines <- function(x, ...) {
   
-  z <- c(
+  sink(...) # ?base::writeLines cannot append
+  
+  c(
     '\n',
-    #if (x@chunk.r) '```{r}',
     x, 
-    #if (x@chunk.r) '```',
     '\n',
-    '# R & R Packages', # from `x@package`
+    '# R & R Packages',
     x@package |> 
       sort.int() |>
       c('base', . = _) |> 
-      lapply(FUN = \(i) i |> citation() |> format_citation_w_package()) |>
-      unlist(use.names = FALSE)
-  )
-  
-  if (length(x@bibentry)) { # bibliography from `x@bibentry`
-    z <- c(
-      z,
-      '# References', 
-      '::: {#refs}',
-      ':::'
-    )
-  }
-  
-  sink(..., append = append) # ?base::writeLines cannot append
-  z |>
+      lapply(FUN = \(i) {
+        i |> 
+          citation() |> 
+          format_citation_w_package()
+      }) |>
+      unlist(use.names = FALSE),
+    if (length(x@bibentry)) { # bibliography from `x@bibentry`
+      c(
+        '# References', 
+        '::: {#refs}',
+        ':::'
+      )
+    } # else NULL
+  ) |>
     cat(sep = '\n')
+  
   sink()
   
 }
@@ -118,16 +100,6 @@ as.character.md_lines <- function(x, ...) {
 }
 
 
-#' @title Combine Multiple \linkS4class{md_lines}
-#' 
-#' @param ... one or more \linkS4class{md_lines} objects
-#' 
-#' @returns 
-#' The `S3` method [c.md_lines()] returns 
-#' an \linkS4class{md_lines} object.
-#' 
-#' @keywords internal
-#' @export c.md_lines
 #' @export
 c.md_lines <- function(...) {
   
@@ -164,3 +136,19 @@ c.md_lines <- function(...) {
 }
 
 
+
+
+format_citation_w_package <- \(x) {
+  
+  pkg <- attr(x, which = 'package', exact = TRUE)
+  
+  sprintf(
+    fmt = '<u>**`%s`**</u> %s\n', 
+    switch(pkg, base = 'R', pkg), 
+    pkg |>
+      citation() |>
+      url2doi() |> 
+      format(style = 'text') # ?utils:::format.citation
+  )
+  
+}
