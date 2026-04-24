@@ -14,7 +14,7 @@ Depends: R (>= 4.5.0),
 Imports: methods, 
   cli (== 3.6.6), dplyr (== 1.2.1), english (== 1.2.6), 
   ftExtra (== 0.6.4),
-  officer (== 0.7.3), patchwork (== 1.3.2), 
+  officer (== 0.7.4), patchwork (== 1.3.2), 
   rmarkdown (== 2.31), scales (== 1.4.0), 
   zoo (== 1.8.15)
 Suggests: 
